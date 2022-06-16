@@ -9,22 +9,12 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('views',path.join(__dirname,'views'));
-app.set('view engine', 'ejs');
-app.use('/assets',express.static(__dirname + '/public/assets'));
+app.use('/img',express.static(__dirname + '/public/img'));
 
-
-// set routing
+ 
+// set api routing
 app.use('/api/identity', identityRoutes);
 
-// group pages identity
-app.get('/dashboard', function(req, res) {
-    res.render('pages/dashboard/v_index');
-});
-
-// group pages identity
-app.get('/identity', function(req, res) {
-    res.render('pages/identity/v_index');
-});
 
 
 // buat server nya

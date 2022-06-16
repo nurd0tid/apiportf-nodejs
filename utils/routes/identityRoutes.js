@@ -1,7 +1,9 @@
 const {
     createData,
     readData,
+    readDataId,
     updateData,
+    updateDataId,
     deleteData
 } = require('../controllers/Identity');
 const express = require('express');
@@ -12,7 +14,9 @@ router.route('/')
     .get(readData);
 
 router.route('/:id')
+    .get(readDataId)
     .put(updateData)
+    .patch(updateDataId)
     .delete(deleteData);
 
 module.exports = router;
