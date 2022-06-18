@@ -5,7 +5,7 @@ const koneksi = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'apiportf-nodejs',
+  database: 'siakad',
   multipleStatements: true
 });
 

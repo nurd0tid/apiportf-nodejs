@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path')
 const bodyParser = require('body-parser');
 const identityRoutes = require('./utils/routes/identityRoutes');
+const jurusanRoutes = require('./utils/routes/jurusanRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -14,6 +15,7 @@ app.use('/img',express.static(__dirname + '/public/img'));
  
 // set api routing
 app.use('/api/identity', identityRoutes);
+app.use('/api/jurusan', jurusanRoutes);
 
 
 
