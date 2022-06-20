@@ -43,7 +43,7 @@ exports.getJurusanId = (res, statement, id) => {
         }
 
         // if request success
-        responseData(res, 200, rows);
+        responseData(res, 200, rows[0]);
     });
   
 }

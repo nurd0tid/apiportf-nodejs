@@ -26,7 +26,7 @@ exports.readData = (req, res) => {
 
 exports.readDataId = (req, res) => {
   // query sql
-    const querySql = 'SELECT * FROM jurusan WHERE id = ?';
+    const querySql = 'SELECT * FROM jurusan WHERE id_jurusan = ?';
 
   // import to model
   getJurusanId(res, querySql,  req.params.id,);
@@ -37,8 +37,8 @@ exports.readDataId = (req, res) => {
 exports.updateData = (req, res) => {
     // for variable and query
     const data = { ...req.body };
-    const querySearch = 'SELECT * FROM jurusan WHERE id = ?';
-    const queryUpdate = 'UPDATE jurusan SET ? WHERE id = ?';
+    const querySearch = 'SELECT * FROM jurusan WHERE id_jurusan = ?';
+    const queryUpdate = 'UPDATE jurusan SET ? WHERE id_jurusan = ?';
 
     // import to model
     updateJurusan(res, querySearch, queryUpdate, req.params.id, data);
@@ -47,8 +47,8 @@ exports.updateData = (req, res) => {
 // delete Jurusan
 exports.deleteData = (req, res) => {
     // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM jurusan WHERE id = ?';
-    const queryDelete = 'DELETE FROM jurusan WHERE id = ?';
+    const querySearch = 'SELECT * FROM jurusan WHERE id_jurusan = ?';
+    const queryDelete = 'DELETE FROM jurusan WHERE id_jurusan = ?';
 
     // import to model
     deleteJurusan(res, querySearch, queryDelete, req.params.id);
