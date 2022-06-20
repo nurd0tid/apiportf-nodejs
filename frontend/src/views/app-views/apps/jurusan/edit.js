@@ -50,7 +50,7 @@ const EditJurusan = () => {
       setSlug(data.data.slug)
       setSingkatan(data.data.singkatan)
       setStatus(data.data.status)
-    }
+  }
 
  
   return (
