@@ -101,13 +101,13 @@ const Gedung = () => {
     },
     {
       title: "Action",
-      key: "id_akademik",
-      dataIndex: "id_akademik",
+      key: "id_gedung",
+      dataIndex: "id_gedung",
       render: id => (
         <span>
-          <a href={`/app/apps/tahun-akademik-edit/${id}`}><EditTwoTone /></a>
+          <a href={`/app/apps/gedung-edit/${id}`}><EditTwoTone /></a>
           <Divider type="vertical" />
-          <a href="/app/apps/tahun-akademik" onClick={ () => deletePost(id) } ><DeleteTwoTone twoToneColor="#eb2f96" /></a>
+          <a href="/app/apps/gedung" onClick={ () => deletePost(id) } ><DeleteTwoTone twoToneColor="#eb2f96" /></a>
         </span>
       ),
       align: "center"
