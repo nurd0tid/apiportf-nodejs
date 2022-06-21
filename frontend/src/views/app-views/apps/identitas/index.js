@@ -53,14 +53,14 @@ const IdentitasSekolah = () => {
           nm_sekolah: values.Sekolah,
           npsn: values.Npsn,
           nss: values.Nss,
-          alamat: values.Alamat,
-          pos: values.Pos,
-          telp: values.Telp,
-          kel: values.Kelurahan,
-          kec: values.Kecamatan,
-          kab: values.Kab_Kota,
-          prov: values.Provinsi,
-          web: values.Website,
+          almt_sekolah: values.Alamat,
+          kd_pos: values.Pos,
+          no_tlp: values.Telp,
+          kelurahan: values.Kelurahan,
+          kecamatan: values.Kecamatan,
+          kab_kota: values.Kab_Kota,
+          provinsi: values.Provinsi,
+          website: values.Website,
           email: values.Email
       });
 
