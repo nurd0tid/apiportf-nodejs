@@ -79,6 +79,7 @@ const deletePost = async (id) => {
   ];
 
   const dataAPI = [];
+  // eslint-disable-next-line no-lone-blocks
   { 
     posts.map((post, index) => (
         dataAPI.push({

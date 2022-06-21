@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Form, Input, Button, Radio } from 'antd';
-import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 

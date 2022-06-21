@@ -39,6 +39,7 @@ const EditKurikulum = () => {
 
   useEffect(() => {
       getKurikulum();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getKurikulum = async () => {

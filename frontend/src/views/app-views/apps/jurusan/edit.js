@@ -42,6 +42,7 @@ const EditJurusan = () => {
 
   useEffect(() => {
       getJurusan();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getJurusan = async () => {

@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons';
 
 
-const Akademik = () => {
+const Gedung = () => {
 
   const [posts, setPost] = useState([]);
 
@@ -17,12 +17,12 @@ const Akademik = () => {
   }, []);
 
   const getPosts = async () => {
-      const response = await axios.get('http://localhost:5000/api/akademik');
+      const response = await axios.get('http://localhost:5000/api/gedung');
       setPost(response.data.data);
     }
 
   const deletePost = async (id) => {
-      await axios.delete(`http://localhost:5000/api/akademik/${id}`);
+      await axios.delete(`http://localhost:5000/api/gedung/${id}`);
       getPosts();
   }
   
@@ -35,15 +35,39 @@ const Akademik = () => {
       align: "center"
     },
     {
-      title: "Kode Tahun Akademik",
-      dataIndex: "kd_thn",
-      key: "kd_thn",
+      title: "Kode Gedung",
+      dataIndex: "kd_gedung",
+      key: "kd_gedung",
       align: "center"
     },
     {
-      title: "Nama Tahun Akademik",
-      dataIndex: "nm_thn",
-      key: "nm_thn",
+      title: "Nama Gedung",
+      dataIndex: "nm_gedung",
+      key: "nm_gedung",
+      align: "center"
+    },
+    {
+      title: "Jumlah Lantai",
+      dataIndex: "jml_lantai",
+      key: "jml_lantai",
+      align: "center"
+    },
+    {
+      title: "Panjang",
+      dataIndex: "panjang",
+      key: "panjang",
+      align: "center"
+    },
+    {
+      title: "Tinggi",
+      dataIndex: "tinggi",
+      key: "tinggi",
+      align: "center"
+    },
+    {
+      title: "Lebar",
+      dataIndex: "lebar",
+      key: "lebar",
       align: "center"
     },
     {
@@ -96,9 +120,13 @@ const Akademik = () => {
     posts.map((post, index) => (
         dataAPI.push({
           key: index + 1,
-          id_akademik: post.id_akademik,
-          kd_thn: post.kd_thn,
-          nm_thn: post.nm_thn,
+          id_gedung: post.id_gedung,
+          kd_gedung: post.kd_gedung,
+          nm_gedung: post.nm_gedung,
+          jml_lantai: post.jml_lantai,
+          panjang: post.panjang,
+          tinggi: post.tinggi,
+          lebar: post.lebar,
           keterangan: post.keterangan,
           status: [ post.status ],
         })
@@ -110,7 +138,7 @@ const Akademik = () => {
         <div className='code-box-demo'>
           <div style={{ marginBottom: 16 }}>
             <Button type="primary">
-              <a href="/app/apps/tahun-akademik-add">Add Tahun Akademik</a>
+              <a href="/app/apps/gedung-add">Add Gedung</a>
             </Button>
           </div>
           <Table columns={columns} dataSource={dataAPI} pagination={false} bordered/>
@@ -119,4 +147,4 @@ const Akademik = () => {
     );
 }
 
-export default Akademik
+export default Gedung

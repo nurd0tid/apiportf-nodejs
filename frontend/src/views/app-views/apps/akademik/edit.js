@@ -45,6 +45,7 @@ const EditAkademik = () => {
 
   useEffect(() => {
       getAkademik();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getAkademik = async () => {
