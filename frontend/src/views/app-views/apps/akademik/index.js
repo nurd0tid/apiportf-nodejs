@@ -10,22 +10,22 @@ import {
 
 const Akademik = () => {
 
-const [posts, setPost] = useState([]);
+  const [posts, setPost] = useState([]);
 
-useEffect(() => {
-    getPosts();
-}, []);
+  useEffect(() => {
+      getPosts();
+  }, []);
 
-const getPosts = async () => {
-    const response = await axios.get('http://localhost:5000/api/akademik');
-    setPost(response.data.data);
+  const getPosts = async () => {
+      const response = await axios.get('http://localhost:5000/api/akademik');
+      setPost(response.data.data);
+    }
+
+  const deletePost = async (id) => {
+      await axios.delete(`http://localhost:5000/api/akademik/${id}`);
+      getPosts();
   }
-
-const deletePost = async (id) => {
-    await axios.delete(`http://localhost:5000/api/akademik/${id}`);
-    getPosts();
-}
- 
+  
 
   const columns = [
     {
@@ -53,7 +53,7 @@ const deletePost = async (id) => {
       align: "center"
     },
     {
-      title: "Status Kurikulum",
+      title: "Status",
       key: "status",
       dataIndex: "status",
       render: status => (

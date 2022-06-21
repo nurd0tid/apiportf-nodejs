@@ -5,6 +5,7 @@ const identityRoutes = require('./utils/routes/identityRoutes');
 const identitasRoutes = require('./utils/routes/identitasRoutes');
 const kurikulumRoutes = require('./utils/routes/kurikulumRoutes');
 const akademikRoutes = require('./utils/routes/akademikRoutes');
+const gedungRoutes = require('./utils/routes/gedungRoutes');
 const jurusanRoutes = require('./utils/routes/jurusanRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,8 +20,9 @@ app.use('/img',express.static(__dirname + '/public/img'));
 // set api routing
 app.use('/api/identity', identityRoutes);
 app.use('/api/identitas', identitasRoutes);
-app.use('/api/akademik', akademikRoutes);
 app.use('/api/kurikulum', kurikulumRoutes);
+app.use('/api/akademik', akademikRoutes);
+app.use('/api/gedung', gedungRoutes);
 app.use('/api/jurusan', jurusanRoutes);
 
 
