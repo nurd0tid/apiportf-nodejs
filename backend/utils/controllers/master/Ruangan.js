@@ -18,7 +18,7 @@ exports.createData = (req, res, next) => {
 
 exports.readData = (req, res) => {
   // query sql
-    const querySql = 'SELECT * FROM ruangan a JOIN gedung b ON a.kd_gedung=b.kd_gedung ORDER BY a.kd_ruangan DESC';
+    const querySql = 'SELECT r.kd_ruangan, nm_gedung, nm_ruangan, kps_belajar, kps_ujian, r.keterangan, r.status FROM ruangan r JOIN gedung g ON r.kd_gedung = g.kd_gedung ORDER BY r.kd_ruangan DESC';
 
   // import to model
   getRuangan(res, querySql);
