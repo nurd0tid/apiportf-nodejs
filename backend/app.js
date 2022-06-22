@@ -6,6 +6,7 @@ const identitasRoutes = require('./utils/routes/identitasRoutes');
 const kurikulumRoutes = require('./utils/routes/kurikulumRoutes');
 const akademikRoutes = require('./utils/routes/akademikRoutes');
 const gedungRoutes = require('./utils/routes/gedungRoutes');
+const ruanganRoutes = require('./utils/routes/ruanganRoutes');
 const jurusanRoutes = require('./utils/routes/jurusanRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,6 +24,7 @@ app.use('/api/identitas', identitasRoutes);
 app.use('/api/kurikulum', kurikulumRoutes);
 app.use('/api/akademik', akademikRoutes);
 app.use('/api/gedung', gedungRoutes);
+app.use('/api/ruangan', ruanganRoutes);
 app.use('/api/jurusan', jurusanRoutes);
 
 
