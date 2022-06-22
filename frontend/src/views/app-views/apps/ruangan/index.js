@@ -32,37 +32,43 @@ const Ruangan = () => {
       title: "No",
       dataIndex: "key",
       key: "key",
-      align: "center"
+      align: "center",
+      width: 10
     },
     {
       title: "Kode Ruangan",
       dataIndex: "kd_ruangan",
       key: "kd_ruangan",
-      align: "center"
+      align: "center",
+      width: 20
     },
     {
       title: "Nama Gedung",
       dataIndex: "nm_gedung",
       key: "nm_gedung",
-      align: "center"
+      align: "center",
+      width: 120
     },
     {
       title: "Nama Ruangan",
       dataIndex: "nm_ruangan",
       key: "nm_ruangan",
-      align: "center"
+      align: "center",
+      width: 120
     },
     {
       title: "Kapasitas Belajar",
       dataIndex: "kps_belajar",
       key: "kps_belajar",
-      align: "center"
+      align: "center",
+      width: 120
     },
     {
-      title: "Kapasistas Ujian",
+      title: "Kapasitas Ujian",
       dataIndex: "kps_ujian",
       key: "kps_ujian",
-      align: "center"
+      align: "center",
+      width: 120
     },
     {
       title: "Keterangan",
@@ -74,6 +80,7 @@ const Ruangan = () => {
       title: "Status",
       key: "status",
       dataIndex: "status",
+      width: 50,
       render: status => (
         <span>
           {status.map(a => {

@@ -38,19 +38,22 @@ const Gedung = () => {
       title: "Kode Gedung",
       dataIndex: "kd_gedung",
       key: "kd_gedung",
-      align: "center"
+      align: "center",
+      width: 20
     },
     {
       title: "Nama Gedung",
       dataIndex: "nm_gedung",
       key: "nm_gedung",
-      align: "center"
+      align: "center",
+      width: 120
     },
     {
       title: "Jumlah Lantai",
       dataIndex: "jml_lantai",
       key: "jml_lantai",
-      align: "center"
+      align: "center",
+      width: 120
     },
     {
       title: "Panjang",
