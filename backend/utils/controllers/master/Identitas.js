@@ -1,7 +1,7 @@
 const {
     getIdentitasId,
     updateIdentitas,
-} = require('../models/M_identitas');
+} = require('../../models/master/M_identitas');
 
 
 exports.readDataId = (req, res) => {

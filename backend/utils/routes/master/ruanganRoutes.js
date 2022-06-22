@@ -4,7 +4,7 @@ const {
     readDataId,
     updateData,
     deleteData
-} = require('../controllers/Jurusan');
+} = require('../../controllers/master/Ruangan');
 const express = require('express');
 const router = express.Router();
 

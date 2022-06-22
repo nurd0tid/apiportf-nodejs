@@ -4,7 +4,7 @@ const {
     getKurikulumId,
     updateKurikulum,
     deleteKurikulum
-} = require('../models/M_kurikulum');
+} = require('../../models/master/M_kurikulum');
 
 
 // create Identity

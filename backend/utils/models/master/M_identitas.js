@@ -1,6 +1,6 @@
 
-const koneksi = require('../../config/database');
-const { responseData, responseMessage } = require('../response-handler');
+const koneksi = require('../../../config/database');
+const { responseData, responseMessage } = require('../../response-handler');
 
 
 exports.getIdentitasId = (res, statement, id) => {

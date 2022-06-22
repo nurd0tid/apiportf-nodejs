@@ -4,7 +4,7 @@ const {
     getRuanganId,
     updateRuangan,
     deleteRuangan
-} = require('../models/M_ruangan');
+} = require('../../models/master/M_ruangan');
 
 
 // create Identity

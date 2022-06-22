@@ -4,7 +4,7 @@ const {
     getJurusanId,
     updateJurusan,
     deleteJurusan
-} = require('../models/M_jurusan');
+} = require('../../models/master/M_jurusan');
 
 
 // create Identity

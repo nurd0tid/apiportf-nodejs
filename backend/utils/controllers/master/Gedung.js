@@ -4,7 +4,7 @@ const {
     getGedungId,
     updateGedung,
     deleteGedung
-} = require('../models/M_gedung');
+} = require('../../models/master/M_gedung');
 
 
 // create Identity

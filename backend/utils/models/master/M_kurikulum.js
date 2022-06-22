@@ -1,6 +1,6 @@
 
-const koneksi = require('../../config/database');
-const { responseData, responseMessage } = require('../response-handler');
+const koneksi = require('../../../config/database');
+const { responseData, responseMessage } = require('../../response-handler');
 
 exports.insertKurikulum = (response, statement, data) => {
   koneksi.query(statement, data, (err, rows, field) => {

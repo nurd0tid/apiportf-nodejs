@@ -3,8 +3,9 @@ const {
     readData,
     readDataId,
     updateData,
+    updateDataId,
     deleteData
-} = require('../controllers/Akademik');
+} = require('../../controllers/master/Identity');
 const express = require('express');
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.route('/')
 router.route('/:id')
     .get(readDataId)
     .put(updateData)
+    .patch(updateDataId)
     .delete(deleteData);
 
 module.exports = router;

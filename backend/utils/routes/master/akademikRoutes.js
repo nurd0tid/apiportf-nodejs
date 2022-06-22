@@ -4,7 +4,7 @@ const {
     readDataId,
     updateData,
     deleteData
-} = require('../controllers/Ruangan');
+} = require('../../controllers/master/Akademik');
 const express = require('express');
 const router = express.Router();
 

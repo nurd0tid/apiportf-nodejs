@@ -4,7 +4,7 @@ const {
     readDataId,
     updateData,
     deleteData
-} = require('../controllers/Gedung');
+} = require('../../controllers/master/Gedung');
 const express = require('express');
 const router = express.Router();
 

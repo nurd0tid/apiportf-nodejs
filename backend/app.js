@@ -1,13 +1,13 @@
 const express = require('express');
 const path = require('path')
 const bodyParser = require('body-parser');
-const identityRoutes = require('./utils/routes/identityRoutes');
-const identitasRoutes = require('./utils/routes/identitasRoutes');
-const kurikulumRoutes = require('./utils/routes/kurikulumRoutes');
-const akademikRoutes = require('./utils/routes/akademikRoutes');
-const gedungRoutes = require('./utils/routes/gedungRoutes');
-const ruanganRoutes = require('./utils/routes/ruanganRoutes');
-const jurusanRoutes = require('./utils/routes/jurusanRoutes');
+const identityRoutes = require('./utils/routes/master/identityRoutes');
+const identitasRoutes = require('./utils/routes/master/identitasRoutes');
+const kurikulumRoutes = require('./utils/routes/master/kurikulumRoutes');
+const akademikRoutes = require('./utils/routes/master/akademikRoutes');
+const gedungRoutes = require('./utils/routes/master/gedungRoutes');
+const ruanganRoutes = require('./utils/routes/master/ruanganRoutes');
+const jurusanRoutes = require('./utils/routes/master/jurusanRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 

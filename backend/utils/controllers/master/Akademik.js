@@ -4,7 +4,7 @@ const {
     getAkademikId,
     updateAkademik,
     deleteAkademik
-} = require('../models/M_akademik');
+} = require('../../models/master/M_akademik');
 
 
 // create Identity

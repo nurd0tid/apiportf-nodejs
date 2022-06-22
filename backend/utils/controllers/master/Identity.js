@@ -5,7 +5,7 @@ const {
     updateIdentity,
     updateIdentityId,
     deleteIdentity
-} = require('../models/M_identity');
+} = require('../../models/master/M_identity');
 const multer = require('multer');
 const uploadDir = '/img/';
 const storage = multer.diskStorage({

@@ -1,8 +1,8 @@
 
-const koneksi = require('../../config/database');
-const { responseData, responseMessage } = require('../response-handler');
+const koneksi = require('../../../config/database');
+const { responseData, responseMessage } = require('../../response-handler');
 
-exports.insertJurusan = (response, statement, data) => {
+exports.insertRuangan = (response, statement, data) => {
   koneksi.query(statement, data, (err, rows, field) => {
     if(err){
       return response.status(500).json({
@@ -14,7 +14,7 @@ exports.insertJurusan = (response, statement, data) => {
   });
 }
 
-exports.getJurusan = (response, statement) => {
+exports.getRuangan = (response, statement) => {
       // running querys
     koneksi.query(statement, (err, rows, field) => {
         // error handling
@@ -31,7 +31,7 @@ exports.getJurusan = (response, statement) => {
   
 }
 
-exports.getJurusanId = (res, statement, id) => {
+exports.getRuanganId = (res, statement, id) => {
       // running querys
     koneksi.query(statement, id, (err, rows, field) => {
         // error handling
@@ -48,7 +48,7 @@ exports.getJurusanId = (res, statement, id) => {
   
 }
 
-exports.updateJurusan = (response, searchStatement, updateStatement, id, data) => {
+exports.updateRuangan = (response, searchStatement, updateStatement, id, data) => {
     // run query to search data
     koneksi.query(searchStatement, id, (err, rows, field) => {
         // error handling
@@ -83,7 +83,7 @@ exports.updateJurusan = (response, searchStatement, updateStatement, id, data) =
     });
 }
 
-exports.deleteJurusan = (response, searchStatement, deleteStatement, id) => {
+exports.deleteRuangan = (response, searchStatement, deleteStatement, id) => {
       // run query for search data
     koneksi.query(searchStatement, id, (err, rows, field) => {
         // error handling
