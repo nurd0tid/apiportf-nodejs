@@ -27,7 +27,9 @@ const Apps = ({ match }) => (
       <Route path={`${match.url}/jurusan`} component={lazy(() => import(`./jurusan`))} />
       <Route path={`${match.url}/jurusan-add`} component={lazy(() => import(`./jurusan/add`))} />
       <Route path={`${match.url}/jurusan-detail/:id`} component={lazy(() => import(`./jurusan/detail`))} />
-      <Route path={`${match.url}/jurusan-edit/:id`} component={lazy(() => import(`./jurusan/edit`))} />
+      <Route path={`${match.url}/kepegawaian`} component={lazy(() => import(`./kepegawaian`))} />
+      <Route path={`${match.url}/kepegawaian-add`} component={lazy(() => import(`./kepegawaian/add`))} />
+      <Route path={`${match.url}/kepegawaian-edit/:id`} component={lazy(() => import(`./kepegawaian/edit`))} />
       <Redirect from={`${match.url}`} to={`${match.url}/identitas`} />
     </Switch>
   </Suspense>
