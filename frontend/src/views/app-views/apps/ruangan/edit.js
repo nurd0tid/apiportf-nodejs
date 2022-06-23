@@ -86,7 +86,6 @@ const EditGedung = () => {
           <Form.Item name="kd_gedung" label="Nama Gedung" rules={[{ required: true }]}>
             <Select
               placeholder="Select a option and change input text above"
-              // onChange={onGenderChange}
               allowClear
             >
               <option valie="">-- Pilih Gedung --</option>
