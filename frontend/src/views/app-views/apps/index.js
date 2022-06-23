@@ -21,6 +21,9 @@ const Apps = ({ match }) => (
       <Route path={`${match.url}/golongan`} component={lazy(() => import(`./golongan`))} />
       <Route path={`${match.url}/golongan-add`} component={lazy(() => import(`./golongan/add`))} />
       <Route path={`${match.url}/golongan-edit/:id`} component={lazy(() => import(`./golongan/edit`))} />
+      <Route path={`${match.url}/ptk`} component={lazy(() => import(`./ptk`))} />
+      <Route path={`${match.url}/ptk-add`} component={lazy(() => import(`./ptk/add`))} />
+      <Route path={`${match.url}/ptk-edit/:id`} component={lazy(() => import(`./ptk/edit`))} />
       <Route path={`${match.url}/jurusan`} component={lazy(() => import(`./jurusan`))} />
       <Route path={`${match.url}/jurusan-add`} component={lazy(() => import(`./jurusan/add`))} />
       <Route path={`${match.url}/jurusan-edit/:id`} component={lazy(() => import(`./jurusan/edit`))} />
