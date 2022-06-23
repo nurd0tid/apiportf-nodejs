@@ -1,5 +1,5 @@
 import React from "react";
-import { Descriptions, Tag } from "antd";
+import { Descriptions, Tag, Button } from "antd";
 import { useState, useEffect } from 'react'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
@@ -38,7 +38,7 @@ const DetailJurusan = () => {
     return (
       <div className='code-box'>
           <div className='code-box-demo'>
-            <Descriptions
+            <Descriptions className="mb-3"
               title="Detail Data Jurusan"
               bordered
               column={{ xxl: 5, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
@@ -77,6 +77,7 @@ const DetailJurusan = () => {
                 })()}
               </Descriptions.Item>
             </Descriptions>
+            <Button type="dashed"><a href="/app/apps/jurusan">Kembali</a></Button>
           </div>
       </div>
     );
