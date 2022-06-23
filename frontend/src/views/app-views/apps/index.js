@@ -26,6 +26,7 @@ const Apps = ({ match }) => (
       <Route path={`${match.url}/ptk-edit/:id`} component={lazy(() => import(`./ptk/edit`))} />
       <Route path={`${match.url}/jurusan`} component={lazy(() => import(`./jurusan`))} />
       <Route path={`${match.url}/jurusan-add`} component={lazy(() => import(`./jurusan/add`))} />
+      <Route path={`${match.url}/jurusan-detail/:id`} component={lazy(() => import(`./jurusan/detail`))} />
       <Route path={`${match.url}/jurusan-edit/:id`} component={lazy(() => import(`./jurusan/edit`))} />
       <Redirect from={`${match.url}`} to={`${match.url}/identitas`} />
     </Switch>

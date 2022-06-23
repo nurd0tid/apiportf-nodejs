@@ -21,8 +21,14 @@ const AddJurusan = () => {
   
   const onFinish = async (values) => {
       await axios.post('http://localhost:5000/api/jurusan',{
-          singkatan: values.Singkatan,
-          slug: values.Jurusan,
+          kd_jurusan: values.kd_jurusan,
+          nm_jurusan: values.nm_jurusan,
+          bidang_keahlian: values.bidang_keahlian,
+          kptsi_umum: values.kptsi_umum,
+          kptsi_khusus: values.kptsi_khusus,
+          pejabat: values.pejabat,
+          jabatan: values.jabatan,
+          keterangan: values.keterangan,
           status: values.Status,
       });
 
@@ -31,11 +37,35 @@ const AddJurusan = () => {
 
   return (
       <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
-          <Form.Item name="Singkatan" label="Singkatan" rules={[{ required: true }]}>
+          <Form.Item name="kd_jurusan" label="Kode Jurusan" rules={[{ required: true }]}>
           <Input/>
           </Form.Item>
 
-          <Form.Item name="Jurusan" label="Jurusan" rules={[{ required: true }]}>
+          <Form.Item name="nm_jurusan" label="Nama Jurusan" rules={[{ required: true }]}>
+            <Input/>
+          </Form.Item>
+
+          <Form.Item name="bidang_keahlian" label="Bidang Keahlian" rules={[{ required: true }]}>
+            <Input/>
+          </Form.Item>
+
+          <Form.Item name="kptsi_umum" label="Kompetensi Umum" rules={[{ required: true }]}>
+            <Input/>
+          </Form.Item>
+
+          <Form.Item name="kptsi_khusus" label="Kompetensi Khusus" rules={[{ required: true }]}>
+            <Input/>
+          </Form.Item>
+
+          <Form.Item name="pejabat" label="Pejabat" rules={[{ required: true }]}>
+            <Input/>
+          </Form.Item>
+
+          <Form.Item name="jabatan" label="Jabatan" rules={[{ required: true }]}>
+            <Input/>
+          </Form.Item>
+
+          <Form.Item name="keterangan" label="Keterangan" rules={[{ required: true }]}>
             <Input/>
           </Form.Item>
 
