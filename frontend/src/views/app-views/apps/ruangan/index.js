@@ -74,7 +74,8 @@ const Ruangan = () => {
       title: "Keterangan",
       dataIndex: "keterangan",
       key: "keterangan",
-      align: "center"
+      align: "center",
+      width: 190
     },
     {
       title: "Status",
