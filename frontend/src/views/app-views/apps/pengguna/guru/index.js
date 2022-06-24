@@ -119,7 +119,7 @@ const deletePost = async (id) => {
               <a href="/app/apps/guru-add">Add Guru</a>
             </Button>
           </div>
-          <Table columns={columns} dataSource={dataAPI} pagination={true} bordered/>
+          <Table columns={columns} dataSource={dataAPI} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['5', '10', '25', '100']}} bordered/>
         </div>
       </div>
     );

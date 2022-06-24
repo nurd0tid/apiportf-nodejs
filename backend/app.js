@@ -9,8 +9,9 @@ const gedungRoutes = require('./utils/routes/master/gedungRoutes');
 const ruanganRoutes = require('./utils/routes/master/ruanganRoutes');
 const golonganRoutes = require('./utils/routes/master/golonganRoutes');
 const ptkRoutes = require('./utils/routes/master/ptkRoutes');
-const kepegawaianRoutes = require('./utils/routes/master/kepegawaianRoutes');
 const jurusanRoutes = require('./utils/routes/master/jurusanRoutes');
+const kelasRoutes = require('./utils/routes/master/kelasRoutes');
+const kepegawaianRoutes = require('./utils/routes/master/kepegawaianRoutes');
 const guruRoutes = require('./utils/routes/pengguna/guruRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -31,8 +32,9 @@ app.use('/api/gedung', gedungRoutes);
 app.use('/api/ruangan', ruanganRoutes);
 app.use('/api/golongan', golonganRoutes);
 app.use('/api/ptk', ptkRoutes);
-app.use('/api/kepegawaian', kepegawaianRoutes);
 app.use('/api/jurusan', jurusanRoutes);
+app.use('/api/kelas', kelasRoutes);
+app.use('/api/kepegawaian', kepegawaianRoutes);
 app.use('/api/guru', guruRoutes);
 
 
