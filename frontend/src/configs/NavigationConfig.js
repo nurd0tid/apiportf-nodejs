@@ -151,7 +151,7 @@ const apps = [
 				submenu: [
 					{
 						key: 'apps-akademik-key-1',
-						path: `${APP_PREFIX_PATH}/apps/kelompok-mapel`,
+						path: `${APP_PREFIX_PATH}/apps/kmapel`,
 						title: 'Data Kelompok Mapel',
 						breadcrumb: true,
 						submenu: []

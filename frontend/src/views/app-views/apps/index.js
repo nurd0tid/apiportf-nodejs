@@ -58,6 +58,11 @@ const Apps = ({ match }) => (
       <Route path={`${match.url}/guru-add`} component={lazy(() => import(`./pengguna/guru/add`))} />
       <Route path={`${match.url}/guru-detail/:id`} component={lazy(() => import(`./pengguna/guru/detail`))} />
       <Route path={`${match.url}/guru-edit/:id`} component={lazy(() => import(`./pengguna/guru/edit`))} />
+
+      {/* Function view Akademik Kelompok Mapel. */}
+      <Route path={`${match.url}/kmapel`} component={lazy(() => import(`./akademik/kelompok_mapel`))} />
+      <Route path={`${match.url}/kmapel-add`} component={lazy(() => import(`./akademik/kelompok_mapel/add`))} />
+      <Route path={`${match.url}/kmapel-edit/:id`} component={lazy(() => import(`./akademik/kelompok_mapel/edit`))} />
       <Redirect from={`${match.url}`} to={`${match.url}/identitas`} />
     </Switch>
   </Suspense>
