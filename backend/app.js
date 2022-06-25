@@ -13,6 +13,9 @@ const jurusanRoutes = require('./utils/routes/master/jurusanRoutes');
 const kelasRoutes = require('./utils/routes/master/kelasRoutes');
 const kepegawaianRoutes = require('./utils/routes/master/kepegawaianRoutes');
 const guruRoutes = require('./utils/routes/pengguna/guruRoutes');
+
+const kmapelRoutes = require('./utils/routes/akademik/kmapelRoutes');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -36,6 +39,9 @@ app.use('/api/jurusan', jurusanRoutes);
 app.use('/api/kelas', kelasRoutes);
 app.use('/api/kepegawaian', kepegawaianRoutes);
 app.use('/api/guru', guruRoutes);
+
+
+app.use('/api/kmapel', kmapelRoutes);
 
 
 
