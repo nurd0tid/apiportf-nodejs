@@ -68,6 +68,7 @@ const Apps = ({ match }) => (
       <Route path={`${match.url}/mapel`} component={lazy(() => import(`./akademik/mapel`))} />
       <Route path={`${match.url}/mapel-add`} component={lazy(() => import(`./akademik/mapel/add`))} />
       <Route path={`${match.url}/mapel-edit/:id`} component={lazy(() => import(`./akademik/mapel/edit`))} />
+      <Route path={`${match.url}/mapel-detail/:id`} component={lazy(() => import(`./akademik/mapel/detail`))} />
       <Redirect from={`${match.url}`} to={`${match.url}/identitas`} />
     </Switch>
   </Suspense>

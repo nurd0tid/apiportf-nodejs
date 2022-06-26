@@ -72,10 +72,10 @@ const EditMapel = () => {
 
   useEffect(() => {
       getKurikulum();
-      getMapel();
       getJurusan();
       getGuru();
       getKmapel();
+      getMapel();
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
