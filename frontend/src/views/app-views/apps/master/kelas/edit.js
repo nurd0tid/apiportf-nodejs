@@ -12,7 +12,7 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const EditGedung = () => {
+const EditKelas = () => {
   const { Option } = Select;
   const [form] = Form.useForm();
   const [gurus, setGuru] = useState([]);
@@ -153,7 +153,7 @@ export class Edit extends Component {
         <div className='basic'>
           <div className='code-box'>
             <section className='code-box-demo'>
-              <EditGedung />
+              <EditKelas />
             </section>
           </div>
         </div>
