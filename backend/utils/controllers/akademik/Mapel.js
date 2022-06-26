@@ -26,7 +26,7 @@ exports.readData = (req, res) => {
 
 exports.readDataId = (req, res) => {
   // query sql
-    const querySql = 'SELECT id_kurikulum, kd_mapel, nm_mapel, nm_jurusan, nm_guru, tingkat, a.kptsi_umum, a.kptsi_khusus, jml_jam, nm_kmapel, a.status FROM mapel a LEFT JOIN k_mapel b ON a.id_kmapel=b.id_kmapel LEFT JOIN guru c ON a.nip=c.nip LEFT JOIN jurusan d ON a.kd_jurusan=d.kd_jurusan WHERE kd_mapel = ?';
+    const querySql = 'SELECT nm_kurikulum, kd_mapel, nm_mapel, nm_jurusan, nm_guru, tingkat, a.kptsi_umum, a.kptsi_khusus, jml_jam, nm_kmapel, a.status FROM mapel a LEFT JOIN k_mapel b ON a.id_kmapel=b.id_kmapel LEFT JOIN guru c ON a.nip=c.nip LEFT JOIN jurusan d ON a.kd_jurusan=d.kd_jurusan LEFT JOIN kurikulum e ON a.id_kurikulum=e.id_kurikulum WHERE kd_mapel = ?';
 
   // import to model
   getMapelId(res, querySql,  req.params.id,);
