@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Input, Col, Row, Button, DatePicker, Select } from 'antd';
-// import { UploadOutlined } from '@ant-design/icons';
+import { Form, Input, Col, Row, Button, DatePicker, Upload, Select, Radio } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 
@@ -27,19 +27,6 @@ const Demo = () => {
       layout={'vertical'}
       // style={{ marginLeft: 420 }}
     >
-
-      {/* <Row>
-        <Col span={3}>
-        <Form.Item>
-          <Upload listType="picture">
-            <Button>
-              <UploadOutlined /> Click to upload
-            </Button>
-          </Upload>
-        </Form.Item>
-        </Col>
-      </Row> */}
-
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col className="gutter-row" span={12}>
           <Form.Item
@@ -377,8 +364,8 @@ const Demo = () => {
         </Col> 
         <Col className="gutter-row" span={12}>
           <Form.Item
-                label="Kabupaten/Kota"
-                name="kab_kota"
+                label="Kode Pos"
+                name="kd_pos"
                 rules={[
                   {
                     required: true,
@@ -403,8 +390,8 @@ const Demo = () => {
         </Col> 
         <Col className="gutter-row" span={12}>
           <Form.Item
-                label="Kelurahan"
-                name="kelurahan"
+                label="Kabupaten/Kota"
+                name="kab_kota"
                 rules={[
                   {
                     required: true,
@@ -426,7 +413,7 @@ const Demo = () => {
               >
               <Input />
           </Form.Item>
-        </Col> 
+        </Col>
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Kecamatan"
@@ -439,7 +426,7 @@ const Demo = () => {
               >
               <Input />
           </Form.Item>
-        </Col> 
+        </Col>
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="TMT PNS"
@@ -452,7 +439,260 @@ const Demo = () => {
               >
               <Input />
           </Form.Item>
-        </Col> 
+        </Col>  
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Kelurahan"
+                name="kelurahan"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+              <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Lisensi Kepsek"
+                name="lisensi_kepsek"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+              <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Provinsi"
+                name="provinsi"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+              <Input />
+          </Form.Item>
+        </Col>  
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Jumlah Sekolah Binaan"
+                name="jml_sklh_binaan"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+              <Input />
+          </Form.Item>
+        </Col>  
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="NUPTK"
+                name="nuptk"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+              <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Diklat Kepengawasan"
+                name="diklat_kepengawasan"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+              <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Bidang Studi"
+                name="bidang_studi"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+              <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Mampu Handle KK"
+                name="mampu_handle_kk"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+              <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Jenis PTK"
+                name="id_ptk"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+            <Select>
+              <Option value="Guru Mapel">Guru Mapel</Option>
+            </Select>
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Keahlian Breile"
+                name="keahlian_breile"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+              <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Tugas Tambahan"
+                name="tgs_tambahan"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Keahlian Bahasa Isyarat"
+                name="keahlian_bahasa_isyarat"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Status Pegawai"
+                name="id_kepegawaian"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+            <Select>
+              <Option value="Guru Mapel">Guru Mapel</Option>
+            </Select>
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Kewarganegaraan"
+                name="keahlian_bahasa_isyarat"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Status Keaktifan"
+                name="status"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+            <Radio.Group>
+              <Radio value="aktif">Active</Radio>
+              <Radio value="nonactive">Non Active</Radio>
+            </Radio.Group>
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="NIY/NIGK"
+                name="niy_nigk"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="Status Pernikahan"
+                name="status_pernikahan"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+            <Radio.Group>
+              <Radio value="menikah">Menikah</Radio>
+              <Radio value="belum_menikah">Belum Menikah</Radio>
+            </Radio.Group>
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+                label="NPWP"
+                name="npwp"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item>
+            <Upload listType="picture">
+              <Button>
+                <UploadOutlined /> Click to upload
+              </Button>
+            </Upload>
+          </Form.Item>
+        </Col>
       </Row>
 
       <Form.Item {...tailLayout}>
