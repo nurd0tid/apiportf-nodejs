@@ -666,8 +666,8 @@ const Demo = () => {
                 ]}
               >
             <Radio.Group>
-              <Radio value="menikah">Menikah</Radio>
-              <Radio value="belum_menikah">Belum Menikah</Radio>
+              <Radio value="Menikah">Menikah</Radio>
+              <Radio value="Belum Menikah">Belum Menikah</Radio>
             </Radio.Group>
           </Form.Item>
         </Col>
