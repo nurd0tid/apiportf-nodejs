@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Form, Input, Col, Row, Button, DatePicker, Upload, Select, Radio } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const { Option } = Select;
 
@@ -12,6 +14,28 @@ const tailLayout = {
 };
 
 const Demo = () => {
+  const [golongans, setGolongan] = useState([]);
+  const [ptks, setPtk] = useState([]);
+  const [kepegawaians, setKepegawaian] = useState([]);
+
+  useEffect(() => {
+      getGolongan();
+      getPtk();
+      getKepegawaian();
+  }, []);
+
+  const getGolongan = async () => {
+      const response = await axios.get('http://localhost:5000/api/golongan');
+      setGolongan(response.data.data);
+  }
+  const getPtk = async () => {
+      const response = await axios.get('http://localhost:5000/api/ptk');
+      setPtk(response.data.data);
+  }
+  const getKepegawaian = async () => {
+      const response = await axios.get('http://localhost:5000/api/kepegawaian');
+      setKepegawaian(response.data.data);
+  }
   const onFinish = values => {
     console.log('Success:', values);
   };
@@ -25,7 +49,6 @@ const Demo = () => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       layout={'vertical'}
-      // style={{ marginLeft: 420 }}
     >
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col className="gutter-row" span={12}>
@@ -35,7 +58,6 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your NIP!',
                   },
                 ]}
               >
@@ -49,7 +71,6 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your NIK!',
                   },
                 ]}
               >
@@ -63,7 +84,6 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your Nama Lengkap!',
                   },
                 ]}
               >
@@ -77,7 +97,6 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your SK CPNS!',
                   },
                 ]}
               >
@@ -91,7 +110,6 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your Tempat Lahir!',
                   },
                 ]}
               >
@@ -105,7 +123,6 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your Tanggal CPNS!',
                   },
                 ]}
               >
@@ -119,7 +136,6 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your Tanggal Lahir!',
                   },
                 ]}
               >
@@ -128,12 +144,11 @@ const Demo = () => {
         </Col>
         <Col className="gutter-row" span={12}>
           <Form.Item
-                label="SK Pengangkat"
-                name="sk_pengangkat"
+                label="SK Pengangkatan"
+                name="sk_pengangkatan"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your SK Pengangkat!',
                   },
                 ]}
               >
@@ -143,11 +158,10 @@ const Demo = () => {
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Jenis Kelamin"
-                name="jenis_kelamin"
+                name="jenkel"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your Jenis Kelamin!',
                   },
                 ]}
               >
@@ -159,16 +173,15 @@ const Demo = () => {
         </Col>
         <Col className="gutter-row" span={12}>
           <Form.Item
-                label="TMT Pengangkat"
-                name="tmt_pengangkat"
+                label="TMT Pengangkatan"
+                name="tmt_pengangkatan"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your TMT Pengangkat!',
                   },
                 ]}
               >
-              <Input />
+              <DatePicker />
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
@@ -178,7 +191,6 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your Agama!',
                   },
                 ]}
               >
@@ -187,17 +199,18 @@ const Demo = () => {
               <Option value="Kristen">Kristen</Option>
               <Option value="Hindu">Hindu</Option>
               <Option value="Buddha">Buddha</Option>
+              <Option value="Katolik">Katolik</Option>
+              <Option value="Khonghucu">Khonghucu</Option>
             </Select>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
           <Form.Item
-                label="Lemb. Pengangkat"
-                name="lembaga_pengangkatan"
+                label="Lemb. Pengangkatan"
+                name="lemb_pengangkatan"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your Lemb. Pengangkat!',
                   },
                 ]}
               >
@@ -211,17 +224,18 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your No. Handphone!',
                   },
                 ]}
               >
             <Input.Group>
               <Row gutter={8}>
                 <Col span={5}>
-                  <Input defaultValue="62" />
+                  <Input 
+                  placeholder='62'
+                  />
                 </Col>
                 <Col span={8}>
-                  <Input defaultValue="" />
+                  <Input />
                 </Col>
               </Row>
             </Input.Group>
@@ -234,13 +248,14 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your Golongan!',
                   },
                 ]}
               >
-            <Select>
+            <Select placeholder="Select a option and change input text above">
               <Option value="">-- Pilih Golongan --</Option>
-              <Option value="IV/a">IV/a</Option>
+              { golongans.map((golongan) => (
+              <Option value={ golongan.id_golongan }>{ golongan.nm_golongan }</Option>
+              )) }
             </Select>
           </Form.Item>
         </Col>
@@ -251,17 +266,16 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your No. Telepon!',
                   },
                 ]}
               >
             <Input.Group>
               <Row gutter={8}>
                 <Col span={5}>
-                  <Input defaultValue="021" />
+                  <Input placeholder='021' />
                 </Col>
                 <Col span={8}>
-                  <Input defaultValue="" />
+                  <Input />
                 </Col>
               </Row>
             </Input.Group>
@@ -274,7 +288,6 @@ const Demo = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your Sumber Gaji!',
                   },
                 ]}
               >
@@ -311,7 +324,7 @@ const Demo = () => {
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Alamat Rumah"
-                name="almt_jalan"
+                name="almt_rumah"
                 rules={[
                   {
                     required: true,
@@ -324,7 +337,7 @@ const Demo = () => {
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Nama Ibu Kandung"
-                name="nama_ibu_kandung"
+                name="nm_ibu_kandung"
                 rules={[
                   {
                     required: true,
@@ -365,7 +378,7 @@ const Demo = () => {
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Kode Pos"
-                name="kd_pos"
+                name="kode_pos"
                 rules={[
                   {
                     required: true,
@@ -404,7 +417,7 @@ const Demo = () => {
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Pekerjaan Suami/Istri"
-                name="pj_suami_istri"
+                name="pekerjaan_suami_istri"
                 rules={[
                   {
                     required: true,
@@ -437,7 +450,7 @@ const Demo = () => {
                   },
                 ]}
               >
-              <Input />
+              <DatePicker />
           </Form.Item>
         </Col>  
         <Col className="gutter-row" span={12}>
@@ -554,8 +567,11 @@ const Demo = () => {
                   },
                 ]}
               >
-            <Select>
-              <Option value="Guru Mapel">Guru Mapel</Option>
+            <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Jenis PTK --</Option>
+              { ptks.map((ptk) => (
+              <Option value={ ptk.id_ptk }>{ ptk.nm_ptk }</Option>
+              )) }
             </Select>
           </Form.Item>
         </Col>
@@ -588,7 +604,7 @@ const Demo = () => {
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Keahlian Bahasa Isyarat"
-                name="keahlian_bahasa_isyarat"
+                name="keahlian_bhs_isyarat"
                 rules={[
                   {
                     required: true,
@@ -600,7 +616,7 @@ const Demo = () => {
         </Col>
         <Col className="gutter-row" span={12}>
           <Form.Item
-                label="Status Pegawai"
+                label="Status Kepegawaian"
                 name="id_kepegawaian"
                 rules={[
                   {
@@ -608,15 +624,18 @@ const Demo = () => {
                   },
                 ]}
               >
-            <Select>
-              <Option value="Guru Mapel">Guru Mapel</Option>
+            <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Status Kepegawaian --</Option>
+              { kepegawaians.map((kepegawaian) => (
+              <Option value={ kepegawaian.id_kepegawaian }>{ kepegawaian.stts_kepegawaian }</Option>
+              )) }
             </Select>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Kewarganegaraan"
-                name="keahlian_bahasa_isyarat"
+                name="kewarganegaraan"
                 rules={[
                   {
                     required: true,
@@ -637,8 +656,8 @@ const Demo = () => {
                 ]}
               >
             <Radio.Group>
-              <Radio value="aktif">Active</Radio>
-              <Radio value="nonactive">Non Active</Radio>
+              <Radio value="active">Active</Radio>
+              <Radio value="non active">Non Active</Radio>
             </Radio.Group>
           </Form.Item>
         </Col>
@@ -658,7 +677,7 @@ const Demo = () => {
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Status Pernikahan"
-                name="status_pernikahan"
+                name="stts_pernikahan"
                 rules={[
                   {
                     required: true,
@@ -684,27 +703,26 @@ const Demo = () => {
             <Input />
           </Form.Item>
         </Col>
-        <Col className="gutter-row" span={12}>
+        <Col className="gutter-row" span={24}>
           <Form.Item>
-            <Upload listType="picture">
+            <Upload listType="picture" name="photo">
               <Button>
                 <UploadOutlined /> Click to upload
               </Button>
             </Upload>
           </Form.Item>
         </Col>
+        <Form.Item {...tailLayout} className="mt-4">
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
       </Row>
-
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
     </Form>
   );
 };
 
-export class Responsive extends Component {
+export class AddGuru extends Component {
   render() {
     return (
     <div>
@@ -722,4 +740,4 @@ export class Responsive extends Component {
   }
 }
 
-export default Responsive;
+export default AddGuru;
