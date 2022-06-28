@@ -704,8 +704,8 @@ const Demo = () => {
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={24}>
-          <Form.Item>
-            <Upload listType="picture" name="photo">
+          <Form.Item name="photo">
+            <Upload listType="picture">
               <Button>
                 <UploadOutlined /> Click to upload
               </Button>
