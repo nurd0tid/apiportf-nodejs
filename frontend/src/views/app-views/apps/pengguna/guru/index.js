@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, Divider, Button } from "antd";
+import { Table, Divider, Button, Avatar } from "antd";
 import { 
   EditTwoTone,
   DeleteTwoTone,
@@ -14,17 +14,17 @@ const Guru = () => {
 const [posts, setPost] = useState([]);
 
 useEffect(() => {
-    getPosts();
+    getGuru();
 }, []);
 
-const getPosts = async () => {
+const getGuru = async () => {
     const response = await axios.get('http://localhost:5000/api/guru');
     setPost(response.data.data);
   }
 
 const deletePost = async (id) => {
     await axios.delete(`http://localhost:5000/api/guru/${id}`);
-    getPosts();
+    getGuru();
 }
  
 
@@ -37,46 +37,45 @@ const deletePost = async (id) => {
       width: 5
     },
     {
+      title: "Photo",
+      key: "photo",
+      dataIndex: "photo",
+      render: photo => (
+        <div>
+          <Avatar src={"http://localhost:5000/photo_guru/" + photo } shape="square" size={64} />
+        </div>
+      ),
+      align: "center"
+    },
+    {
       title: "NIP",
       dataIndex: "nip",
       key: "nip",
       align: "center",
-      width:50
     },
     {
       title: "Nama Lengkap",
       dataIndex: "nm_guru",
       key: "nm_guru",
       align: "center",
-      width: 200
     },
     {
-      title: "Jenis Kelamin",
-      dataIndex: "jenis_kelamin",
-      key: "jenis_kelamin",
+      title: "No. Handphone",
+      dataIndex: "no_hp",
+      key: "no_hp",
       align: "center",
-      width: 80,
-    },
-    {
-      title: "No Telepon",
-      dataIndex: "telepon",
-      key: "telepon",
-      align: "center",
-      width: 80
     },
     {
       title: "Status Pegawai",
       dataIndex: "stts_kepegawaian",
       key: "stts_kepegawaian",
       align: "center",
-      width: 80
     },
     {
       title: "Jenis PTK",
       dataIndex: "nm_ptk",
       key: "nm_ptk",
       align: "center",
-      width: 150
     },
     {
       title: "Action",
@@ -102,9 +101,9 @@ const deletePost = async (id) => {
         dataAPI.push({
           key: index + 1,
           nip: post.nip,
+          photo: post.photo,
           nm_guru: post.nm_guru,
-          jenis_kelamin: post.jenis_kelamin,
-          telepon: post.telepon,
+          no_hp: post.no_hp,
           stts_kepegawaian: post.stts_kepegawaian,
           nm_ptk: post.nm_ptk,
         })

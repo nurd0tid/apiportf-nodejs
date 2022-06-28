@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Form, Input, Col, Row, Button, DatePicker, Upload, Select, Radio } from 'antd';
+import { Form, Input, Col, Row, Button, Upload, Select, Radio } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -13,7 +14,9 @@ const tailLayout = {
   },
 };
 
-const Demo = () => {
+const AddGuru = () => {
+  const history = useHistory();
+  const [form] = Form.useForm();
   const [golongans, setGolongan] = useState([]);
   const [ptks, setPtk] = useState([]);
   const [kepegawaians, setKepegawaian] = useState([]);
@@ -36,18 +39,23 @@ const Demo = () => {
       const response = await axios.get('http://localhost:5000/api/kepegawaian');
       setKepegawaian(response.data.data);
   }
-  const onFinish = values => {
-    console.log('Success:', values);
-  };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
+  const onFinish = async values => {
+  const formData = new FormData();
+  for (const name in values) {
+    formData.append(name, values[name]); // there should be values.avatar which is a File object
+  }
+ const res = await fetch('http://localhost:5000/api/guru', {
+    method: 'POST',
+    body: formData // automagically sets Content-Type: multipart/form-data header
+  });
+  res(history.push("/app/apps/guru"));
+}
 
   return (
     <Form
+      form={form}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       layout={'vertical'}
     >
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -126,20 +134,23 @@ const Demo = () => {
                   },
                 ]}
               >
-              <DatePicker />
+              <Input 
+              type="date"/>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
           <Form.Item
                 label="Tanggal Lahir"
                 name="tgl_lahir"
+                type="date"
                 rules={[
                   {
                     required: true,
                   },
                 ]}
               >
-              <DatePicker />
+              <Input
+              type="date"/>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
@@ -181,7 +192,8 @@ const Demo = () => {
                   },
                 ]}
               >
-              <DatePicker />
+              <Input 
+              type="date"/>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
@@ -227,18 +239,7 @@ const Demo = () => {
                   },
                 ]}
               >
-            <Input.Group>
-              <Row gutter={8}>
-                <Col span={5}>
-                  <Input 
-                  placeholder='62'
-                  />
-                </Col>
-                <Col span={8}>
-                  <Input />
-                </Col>
-              </Row>
-            </Input.Group>
+            <Input/>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
@@ -269,16 +270,7 @@ const Demo = () => {
                   },
                 ]}
               >
-            <Input.Group>
-              <Row gutter={8}>
-                <Col span={5}>
-                  <Input placeholder='021' />
-                </Col>
-                <Col span={8}>
-                  <Input />
-                </Col>
-              </Row>
-            </Input.Group>
+            <Input/>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
@@ -450,7 +442,8 @@ const Demo = () => {
                   },
                 ]}
               >
-              <DatePicker />
+              <Input 
+              type="date"/>
           </Form.Item>
         </Col>  
         <Col className="gutter-row" span={12}>
@@ -704,7 +697,17 @@ const Demo = () => {
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={24}>
-          <Form.Item name="photo">
+          <Form.Item 
+          label="Photo" 
+          name="photo"
+          getValueFromEvent={({file}) => file.originFileObj}
+          rules={[
+                  {
+                    required: true,
+                    message: 'Please upload photo'
+                  },
+          ]}
+          >
             <Upload listType="picture">
               <Button>
                 <UploadOutlined /> Click to upload
@@ -722,7 +725,7 @@ const Demo = () => {
   );
 };
 
-export class AddGuru extends Component {
+export class Add extends Component {
   render() {
     return (
     <div>
@@ -730,7 +733,7 @@ export class AddGuru extends Component {
         <div className='basic'>
           <div className='code-box'>
             <section className='code-box-demo'>
-            <Demo />
+            <AddGuru />
             </section>
           </div>
         </div>
@@ -740,4 +743,4 @@ export class AddGuru extends Component {
   }
 }
 
-export default AddGuru;
+export default Add;

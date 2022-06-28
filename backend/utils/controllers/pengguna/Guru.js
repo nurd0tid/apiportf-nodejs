@@ -78,7 +78,7 @@ exports.createData = (req, res, next) => {
 
 exports.readData = (req, res) => {
   // query sql
-    const querySql = 'SELECT nip, nm_guru, jenis_kelamin, telepon, b.stts_kepegawaian, c.nm_ptk FROM guru a LEFT JOIN stts_kepegawaian b ON a.id_kepegawaian=b.id_kepegawaian LEFT JOIN jenis_ptk c ON a.id_ptk=c.id_ptk';
+    const querySql = 'SELECT nip, photo, nm_guru, no_hp, b.stts_kepegawaian, c.nm_ptk FROM guru a LEFT JOIN stts_kepegawaian b ON a.id_kepegawaian=b.id_kepegawaian LEFT JOIN jenis_ptk c ON a.id_ptk=c.id_ptk';
 
   // import to model
   getGuru(res, querySql);
