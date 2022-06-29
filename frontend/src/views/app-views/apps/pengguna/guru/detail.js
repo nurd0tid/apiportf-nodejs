@@ -1,17 +1,11 @@
 import React from 'react'
 import { Row, Col, Card, Avatar, Button } from 'antd';
-// import { Icon } from 'components/util-components/Icon'
-// import { 
-// 	GlobalOutlined,
-// 	MailOutlined,
-// 	HomeOutlined,
-// 	PhoneOutlined
-// } from '@ant-design/icons';
 import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
 import Flex from 'components/shared-components/Flex'
 import { useState, useEffect } from 'react'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
 const DetailGuru = () => {
   const [nip,	setNip] = useState('')
@@ -132,7 +126,9 @@ const ProfileInfo = props => (
 						<Flex alignItems="center" mobileFlex={false} className="mb-3 text-md-left text-center">
 							<h2 className="mb-0 mt-md-0 mt-2">{ nm_guru }</h2>
 							<div className="ml-md-3 mt-3 mt-md-0">
-								<Button size="small" type="primary">Edit</Button>
+								<Button size="small" type="primary">
+                  <a href={"/app/apps/guru-edit/" +  id }>Edit</a> 
+                  </Button>
 							</div>
 						</Flex>
 					</div>
@@ -158,7 +154,7 @@ const Detail = () => (
             <li><b>Kabputan/Kota :</b> { kab_kota }</li>
             <li><b>Provinsi :</b> { provinsi }</li>
             <li><b>Tempat Lahir :</b> { tmpt_lahir }</li>
-            <li><b>Tanggal Lahir :</b> { tgl_lahir } <b>Fixed Nur Besok Tanggal masih bug</b></li>
+            <li><b>Tanggal Lahir :</b> { moment(tgl_lahir).format("DD-MM-YYYY") }</li>
             <li><b>Jenis Kelamin :</b> { jenkel }</li>
             <li><b>Agama :</b> { agama }</li>
             <li><b>Kewarganegaraan :</b> { kewarganegaraan }</li>
@@ -173,11 +169,11 @@ const Detail = () => (
           <h4 className="font-weight-semibold">Data Kependidikan</h4>
           <ul>
             <li><b>Nomor Identitas Pegawai :</b> { nip }</li>
-            <li><b>TMT CPNS :</b> { tmt_pns }</li>
+            <li><b>TMT CPNS :</b> { moment(tmt_pns).format("DD-MM-YYYY") }</li>
             <li><b>SK CPNS :</b> { sk_cpns }</li>
-            <li><b>Tanggal CPNS :</b> { tgl_cpns }</li>
+            <li><b>Tanggal CPNS :</b> { moment(tgl_cpns).format("DD-MM-YYYY") }</li>
             <li><b>SK Pengangkatan :</b> { sk_pengangkatan }</li>
-            <li><b>TMT Pengangkatan :</b> { tmt_pengangkatan }</li>
+            <li><b>TMT Pengangkatan :</b> { moment(tmt_pengangkatan).format("DD-MM-YYYY") }</li>
             <li><b>Lemb. Pengangkatan :</b> { lemb_pengangkatan }</li>
             <li><b>Golongan :</b> { id_golongan }</li>
             <li><b>Keahlian Laboratorium :</b> { keahlian_laboratorium }</li>
