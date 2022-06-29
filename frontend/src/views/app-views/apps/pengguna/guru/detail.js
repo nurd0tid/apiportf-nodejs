@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Card, Avatar, Button } from 'antd';
+import { Row, Col, Tag, Card, Avatar, Button } from 'antd';
 import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
 import Flex from 'components/shared-components/Flex'
 import { useState, useEffect } from 'react'
@@ -166,7 +166,23 @@ const Detail = () => (
 			</Col>
 			<Col sm={24} md={12}>
         <div className="mb-3">
-          <h4 className="font-weight-semibold">Data Kependidikan</h4>
+          <h4 className="font-weight-semibold">Data Kependidikan
+                {(() => {
+                  if ( status === 'active'){
+                    return (
+                        <Tag color="green" key={ status } style={{ marginLeft: 5 }}>
+                          { status.toUpperCase() }
+                        </Tag>
+                    )
+                  }else if( status === 'nonactive'){
+                    return (
+                        <Tag color="volcano" key={ status } style={{ marginLeft: 5 }}>
+                          { status.toUpperCase() }
+                        </Tag>
+                    )
+                  }
+                })()}
+          </h4>
           <ul>
             <li><b>Nomor Identitas Pegawai :</b> { nip }</li>
             <li><b>TMT CPNS :</b> { moment(tmt_pns).format("DD-MM-YYYY") }</li>
@@ -189,7 +205,6 @@ const Detail = () => (
             <li><b>NIY/NIGK :</b> { niy_nigk }</li>
             <li><b>Jumlah Sekolah Binaan :</b> { jml_sklh_binaan }</li>
             <li><b>Tugas Tambahan :</b> { tgs_tambahan }</li>
-            <li><b>Status :</b> { status }</li>
           </ul>
         </div>
 			</Col>
