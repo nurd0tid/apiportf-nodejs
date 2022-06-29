@@ -176,7 +176,8 @@ const AddGuru = () => {
                   },
                 ]}
               >
-            <Select>
+            <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Jenis Kelamin --</Option>
               <Option value="Perempuan">Perempuan</Option>
               <Option value="Laki - Laki">Laki - Laki</Option>
             </Select>
@@ -206,7 +207,8 @@ const AddGuru = () => {
                   },
                 ]}
               >
-            <Select>
+            <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Agama --</Option>
               <Option value="Islam">Islam</Option>
               <Option value="Kristen">Kristen</Option>
               <Option value="Hindu">Hindu</Option>

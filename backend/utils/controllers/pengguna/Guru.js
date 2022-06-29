@@ -69,7 +69,7 @@ exports.createData = (req, res, next) => {
       npwp: req.body.npwp,
       photo: req.file === undefined ? "" : req.file.filename,
      };
-    const querySql = 'INSERT INTO gurus SET ?';
+    const querySql = 'INSERT INTO guru SET ?';
 
     // masukkan ke dalam model
     insertGuru(res, querySql, data);
