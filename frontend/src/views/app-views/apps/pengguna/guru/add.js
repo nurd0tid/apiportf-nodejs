@@ -310,7 +310,11 @@ const AddGuru = () => {
                   },
                 ]}
               >
-              <Input />
+            <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Keahlian Laboratorium --</Option>
+              <Option value="Ya">Ya</Option>
+              <Option value="Tidak">Tidak</Option>
+            </Select>
           </Form.Item>
         </Col>  
         <Col className="gutter-row" span={12}>
@@ -469,7 +473,11 @@ const AddGuru = () => {
                   },
                 ]}
               >
-              <Input />
+              <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Lisensi Kepsek --</Option>
+              <Option value="Ya">Ya</Option>
+              <Option value="Tidak">Tidak</Option>
+            </Select>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
@@ -521,7 +529,11 @@ const AddGuru = () => {
                   },
                 ]}
               >
-              <Input />
+              <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Diklat Kepengawasan --</Option>
+              <Option value="Ya">Ya</Option>
+              <Option value="Tidak">Tidak</Option>
+            </Select>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
@@ -547,7 +559,11 @@ const AddGuru = () => {
                   },
                 ]}
               >
-              <Input />
+              <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Kemampuan Handle KK --</Option>
+              <Option value="Ya">Ya</Option>
+              <Option value="Tidak">Tidak</Option>
+            </Select>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
@@ -578,7 +594,11 @@ const AddGuru = () => {
                   },
                 ]}
               >
-              <Input />
+              <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Kehalian Breile --</Option>
+              <Option value="Ya">Ya</Option>
+              <Option value="Tidak">Tidak</Option>
+            </Select>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
@@ -604,7 +624,11 @@ const AddGuru = () => {
                   },
                 ]}
               >
-            <Input />
+            <Select placeholder="Select a option and change input text above">
+              <Option value="">-- Pilih Kehalian Bahasa Isyarat --</Option>
+              <Option value="Ya">Ya</Option>
+              <Option value="Tidak">Tidak</Option>
+            </Select>
           </Form.Item>
         </Col>
         <Col className="gutter-row" span={12}>
