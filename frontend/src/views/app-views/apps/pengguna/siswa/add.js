@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
-import { Form, Input, Col, Row, Select, Upload, Button, Radio, Tabs, Card } from 'antd';
-import { UploadOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { Form, Input, Col, Row, Select, Upload, Button, Radio, Tabs, Card, Divider } from 'antd';
+import { UploadOutlined, CaretRightOutlined,  CaretLeftOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 const { TabPane } = Tabs;
 const { Option } = Select;
-
-// function callback(key) {
-//   console.log(key);
-// }
 
 
 const AddSiswa = () => {
@@ -452,7 +448,264 @@ const AddSiswa = () => {
 					</Row>
 				</TabPane>
 				<TabPane tab="Data Orang Tua / Wali" key="2">
-					Ini Tab 2
+					<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Nama Ayah"
+										name="nm_ayah"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+										style={{ backgroundColor: '#bfbfbf' }}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Nama Ibu"
+										name="nm_ibu"
+										style={{ backgroundColor: '#bfbfbf' }}
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Tanggal Lahir"
+										name="tgl_lahir_ayah"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input 
+										type='date'
+									/>
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Tanggal Lahir"
+										name="tgl_lahir_ibu"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input 
+										type='date'
+									/>
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Pendidikan"
+										name="pendidikan_ayah"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Pendidikan"
+										name="pendidikan_ibu"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Pekerjaan"
+										name="pekerjaan_ayah"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Pekerjaan"
+										name="pekerjaan_ibu"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Penghasilan"
+										name="penghasilan_ayah"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="Penghasilan"
+										name="penghasilan_ibu"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="No. Telepon"
+										name="no_telp_ayah"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={12}>
+							<Form.Item
+										label="No. Telepon"
+										name="no_telp_ibu"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						
+						<Col className="gutter-row" span={24}>
+							<Form.Item
+										label="Nama Wali"
+										name="nm_wali"
+										style={{ backgroundColor: '#bfbfbf' }}
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={24}>
+							<Form.Item
+										label="Tanggal Lahir"
+										name="tgl_lahir_wali"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input 
+										type='date'
+									/>
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={24}>
+							<Form.Item
+										label="Pendidikan"
+										name="pendidikan_wali"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={24}>
+							<Form.Item
+										label="Pekerjaan"
+										name="pekerjaan_wali"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={24}>
+							<Form.Item
+										label="Penghasilan"
+										name="penghasilan_wali"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className="gutter-row" span={24}>
+							<Form.Item
+										label="No. Telepon"
+										name="no_telp_wali"
+										rules={[
+											{
+												required: true,
+											},
+										]}
+									>
+									<Input />
+							</Form.Item>
+						</Col>
+						<Col className='gutter-row' span={12} align="left">
+								<Button type="dashed" icon={ <CaretLeftOutlined/> } onClick={() => onKeyChange('1')}>
+									Back
+								</Button>
+						</Col>
+						<Col className='gutter-row' span={12} align="right">
+							<Form.Item>
+								<Button type="primary" htmlType="submit">
+									Simpan
+								</Button>
+							</Form.Item>
+						</Col>
+					</Row>
 				</TabPane>
 			</Tabs>
 		</Form>
