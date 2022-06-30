@@ -117,7 +117,11 @@ const Kelas = () => {
               <a href="/app/apps/kelas-add">Add Kelas</a>
             </Button>
           </div>
-          <Table columns={columns} dataSource={dataAPI} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['5', '10', '25', '100']}} bordered/>
+          <Table columns={columns} dataSource={dataAPI} 
+          pagination={{ 
+            defaultPageSize: 5, 
+            showSizeChanger: true, 
+            pageSizeOptions: ['5', '10', '25', '100']}} bordered/>
         </div>
       </div>
     );

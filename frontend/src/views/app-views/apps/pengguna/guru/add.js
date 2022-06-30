@@ -45,11 +45,11 @@ const AddGuru = () => {
   for (const name in values) {
     formData.append(name, values[name]); // there should be values.avatar which is a File object
   }
- const res = await fetch('http://localhost:5000/api/guru', {
+  await fetch('http://localhost:5000/api/guru', {
     method: 'POST',
     body: formData // automagically sets Content-Type: multipart/form-data header
   });
-  res(history.push("/app/apps/guru"));
+  history.push("/app/apps/guru");
 }
 
   return (
