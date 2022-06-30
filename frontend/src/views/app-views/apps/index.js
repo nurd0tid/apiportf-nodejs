@@ -53,6 +53,12 @@ const Apps = ({ match }) => (
       <Route path={`${match.url}/kepegawaian-edit/:id`} component={lazy(() => import(`./master/kepegawaian/edit`))} />
 
 
+      {/* Function view pengguna Siswa. */}
+      <Route path={`${match.url}/siswa`} component={lazy(() => import(`./pengguna/siswa`))} />
+      <Route path={`${match.url}/siswa-add`} component={lazy(() => import(`./pengguna/siswa/add`))} />
+      <Route path={`${match.url}/siswa-detail/:id`} component={lazy(() => import(`./pengguna/siswa/detail`))} />
+      <Route path={`${match.url}/siswa-edit/:id`} component={lazy(() => import(`./pengguna/siswa/edit`))} />
+
       {/* Function view pengguna Guru. */}
       <Route path={`${match.url}/guru`} component={lazy(() => import(`./pengguna/guru`))} />
       <Route path={`${match.url}/guru-add`} component={lazy(() => import(`./pengguna/guru/add`))} />

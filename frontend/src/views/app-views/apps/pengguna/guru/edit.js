@@ -32,6 +32,7 @@ const DetailGuru = () => {
   const [agama, setAgama] = useState('')
   const [lemb_pengangkatan, setLempeng] = useState('');
   const [no_hp, setHp] = useState('');
+  const [id_golongan, setG] = useState('');
   const [no_telp, setTelp] = useState('');
   const [sumber_gaji, setGaji] = useState('');
   const [email, setEmail] = useState('');
@@ -54,9 +55,11 @@ const DetailGuru = () => {
   const [diklat_kepengawasan, setDiklat] = useState('');
   const [bidang_studi, setStudi] = useState('');
   const [mampu_handle_kk, setHandle] = useState('');
+  const [id_ptk, setPtks] = useState('');
   const [keahlian_breile, setBreile] = useState('');
   const [tgs_tambahan, setTgs] = useState('');
   const [keahlian_bhs_isyarat, setIsyarat] = useState('');
+  const [id_kepegawaian, setKpg] = useState('');
   const [kewarganegaraan, setKwrgn] = useState('');
   const [status, setStatus] = useState('');
   const [niy_nigk, setNgk] = useState('');
@@ -79,7 +82,7 @@ const DetailGuru = () => {
     agama:	agama,
     lemb_pengangkatan:	lemb_pengangkatan,
     no_hp:	no_hp,
-    // id_golongan:	id_golongan,
+    id_golongan:	id_golongan,
     no_telp:	no_telp,
     sumber_gaji:	sumber_gaji,
     email:	email,
@@ -102,11 +105,11 @@ const DetailGuru = () => {
     diklat_kepengawasan:	diklat_kepengawasan,
     bidang_studi:	bidang_studi,
     mampu_handle_kk:	mampu_handle_kk,
-    // id_ptk:	id_ptk,
+    id_ptk:	id_ptk,
     keahlian_breile:	keahlian_breile,
     tgs_tambahan:	tgs_tambahan,
     keahlian_bhs_isyarat:	keahlian_bhs_isyarat,
-    // id_kepegawaian:	id_kepegawaian,
+    id_kepegawaian:	id_kepegawaian,
     kewarganegaraan:	kewarganegaraan,
     status:	status,
     niy_nigk:	niy_nigk,
@@ -151,7 +154,7 @@ const DetailGuru = () => {
       setAgama(data.data.agama)
       setLempeng(data.data.lemb_pengangkatan)
       setHp(data.data.no_hp)
-      // setGolongan(data.data.id_golongan)
+      setG(data.data.id_golongan)
       setTelp(data.data.no_telp)
       setGaji(data.data.sumber_gaji)
       setEmail(data.data.email)
@@ -174,11 +177,11 @@ const DetailGuru = () => {
       setDiklat(data.data.diklat_kepengawasan)
       setStudi(data.data.bidang_studi)
       setHandle(data.data.mampu_handle_kk)
-      // setPtk(data.data.id_ptk)
+      setPtks(data.data.id_ptk)
       setBreile(data.data.keahlian_breile)
       setTgs(data.data.tgs_tambahan)
       setIsyarat(data.data.keahlian_bhs_isyarat)
-      // setKepegawaian(data.data.id_kepegawaian)
+      setKpg(data.data.id_kepegawaian)
       setKwrgn(data.data.kewarganegaraan)
       setStatus(data.data.status)
       setNgk(data.data.niy_nigk)
