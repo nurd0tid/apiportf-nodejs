@@ -1,6 +1,6 @@
 {
-  "name": "emilus",
-  "version": "2.1.4",
+  "name": "siakad",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "@vx/pattern": "0.0.199",
     "antd": "4.15.3",
+    "antd-button-color": "1.0.4",
     "apexcharts": "^3.23.0",
     "axios": "^0.21.0",
     "chart.js": "^2.9.4",

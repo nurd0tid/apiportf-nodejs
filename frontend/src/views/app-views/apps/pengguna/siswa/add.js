@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input, Col, Row, Select, Upload, Button, Radio, Tabs, Card, Divider } from 'antd';
+import { Form, Input, Col, Row, Select, Upload, Button, Radio, Tabs, Card } from 'antd';
 import { UploadOutlined, CaretRightOutlined,  CaretLeftOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
