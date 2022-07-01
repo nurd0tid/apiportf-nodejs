@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Table  } from 'antd';
-import Button from 'antd-button-color';
+import Button from "antd-button-color";
 import reqwest from 'reqwest';
 
 const columns = [
@@ -79,8 +79,8 @@ class App extends React.Component {
 		<div>
 			<Card type='inner' title='Keseluruhan Data Siswa'>
 				<div style={{ marginBottom: 16 }}>
-					<Button type="success" size='small'>
-						<a href="/app/apps/siswa-add">Tambahkan Data Siswa</a>
+					<Button type="primary" size='small'>
+						<a href="/app/apps/siswa-add">Add Siswa</a>
 					</Button>
 				</div>
 				<Table
