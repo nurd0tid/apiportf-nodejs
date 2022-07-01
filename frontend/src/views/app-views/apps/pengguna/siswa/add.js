@@ -232,7 +232,7 @@ const AddSiswa = () => {
 						<Col className="gutter-row" span={12}>
 							<Form.Item
 										label="Jenis Tinggal"
-										name="jenis_tinggal"
+										name="jns_tinggal"
 										rules={[
 											{
 												required: true,

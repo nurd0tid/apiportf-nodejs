@@ -14,6 +14,7 @@ const jurusanRoutes = require('./utils/routes/master/jurusanRoutes');
 const kelasRoutes = require('./utils/routes/master/kelasRoutes');
 const kepegawaianRoutes = require('./utils/routes/master/kepegawaianRoutes');
 // API Pengguna
+const siswaRoutes = require('./utils/routes/pengguna/siswaRoutes');
 const guruRoutes = require('./utils/routes/pengguna/guruRoutes');
 // API Akademik
 const kmapelRoutes = require('./utils/routes/akademik/kmapelRoutes');
@@ -39,6 +40,7 @@ app.use('/api/jurusan', jurusanRoutes);
 app.use('/api/kelas', kelasRoutes);
 app.use('/api/kepegawaian', kepegawaianRoutes);
 // API Pengguna
+app.use('/api/siswa', siswaRoutes);
 app.use('/api/guru', guruRoutes);
 // API Akademik
 app.use('/api/kmapel', kmapelRoutes);
