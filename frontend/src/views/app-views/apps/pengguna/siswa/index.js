@@ -1,32 +1,62 @@
 import React from 'react'
-import { Card, Table  } from 'antd';
+import { Card, Table, Avatar  } from 'antd';
 import Button from "antd-button-color";
 import reqwest from 'reqwest';
 
 const columns = [
-{
-	title: 'Name',
-	dataIndex: 'name',
-	sorter: true,
-	render: name => `${name.first} ${name.last}`,
-	width: '20%',
-},
-{
-	title: 'Gender',
-	dataIndex: 'gender',
-	filters: [{ text: 'Male', value: 'male' }, { text: 'Female', value: 'female' }],
-	width: '20%',
-},
-{
-	title: 'Email',
-	dataIndex: 'email',
-},
+// {
+// 	title: 'Name',
+// 	dataIndex: 'name',
+// 	sorter: true,
+// 	render: name => `${name.first} ${name.last}`,
+// 	width: '20%',
+// },
+// {
+// 	title: 'Gender',
+// 	dataIndex: 'gender',
+// 	filters: [{ text: 'Male', value: 'male' }, { text: 'Female', value: 'female' }],
+// 	width: '20%',
+// },
+  {
+    title: "Photo",
+    dataIndex: "photo",
+    render: photo => (
+      <div>
+        <Avatar src={"http://localhost:5000/photo_siswa/" + photo } shape="square" size={64} />
+      </div>
+    ),
+    align: "center",
+    width: 50
+  },
+  {
+    title: 'NIPD',
+    dataIndex: 'nipd',
+    align: "center",
+    sorter: true,
+  },
+  {
+    title: 'NISN',
+    dataIndex: 'nisn',
+    align: "center",
+    sorter: true,
+  },
+  {
+    title: 'Nama Siswa',
+    dataIndex: 'nm_siswa',
+    align: "center",
+    sorter: true,
+  },
+  {
+    title: 'Angkatan',
+    align: "center",
+    dataIndex: 'angkatan',
+  },
 ];
 
 class App extends React.Component {
 
   state = {
-    data: [],
+    results: [],
     pagination: {defaultPageSize: 5},
     loading: false,
   };
@@ -50,25 +80,25 @@ class App extends React.Component {
     });
   };
 
+ 
+
   fetch = (params = {}) => {
-    console.log('params:', params);
     this.setState({ loading: true });
     reqwest({
-      url: 'https://randomuser.me/api',
+      url: 'http://localhost:5000/api/siswa',
       method: 'get',
       data: {
-        results: 10,
         ...params,
       },
-      type: 'json',
+      type: 'json'
     }).then(data => {
       const pagination = { ...this.state.pagination };
       // Read total count from server
       // pagination.total = data.totalCount;
-      pagination.total = 200;
+      // pagination.total = 200;
       this.setState({
         loading: false,
-        data: data.results,
+        results: data.data,
         pagination,
       });
     });
@@ -85,8 +115,7 @@ class App extends React.Component {
 				</div>
 				<Table
         columns={columns}
-        rowKey={record => record.login.uuid}
-        dataSource={this.state.data}
+        dataSource={this.state.results}
         pagination={this.state.pagination}
         loading={this.state.loading}
         onChange={this.handleTableChange}

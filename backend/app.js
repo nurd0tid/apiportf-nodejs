@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path')
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 
 // API Master
 const identitasRoutes = require('./utils/routes/master/identitasRoutes');
@@ -24,6 +26,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // set body parser
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('views',path.join(__dirname,'views'));
