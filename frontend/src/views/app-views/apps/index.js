@@ -40,6 +40,7 @@ const Apps = ({ match }) => (
        {/* Function view master Jurusan. */}
       <Route path={`${match.url}/jurusan`} component={lazy(() => import(`./master/jurusan`))} />
       <Route path={`${match.url}/jurusan-add`} component={lazy(() => import(`./master/jurusan/add`))} />
+      <Route path={`${match.url}/jurusan-edit/:id`} component={lazy(() => import(`./master/jurusan/edit`))} />
       <Route path={`${match.url}/jurusan-detail/:id`} component={lazy(() => import(`./master/jurusan/detail`))} />
 
       {/* Function view master Kelas. */}

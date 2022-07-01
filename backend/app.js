@@ -26,7 +26,6 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('views',path.join(__dirname,'views'));
-app.use('/img',express.static(__dirname + '/public/img'));
 app.use('/photo_guru',express.static(__dirname + '/public/photo_guru'));
 // API Master
 app.use('/api/identitas', identitasRoutes);
