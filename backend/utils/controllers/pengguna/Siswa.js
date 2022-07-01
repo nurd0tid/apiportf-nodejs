@@ -5,15 +5,27 @@ const {
     updateSiswa,
     deleteSiswa
 } = require('../../models/pengguna/M_siswa');
+const multer = require('multer');
+const uploadDir = '/photo_siswa/';
+const storage = multer.diskStorage({
+    destination: "./public"+uploadDir,
+    filename: (req, file, cb) => {
+        cb(null, Date.now()+'-'+file.originalname);
+    }
+});
+
+const upload =multer({storage: storage, dest: uploadDir });
 
 
 // create Identity
 exports.createData = (req, res, next) => {
-    const data = { ...req.body };
+  upload.single('photo')(req, res, () => {
+    const data = { ...req.body,  photo: req.file === undefined ? "" : req.file.filename };
     const querySql = 'INSERT INTO siswa SET ?';
 
     // masukkan ke dalam model
     insertSiswa(res, querySql, data);
+  });
 }
 
 exports.readData = (req, res) => {

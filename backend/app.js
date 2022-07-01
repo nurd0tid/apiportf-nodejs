@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('views',path.join(__dirname,'views'));
 app.use('/photo_guru',express.static(__dirname + '/public/photo_guru'));
+app.use('/photo_siswa',express.static(__dirname + '/public/photo_siswa'));
 // API Master
 app.use('/api/identitas', identitasRoutes);
 app.use('/api/kurikulum', kurikulumRoutes);

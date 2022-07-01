@@ -3,12 +3,15 @@ import { Form, Input, Col, Row, Select, Upload, Button, Radio, Tabs, Card } from
 import { UploadOutlined, CaretRightOutlined,  CaretLeftOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const { TabPane } = Tabs;
 const { Option } = Select;
 
 
 const AddSiswa = () => {
+	const [form] = Form.useForm();
+	const history = useHistory();
 	const [kelass, setKelas] = useState([]);
 	const [jurusans, setJurusan] = useState([]);
 	const [activeKey, setActiveKey] = useState('1')
@@ -28,9 +31,21 @@ const AddSiswa = () => {
 				setJurusan(response.data.data);
 	}
 
+	const onFinish = async values => {
+  const formData = new FormData();
+  for (const name in values) {
+    formData.append(name, values[name]); // there should be values.avatar which is a File object
+  }
+  await fetch('http://localhost:5000/api/siswa', {
+    method: 'POST',
+    body: formData // automagically sets Content-Type: multipart/form-data header
+  });
+  history.push("/app/apps/siswa");
+}
+
 	
 	return (
-		<Form layout={'vertical'}>
+		<Form layout={'vertical'} form={form} onFinish={onFinish}>
 			<Tabs type="card" defaultActiveKey="1" activeKey={activeKey} onChange={onKeyChange}>
 				<TabPane tab="Data Siswa" key="1">
 					<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -365,7 +380,7 @@ const AddSiswa = () => {
 						<Col className="gutter-row" span={12}>
 							<Form.Item
 										label="SKHUN"
-										name="skun"
+										name="skhun"
 										rules={[
 											{
 												required: true,
