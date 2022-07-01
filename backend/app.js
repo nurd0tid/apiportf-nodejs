@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path')
 const bodyParser = require('body-parser');
-const identityRoutes = require('./utils/routes/master/identityRoutes');
 
 // API Master
 const identitasRoutes = require('./utils/routes/master/identitasRoutes');
@@ -30,7 +29,6 @@ app.set('views',path.join(__dirname,'views'));
 app.use('/img',express.static(__dirname + '/public/img'));
 app.use('/photo_guru',express.static(__dirname + '/public/photo_guru'));
 // API Master
-app.use('/api/identity', identityRoutes);
 app.use('/api/identitas', identitasRoutes);
 app.use('/api/kurikulum', kurikulumRoutes);
 app.use('/api/akademik', akademikRoutes);
