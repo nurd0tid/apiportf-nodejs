@@ -166,6 +166,13 @@ class App extends React.Component {
     title: 'Kelas',
     align: "center",
     dataIndex: 'nm_kelas',
+    filters: [
+      {
+        text: 'Kelas X RPL 1',
+        value: 'Kelas X RPL 1',
+      },
+    ],
+    onFilter: (value, record) => record.nm_kelas.includes(value),
   },
   {
   title: "Action",
