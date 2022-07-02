@@ -30,7 +30,7 @@ exports.createData = (req, res, next) => {
 
 exports.readData = (req, res) => {
   // query sql
-    const querySql = 'SELECT * FROM siswa';
+    const querySql = 'SELECT photo, nipd, nisn, nm_siswa angkatan, b.nm_jurusan, c.nm_kelas FROM siswa a LEFT JOIN jurusan b ON a.kd_jurusan=b.kd_jurusan LEFT JOIN kelas c ON a.kd_kelas=c.kd_kelas';
 
   // import to model
   getSiswa(res, querySql);
