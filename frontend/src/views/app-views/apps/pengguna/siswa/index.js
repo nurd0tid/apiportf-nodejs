@@ -6,7 +6,7 @@ import reqwest from 'reqwest';
 import { 
   EditTwoTone,
   SearchOutlined,
-  EditOutlined,
+  // EditOutlined,
   EyeTwoTone
 } from '@ant-design/icons';
 
@@ -111,9 +111,7 @@ class App extends React.Component {
       type: 'json'
     }).then(data => {
       const pagination = { ...this.state.pagination };
-      // Read total count from server
-      // pagination.total = data.totalCount;
-      // pagination.total = 200;
+      pagination.total = data.totalCount;
       this.setState({
         loading: false,
         results: data.data,
@@ -124,71 +122,75 @@ class App extends React.Component {
 
   render() {
     const columns = [
-  {
-    title: "Photo",
-    dataIndex: "photo",
-    render: photo => (
-      <div>
-        <Avatar src={"http://localhost:5000/photo_siswa/" + photo } shape="square" size={64} />
-      </div>
-    ),
-    align: "center",
-    width: 50
-  },
-  {
-    title: 'NIPD',
-    dataIndex: 'nipd',
-    align: "center",
-    sorter: true,
-  },
-  {
-    title: 'NISN',
-    dataIndex: 'nisn',
-    align: "center",
-  },
-  {
-    title: 'Nama Siswa',
-    dataIndex: 'nm_siswa',
-    align: "center",
-  },
-  {
-    title: 'Angkatan',
-    align: "center",
-    dataIndex: 'angkatan',
-    ...this.getColumnSearchProps('angkatan'),
-  },
-  {
-    title: 'Jurusan',
-    align: "center",
-    dataIndex: 'nm_jurusan',
-  },
-  {
-    title: 'Kelas',
-    align: "center",
-    dataIndex: 'nm_kelas',
-    filters: [
       {
-        text: 'Kelas X RPL 1',
-        value: 'Kelas X RPL 1',
+        title: "Photo",
+        dataIndex: "photo",
+        render: photo => (
+          <div>
+            <Avatar src={"http://localhost:5000/photo_siswa/" + photo } shape="square" size={64} />
+          </div>
+        ),
+        align: "center",
+        width: 50
       },
-    ],
-    onFilter: (value, record) => record.nm_kelas.includes(value),
-  },
-  {
-  title: "Action",
-  key: "nipd",
-  dataIndex: "nipd",
-  render: id => (
-    <span>
-      <a href={`/app/apps/siswa-detail/${id}`} type='button'><EyeTwoTone twoToneColor="#52c41a" /></a>
-      <Divider type="vertical" />
-      <a href={`/app/apps/siswa-edit/${id}`}><EditTwoTone /></a>
-      <Divider type="vertical" />
-      {/* <a href="/app/apps/siswa" onClick={ () => deletePost(id) } ><DeleteTwoTone twoToneColor="#eb2f96" /></a> */}
-    </span>
-  ),
-  align: "center"
-  }
+      {
+        title: 'NIPD',
+        dataIndex: 'nipd',
+        align: "center",
+        sorter: true,
+      },
+      {
+        title: 'NISN',
+        dataIndex: 'nisn',
+        align: "center",
+      },
+      {
+        title: 'Nama Siswa',
+        dataIndex: 'nm_siswa',
+        align: "center",
+      },
+      {
+        title: 'Angkatan',
+        align: "center",
+        dataIndex: 'angkatan',
+        ...this.getColumnSearchProps('angkatan'),
+      },
+      {
+        title: 'Jurusan',
+        align: "center",
+        dataIndex: 'nm_jurusan',
+      },
+      {
+        title: 'Kelas',
+        align: "center",
+        dataIndex: 'nm_kelas',
+        filters: [
+          { text: 'Kelas X RPL 1', value: 'Kelas X RPL 1' },
+          { text: 'Kelas X RPL 2', value: 'Kelas X RPL 2' },
+          { text: 'Kelas XI RPL 1', value: 'Kelas XI RPL 1' },
+          { text: 'Kelas XI RPL 2', value: 'Kelas XI RPL 2' },
+          { text: 'Kelas X MM 1', value: 'Kelas X MM 1' },
+          { text: 'Kelas X MM 2', value: 'Kelas X MM 2' },
+          { text: 'Kelas XI MM 1', value: 'Kelas XI MM 1' },
+          { text: 'Kelas XI MM 2', value: 'Kelas XI MM 2' },
+        ],
+        onFilter: (value, record) => record.nm_kelas.includes(value),
+      },
+      {
+      title: "Action",
+      key: "nipd",
+      dataIndex: "nipd",
+      render: id => (
+        <span>
+          <a href={`/app/apps/siswa-detail/${id}`} type='button'><EyeTwoTone twoToneColor="#52c41a" /></a>
+          <Divider type="vertical" />
+          <a href={`/app/apps/siswa-edit/${id}`}><EditTwoTone /></a>
+          <Divider type="vertical" />
+          {/* <a href="/app/apps/siswa" onClick={ () => deletePost(id) } ><DeleteTwoTone twoToneColor="#eb2f96" /></a> */}
+        </span>
+      ),
+      align: "center"
+      }
     ];
     return (
       <div>
