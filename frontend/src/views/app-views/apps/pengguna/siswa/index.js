@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Table, Avatar, Divider  } from 'antd';
+import { Card, Table, Avatar, Divider, Input } from 'antd';
+import Highlighter from 'react-highlight-words';
 import Button from "antd-button-color";
 import reqwest from 'reqwest';
 import { 
@@ -9,20 +10,120 @@ import {
   EyeTwoTone
 } from '@ant-design/icons';
 
-const columns = [
-// {
-// 	title: 'Name',
-// 	dataIndex: 'name',
-// 	sorter: true,
-// 	render: name => `${name.first} ${name.last}`,
-// 	width: '20%',
-// },
-// {
-// 	title: 'Gender',
-// 	dataIndex: 'gender',
-// 	filters: [{ text: 'Male', value: 'male' }, { text: 'Female', value: 'female' }],
-// 	width: '20%',
-// },
+class App extends React.Component {
+
+  state = {
+    results: [],
+    pagination: {defaultPageSize: 5},
+    loading: false,
+    searchText: '',
+    searchedColumn: '',
+  };
+
+  getColumnSearchProps = dataIndex => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+      <div style={{ padding: 8 }}>
+        <Input
+          ref={node => {
+            this.searchInput = node;
+          }}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{ width: 188, marginBottom: 8, display: 'block' }}
+        />
+        <Button
+          type="primary"
+          onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+          icon={<SearchOutlined />}
+          size="small"
+          style={{ width: 90, marginRight: 8 }}
+        >
+          Search
+        </Button>
+        <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+          Reset
+        </Button>
+      </div>
+    ),
+    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    onFilter: (value, record) =>
+      record[dataIndex]
+        .toString()
+        .toLowerCase()
+        .includes(value.toLowerCase()),
+    onFilterDropdownVisibleChange: visible => {
+      if (visible) {
+        setTimeout(() => this.searchInput.select());
+      }
+    },
+    render: text =>
+      this.state.searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[this.state.searchText]}
+          autoEscape
+          textToHighlight={text.toString()}
+        />
+      ) : (
+        text
+      ),
+  });
+
+  handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    this.setState({
+      searchText: selectedKeys[0],
+      searchedColumn: dataIndex,
+    });
+  };
+
+  handleReset = clearFilters => {
+    clearFilters();
+    this.setState({ searchText: '' });
+  };
+
+  componentDidMount() {
+    this.fetch();
+  }
+
+  handleTableChange = (pagination, filters, sorter) => {
+    const pager = { ...this.state.pagination };
+    pager.current = pagination.current;
+    this.setState({
+      pagination: pager,
+    });
+    this.fetch({
+      results: pagination.pageSize,
+      ...filters,
+    });
+  };
+
+  fetch = (params = {}) => {
+    this.setState({ loading: true });
+    reqwest({
+      url: 'http://localhost:5000/api/siswa',
+      method: 'get',
+      data: {
+        ...params,
+      },
+      type: 'json'
+    }).then(data => {
+      const pagination = { ...this.state.pagination };
+      // Read total count from server
+      // pagination.total = data.totalCount;
+      // pagination.total = 200;
+      this.setState({
+        loading: false,
+        results: data.data,
+        pagination,
+      });
+    });
+  };
+
+  render() {
+    const columns = [
   {
     title: "Photo",
     dataIndex: "photo",
@@ -44,18 +145,17 @@ const columns = [
     title: 'NISN',
     dataIndex: 'nisn',
     align: "center",
-    sorter: true,
   },
   {
     title: 'Nama Siswa',
     dataIndex: 'nm_siswa',
     align: "center",
-    sorter: true,
   },
   {
     title: 'Angkatan',
     align: "center",
     dataIndex: 'angkatan',
+    ...this.getColumnSearchProps('angkatan'),
   },
   {
     title: 'Jurusan',
@@ -81,80 +181,27 @@ const columns = [
     </span>
   ),
   align: "center"
-}
-];
-
-class App extends React.Component {
-
-  state = {
-    results: [],
-    pagination: {defaultPageSize: 5},
-    loading: false,
-  };
-
-  componentDidMount() {
-    this.fetch();
   }
-
-  handleTableChange = (pagination, filters, sorter) => {
-    const pager = { ...this.state.pagination };
-    pager.current = pagination.current;
-    this.setState({
-      pagination: pager,
-    });
-    this.fetch({
-      results: pagination.pageSize,
-      page: pagination.current,
-      sortField: sorter.field,
-      sortOrder: sorter.order,
-      ...filters,
-    });
-  };
-
- 
-
-  fetch = (params = {}) => {
-    this.setState({ loading: true });
-    reqwest({
-      url: 'http://localhost:5000/api/siswa',
-      method: 'get',
-      data: {
-        ...params,
-      },
-      type: 'json'
-    }).then(data => {
-      const pagination = { ...this.state.pagination };
-      // Read total count from server
-      // pagination.total = data.totalCount;
-      // pagination.total = 200;
-      this.setState({
-        loading: false,
-        results: data.data,
-        pagination,
-      });
-    });
-  };
-
-	render() {
-	return (
-		<div>
-			<Card type='inner' title='Keseluruhan Data Siswa'>
-				<div style={{ marginBottom: 16 }}>
-					<Button type="primary" size='small'>
-						<a href="/app/apps/siswa-add">Add Siswa</a>
-					</Button>
-				</div>
-				<Table
-        columns={columns}
-        dataSource={this.state.results}
-        pagination={this.state.pagination}
-        loading={this.state.loading}
-        onChange={this.handleTableChange}
-				bordered
-     	 />
-			</Card>
-		</div>
-	 );
+    ];
+    return (
+      <div>
+        <Card type='inner' title='Keseluruhan Data Siswa'>
+          <div style={{ marginBottom: 16 }}>
+            <Button type="primary" size='small'>
+              <a href="/app/apps/siswa-add">Add Siswa</a>
+            </Button>
+          </div>
+          <Table
+          columns={columns}
+          dataSource={this.state.results}
+          pagination={this.state.pagination}
+          loading={this.state.loading}
+          onChange={this.handleTableChange}
+          bordered
+        />
+        </Card>
+      </div>
+    );
   }
 }
 
