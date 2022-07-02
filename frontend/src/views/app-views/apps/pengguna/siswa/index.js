@@ -1,7 +1,13 @@
 import React from 'react'
-import { Card, Table, Avatar  } from 'antd';
+import { Card, Table, Avatar, Divider  } from 'antd';
 import Button from "antd-button-color";
 import reqwest from 'reqwest';
+import { 
+  EditTwoTone,
+  SearchOutlined,
+  EditOutlined,
+  EyeTwoTone
+} from '@ant-design/icons';
 
 const columns = [
 // {
@@ -51,6 +57,31 @@ const columns = [
     align: "center",
     dataIndex: 'angkatan',
   },
+  {
+    title: 'Jurusan',
+    align: "center",
+    dataIndex: 'nm_jurusan',
+  },
+  {
+    title: 'Kelas',
+    align: "center",
+    dataIndex: 'nm_kelas',
+  },
+  {
+  title: "Action",
+  key: "nipd",
+  dataIndex: "nipd",
+  render: id => (
+    <span>
+      <a href={`/app/apps/siswa-detail/${id}`} type='button'><EyeTwoTone twoToneColor="#52c41a" /></a>
+      <Divider type="vertical" />
+      <a href={`/app/apps/siswa-edit/${id}`}><EditTwoTone /></a>
+      <Divider type="vertical" />
+      {/* <a href="/app/apps/siswa" onClick={ () => deletePost(id) } ><DeleteTwoTone twoToneColor="#eb2f96" /></a> */}
+    </span>
+  ),
+  align: "center"
+}
 ];
 
 class App extends React.Component {
