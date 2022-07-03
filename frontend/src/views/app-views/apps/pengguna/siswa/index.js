@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Table, Avatar, Divider, Input } from 'antd';
+import { Card, Table, Avatar, Input } from 'antd';
 import Highlighter from 'react-highlight-words';
 import Button from "antd-button-color";
 import reqwest from 'reqwest';
@@ -7,6 +7,7 @@ import {
   EditTwoTone,
   SearchOutlined,
   // EditOutlined,
+  EyeOutlined,
   EyeTwoTone
 } from '@ant-design/icons';
 
@@ -148,6 +149,7 @@ class App extends React.Component {
         title: 'Nama Siswa',
         dataIndex: 'nm_siswa',
         align: "center",
+        ...this.getColumnSearchProps('nm_siswa'),
       },
       {
         title: 'Angkatan',
@@ -182,10 +184,8 @@ class App extends React.Component {
       dataIndex: "nipd",
       render: id => (
         <span>
-          <a href={`/app/apps/siswa-detail/${id}`} type='button'><EyeTwoTone twoToneColor="#52c41a" /></a>
-          <Divider type="vertical" />
+          <a href={`/app/apps/siswa-detail/${id}`} type='button'><EyeTwoTone twoToneColor="#52c41a" className='mr-2'/></a>
           <a href={`/app/apps/siswa-edit/${id}`}><EditTwoTone /></a>
-          <Divider type="vertical" />
           {/* <a href="/app/apps/siswa" onClick={ () => deletePost(id) } ><DeleteTwoTone twoToneColor="#eb2f96" /></a> */}
         </span>
       ),
