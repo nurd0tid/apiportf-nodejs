@@ -45,8 +45,8 @@ const EditKmapel = () => {
   const getKmapel = async () => {
       const response = await axios.get(`http://localhost:5000/api/kmapel/${id}`);
       const data = response.data
-      setJenis(data.data.jenis_kmapel)
-      setNama(data.data.nm_kmapel)
+      setJenis(data.jenis_kmapel)
+      setNama(data.nm_kmapel)
   }
 
  

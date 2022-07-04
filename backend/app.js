@@ -1,5 +1,6 @@
 import express from "express";
 import db from "./config/database.js";
+// Import Module Master
 import IdentitasRoutes from "./utils/routes/master/identitasRoutes.js";
 import kurikulumRoutes from "./utils/routes/master/kurikulumRoutes.js";
 import akademikRoutes from "./utils/routes/master/akademikRoutes.js";
@@ -10,7 +11,10 @@ import ptkRoutes from "./utils/routes/master/ptkRoutes.js";
 import jurusanRoutes from "./utils/routes/master/jurusanRoutes.js";
 
 import kepegawaianRoutes from "./utils/routes/master/kepegawaianRoutes.js";
+// Import Module Pengguna
 
+// Import Module Akademik
+import kmapelRoutes from "./utils/routes/akademik/kmapelRoutes.js";
 
 import cors from "cors";
 const app = express();
@@ -35,5 +39,9 @@ app.use('/api/ptk', ptkRoutes);
 app.use('/api/jurusan', jurusanRoutes);
 
 app.use('/api/kepegawaian', kepegawaianRoutes);
+// API Pengguna
+
+// API Akademik
+app.use('/api/kmapel', kmapelRoutes);
  
 app.listen(5000, () => console.log('Server running at port 5000'));

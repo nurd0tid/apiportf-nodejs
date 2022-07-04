@@ -1,20 +1,19 @@
-const {
-    createData,
-    readData,
-    readDataId,
-    updateData,
-    deleteData
-} = require('../../controllers/akademik/Kmapel');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getAllKmapel,
+    createKmapel,
+    getKmapelById,
+    updateKmapel,
+    deleteKmapel
+} from "../../controllers/akademik/Kmapel.js";
+ 
 const router = express.Router();
-
-router.route('/')
-    .post(createData)
-    .get(readData);
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-    .delete(deleteData);
-
-module.exports = router;
+ 
+router.get('/', getAllKmapel);
+router.get('/:id', getKmapelById);
+router.post('/', createKmapel);
+router.put('/:id', updateKmapel);
+router.delete('/:id', deleteKmapel);
+ 
+export default router;

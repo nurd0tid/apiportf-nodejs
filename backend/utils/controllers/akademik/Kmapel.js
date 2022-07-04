@@ -1,55 +1,64 @@
-const {
-    insertKmapel,
-    getKmapel,
-    getKmapelId,
-    updateKmapel,
-    deleteKmapel
-} = require('../../models/akademik/M_kmapel');
-
-
-// create Identity
-exports.createData = (req, res, next) => {
-    const data = { ...req.body };
-    const querySql = 'INSERT INTO k_mapel SET ?';
-
-    // masukkan ke dalam model
-    insertKmapel(res, querySql, data);
+import Kmapel from "../../models/akademik/M_kmapel.js";
+ 
+export const getAllKmapel = async (req, res) => {
+    try {
+        const kmapel = await Kmapel.findAll();
+        res.json(kmapel);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readData = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM k_mapel';
-
-  // import to model
-  getKmapel(res, querySql);
+ 
+export const getKmapelById = async (req, res) => {
+    try {
+        const kmapel = await Kmapel.findAll({
+            where: {
+                id_kmapel: req.params.id
+            }
+        });
+        res.json(kmapel[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM k_mapel WHERE id_kmapel = ?';
-
-  // import to model
-  getKmapelId(res, querySql,  req.params.id,);
+ 
+export const createKmapel = async (req, res) => {
+    try {
+        await Kmapel.create(req.body);
+        res.json({
+            "message": "Kelompok Mapel Created"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-
-// update Kmapel
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM k_mapel WHERE id_kmapel = ?';
-    const queryUpdate = 'UPDATE k_mapel SET ? WHERE id_kmapel = ?';
-
-    // import to model
-    updateKmapel(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-// delete Kmapel
-exports.deleteData = (req, res) => {
-    // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM k_mapel WHERE id_kmapel = ?';
-    const queryDelete = 'DELETE FROM k_mapel WHERE id_kmapel = ?';
-
-    // import to model
-    deleteKmapel(res, querySearch, queryDelete, req.params.id);
-};
+ 
+export const updateKmapel = async (req, res) => {
+    try {
+        await Kmapel.update(req.body, {
+            where: {
+                id_kmapel: req.params.id
+            }
+        });
+        res.json({
+            "message": "Kelompok Mapel Updated"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+ 
+export const deleteKmapel = async (req, res) => {
+    try {
+        await Kmapel.destroy({
+            where: {
+                id_kmapel: req.params.id
+            }
+        });
+        res.json({
+            "message": "Kelompok Mapel Deleted"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
