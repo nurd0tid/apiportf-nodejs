@@ -66,15 +66,15 @@ const EditJurusan = () => {
   const getJurusan = async () => {
       const response = await axios.get(`http://localhost:5000/api/jurusan/${id}`);
       const data = response.data
-      setKode(data.data.kd_jurusan)
-      setNama(data.data.nm_jurusan)
-      setBidang(data.data.bidang_keahlian)
-      setUmum(data.data.kptsi_umum)
-      setKhusus(data.data.kptsi_khusus)
-      setPejabat(data.data.pejabat)
-      setJabatan(data.data.jabatan)
-      setKeterangan(data.data.keterangan)
-      setStatus(data.data.status)
+      setKode(data.kd_jurusan)
+      setNama(data.nm_jurusan)
+      setBidang(data.bidang_keahlian)
+      setUmum(data.kptsi_umum)
+      setKhusus(data.kptsi_khusus)
+      setPejabat(data.pejabat)
+      setJabatan(data.jabatan)
+      setKeterangan(data.keterangan)
+      setStatus(data.status)
   }
 
  

@@ -1,55 +1,64 @@
-const {
-    insertJurusan,
-    getJurusan,
-    getJurusanId,
-    updateJurusan,
-    deleteJurusan
-} = require('../../models/master/M_jurusan');
-
-
-// create Identity
-exports.createData = (req, res, next) => {
-    const data = { ...req.body };
-    const querySql = 'INSERT INTO jurusan SET ?';
-
-    // masukkan ke dalam model
-    insertJurusan(res, querySql, data);
+import Jurusan from "../../models/master/M_jurusan.js";
+ 
+export const getAllJurusan = async (req, res) => {
+    try {
+        const jurusan = await Jurusan.findAll();
+        res.json(jurusan);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readData = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM jurusan';
-
-  // import to model
-  getJurusan(res, querySql);
+ 
+export const getJurusanById = async (req, res) => {
+    try {
+        const jurusan = await Jurusan.findAll({
+            where: {
+                id_jurusan: req.params.id
+            }
+        });
+        res.json(jurusan[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM jurusan WHERE id_jurusan = ?';
-
-  // import to model
-  getJurusanId(res, querySql,  req.params.id,);
+ 
+export const createJurusan = async (req, res) => {
+    try {
+        await Jurusan.create(req.body);
+        res.json({
+            "message": "Jurusan Created"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-
-// update Jurusan
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM jurusan WHERE id_jurusan = ?';
-    const queryUpdate = 'UPDATE jurusan SET ? WHERE id_jurusan = ?';
-
-    // import to model
-    updateJurusan(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-// delete Jurusan
-exports.deleteData = (req, res) => {
-    // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM jurusan WHERE id_jurusan = ?';
-    const queryDelete = 'DELETE FROM jurusan WHERE id_jurusan = ?';
-
-    // import to model
-    deleteJurusan(res, querySearch, queryDelete, req.params.id);
-};
+ 
+export const updateJurusan = async (req, res) => {
+    try {
+        await Jurusan.update(req.body, {
+            where: {
+                id_jurusan: req.params.id
+            }
+        });
+        res.json({
+            "message": "Jurusan Updated"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+ 
+export const deleteJurusan = async (req, res) => {
+    try {
+        await Jurusan.destroy({
+            where: {
+                id_jurusan: req.params.id
+            }
+        });
+        res.json({
+            "message": "Jurusan Deleted"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}

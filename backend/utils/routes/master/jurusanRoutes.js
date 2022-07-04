@@ -1,20 +1,19 @@
-const {
-    createData,
-    readData,
-    readDataId,
-    updateData,
-    deleteData
-} = require('../../controllers/master/Jurusan');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getAllJurusan,
+    createJurusan,
+    getJurusanById,
+    updateJurusan,
+    deleteJurusan
+} from "../../controllers/master/Jurusan.js";
+ 
 const router = express.Router();
-
-router.route('/')
-    .post(createData)
-    .get(readData);
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-    .delete(deleteData);
-
-module.exports = router;
+ 
+router.get('/', getAllJurusan);
+router.get('/:id', getJurusanById);
+router.post('/', createJurusan);
+router.put('/:id', updateJurusan);
+router.delete('/:id', deleteJurusan);
+ 
+export default router;
