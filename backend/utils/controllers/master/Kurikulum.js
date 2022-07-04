@@ -1,55 +1,64 @@
-const {
-    insertKurikulum,
-    getKurikulum,
-    getKurikulumId,
-    updateKurikulum,
-    deleteKurikulum
-} = require('../../models/master/M_kurikulum');
-
-
-// create Identity
-exports.createData = (req, res, next) => {
-    const data = { ...req.body };
-    const querySql = 'INSERT INTO kurikulum SET ?';
-
-    // masukkan ke dalam model
-    insertKurikulum(res, querySql, data);
+import Kurikulum from "../../models/master/M_kurikulum.js";
+ 
+export const getAllKurikulum = async (req, res) => {
+    try {
+        const kurikulum = await Kurikulum.findAll();
+        res.json(kurikulum);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readData = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM kurikulum';
-
-  // import to model
-  getKurikulum(res, querySql);
+ 
+export const getKurikulumById = async (req, res) => {
+    try {
+        const kurikulum = await Kurikulum.findAll({
+            where: {
+                id_kurikulum: req.params.id
+            }
+        });
+        res.json(kurikulum[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM kurikulum WHERE id_kurikulum = ?';
-
-  // import to model
-  getKurikulumId(res, querySql,  req.params.id,);
+ 
+export const createKurikulum = async (req, res) => {
+    try {
+        await Kurikulum.create(req.body);
+        res.json({
+            "message": "Kurikulum Created"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-
-// update Kurikulum
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM kurikulum WHERE id_kurikulum = ?';
-    const queryUpdate = 'UPDATE kurikulum SET ? WHERE id_kurikulum = ?';
-
-    // import to model
-    updateKurikulum(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-// delete Kurikulum
-exports.deleteData = (req, res) => {
-    // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM kurikulum WHERE id_kurikulum = ?';
-    const queryDelete = 'DELETE FROM kurikulum WHERE id_kurikulum = ?';
-
-    // import to model
-    deleteKurikulum(res, querySearch, queryDelete, req.params.id);
-};
+ 
+export const updateKurikulum = async (req, res) => {
+    try {
+        await Kurikulum.update(req.body, {
+            where: {
+                id_kurikulum: req.params.id
+            }
+        });
+        res.json({
+            "message": "Kurikulum Updated"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+ 
+export const deleteKurikulum = async (req, res) => {
+    try {
+        await Kurikulum.destroy({
+            where: {
+                id_kurikulum: req.params.id
+            }
+        });
+        res.json({
+            "message": "Kurikulum Deleted"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}

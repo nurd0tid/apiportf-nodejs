@@ -1,20 +1,19 @@
-const {
-    createData,
-    readData,
-    readDataId,
-    updateData,
-    deleteData
-} = require('../../controllers/master/Kurikulum');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getAllKurikulum,
+    createKurikulum,
+    getKurikulumById,
+    updateKurikulum,
+    deleteKurikulum
+} from "../../controllers/master/Kurikulum.js";
+ 
 const router = express.Router();
-
-router.route('/')
-    .post(createData)
-    .get(readData);
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-    .delete(deleteData);
-
-module.exports = router;
+ 
+router.get('/', getAllKurikulum);
+router.get('/:id', getKurikulumById);
+router.post('/', createKurikulum);
+router.put('/:id', updateKurikulum);
+router.delete('/:id', deleteKurikulum);
+ 
+export default router;

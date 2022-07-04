@@ -45,8 +45,8 @@ const EditKurikulum = () => {
   const getKurikulum = async () => {
       const response = await axios.get(`http://localhost:5000/api/kurikulum/${id}`);
       const data = response.data
-      setKurikulum(data.data.nm_kurikulum)
-      setStatus(data.data.status)
+      setKurikulum(data.nm_kurikulum)
+      setStatus(data.status)
   }
 
  
