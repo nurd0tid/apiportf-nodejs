@@ -19,7 +19,7 @@ useEffect(() => {
 
 const getPosts = async () => {
     const response = await axios.get('http://localhost:5000/api/kepegawaian');
-    setPost(response.data.data);
+    setPost(response.data);
   }
 
 const deletePost = async (id) => {

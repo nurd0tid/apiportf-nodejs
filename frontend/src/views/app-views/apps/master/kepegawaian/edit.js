@@ -45,8 +45,8 @@ const EditKepegawaian = () => {
   const getKepegawaian = async () => {
       const response = await axios.get(`http://localhost:5000/api/kepegawaian/${id}`);
       const data = response.data
-      setKepegawaian(data.data.stts_kepegawaian)
-      setKeterangan(data.data.keterangan)
+      setKepegawaian(data.stts_kepegawaian)
+      setKeterangan(data.keterangan)
   }
 
  

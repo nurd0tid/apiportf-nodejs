@@ -1,20 +1,19 @@
-const {
-    createData,
-    readData,
-    readDataId,
-    updateData,
-    deleteData
-} = require('../../controllers/master/Kepegawaian');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getAllKepegawaian,
+    createKepegawaian,
+    getKepegawaianById,
+    updateKepegawaian,
+    deleteKepegawaian
+} from "../../controllers/master/Kepegawaian.js";
+ 
 const router = express.Router();
-
-router.route('/')
-    .post(createData)
-    .get(readData);
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-    .delete(deleteData);
-
-module.exports = router;
+ 
+router.get('/', getAllKepegawaian);
+router.get('/:id', getKepegawaianById);
+router.post('/', createKepegawaian);
+router.put('/:id', updateKepegawaian);
+router.delete('/:id', deleteKepegawaian);
+ 
+export default router;

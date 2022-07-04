@@ -1,55 +1,64 @@
-const {
-    insertKepegawaian,
-    getKepegawaian,
-    getKepegawaianId,
-    updateKepegawaian,
-    deleteKepegawaian
-} = require('../../models/master/M_kepegawaian');
-
-
-// create Identity
-exports.createData = (req, res, next) => {
-    const data = { ...req.body };
-    const querySql = 'INSERT INTO stts_kepegawaian SET ?';
-
-    // masukkan ke dalam model
-    insertKepegawaian(res, querySql, data);
+import Kepegawaian from "../../models/master/M_kepegawaian.js";
+ 
+export const getAllKepegawaian = async (req, res) => {
+    try {
+        const kepegawaian = await Kepegawaian.findAll();
+        res.json(kepegawaian);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readData = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM stts_kepegawaian';
-
-  // import to model
-  getKepegawaian(res, querySql);
+ 
+export const getKepegawaianById = async (req, res) => {
+    try {
+        const kepegawaian = await Kepegawaian.findAll({
+            where: {
+                id_kepegawaian: req.params.id
+            }
+        });
+        res.json(kepegawaian[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM stts_kepegawaian WHERE id_kepegawaian = ?';
-
-  // import to model
-  getKepegawaianId(res, querySql,  req.params.id,);
+ 
+export const createKepegawaian = async (req, res) => {
+    try {
+        await Kepegawaian.create(req.body);
+        res.json({
+            "message": "Kepegawaian Created"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-
-// update Kepegawaian
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM stts_kepegawaian WHERE id_kepegawaian = ?';
-    const queryUpdate = 'UPDATE stts_kepegawaian SET ? WHERE id_kepegawaian = ?';
-
-    // import to model
-    updateKepegawaian(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-// delete Kepegawaian
-exports.deleteData = (req, res) => {
-    // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM stts_kepegawaian WHERE id_kepegawaian = ?';
-    const queryDelete = 'DELETE FROM stts_kepegawaian WHERE id_kepegawaian = ?';
-
-    // import to model
-    deleteKepegawaian(res, querySearch, queryDelete, req.params.id);
-};
+ 
+export const updateKepegawaian = async (req, res) => {
+    try {
+        await Kepegawaian.update(req.body, {
+            where: {
+                id_kepegawaian: req.params.id
+            }
+        });
+        res.json({
+            "message": "Kepegawaian Updated"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+ 
+export const deleteKepegawaian = async (req, res) => {
+    try {
+        await Kepegawaian.destroy({
+            where: {
+                id_kepegawaian: req.params.id
+            }
+        });
+        res.json({
+            "message": "Kepegawaian Deleted"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
