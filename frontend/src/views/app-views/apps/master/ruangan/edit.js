@@ -62,19 +62,19 @@ const EditGedung = () => {
 
   const getPosts = async () => {
       const response = await axios.get('http://localhost:5000/api/gedung');
-      setPost(response.data.data);
+      setPost(response.data);
   }
 
   const getRuangan = async () => {
       const response = await axios.get(`http://localhost:5000/api/ruangan/${id}`);
       const data = response.data
-      setKode(data.data.kd_ruangan)
-      setKodeG(data.data.kd_gedung)
-      setNama(data.data.nm_ruangan)
-      setBelajar(data.data.kps_belajar)
-      setUjian(data.data.kps_ujian)
-      setKeterangan(data.data.keterangan)
-      setStatus(data.data.status)
+      setKode(data.kd_ruangan)
+      setKodeG(data.kd_gedung)
+      setNama(data.nm_ruangan)
+      setBelajar(data.kps_belajar)
+      setUjian(data.kps_ujian)
+      setKeterangan(data.keterangan)
+      setStatus(data.status)
   }
 
  

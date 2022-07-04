@@ -8,14 +8,17 @@ const Gedung = db.define('gedung',{
         type: DataTypes.INTEGER,
         primaryKey: true
     },
-    kd_gedung: DataTypes.STRING,	
+    kd_gedung: {
+        type: DataTypes.STRING,
+        unique: true
+    },	
     nm_gedung: DataTypes.STRING,	
     jml_lantai: DataTypes.STRING,	
     panjang: DataTypes.STRING,	
     tinggi: DataTypes.STRING,	
     lebar: DataTypes.STRING,	
     keterangan: DataTypes.TEXT,	
-    status:       DataTypes.ENUM('active', 'nonactive')
+    status: DataTypes.ENUM('active', 'nonactive')
 },{
     createdAt: false,
     updatedAt: false,
