@@ -8,8 +8,10 @@ import gedungRoutes from "./utils/routes/master/gedungRoutes.js";
 import golonganRoutes from "./utils/routes/master/golonganRoutes.js";
 import ptkRoutes from "./utils/routes/master/ptkRoutes.js";
 import jurusanRoutes from "./utils/routes/master/jurusanRoutes.js";
-import cors from "cors";
+import kepegawaianRoutes from "./utils/routes/master/kepegawaianRoutes.js";
 
+
+import cors from "cors";
 const app = express();
  
 try {
@@ -29,5 +31,7 @@ app.use('/api/gedung', gedungRoutes);
 app.use('/api/golongan', golonganRoutes);
 app.use('/api/ptk', ptkRoutes);
 app.use('/api/jurusan', jurusanRoutes);
+
+app.use('/api/kepegawaian', kepegawaianRoutes);
  
 app.listen(5000, () => console.log('Server running at port 5000'));
