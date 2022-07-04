@@ -24,6 +24,7 @@ try {
  
 app.use(cors());
 app.use(express.json());
+// API Master
 app.use('/api/identitas', IdentitasRoutes);
 app.use('/api/kurikulum', kurikulumRoutes);
 app.use('/api/akademik', akademikRoutes);
