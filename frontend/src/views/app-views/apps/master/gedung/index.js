@@ -18,7 +18,7 @@ const Gedung = () => {
 
   const getPosts = async () => {
       const response = await axios.get('http://localhost:5000/api/gedung');
-      setPost(response.data.data);
+      setPost(response.data);
     }
 
   const deletePost = async (id) => {

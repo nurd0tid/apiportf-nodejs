@@ -1,55 +1,64 @@
-const {
-    insertGedung,
-    getGedung,
-    getGedungId,
-    updateGedung,
-    deleteGedung
-} = require('../../models/master/M_gedung');
-
-
-// create Identity
-exports.createData = (req, res, next) => {
-    const data = { ...req.body };
-    const querySql = 'INSERT INTO gedung SET ?';
-
-    // masukkan ke dalam model
-    insertGedung(res, querySql, data);
+import Gedung from "../../models/master/M_gedung.js";
+ 
+export const getAllGedung = async (req, res) => {
+    try {
+        const gedung = await Gedung.findAll();
+        res.json(gedung);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readData = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM gedung';
-
-  // import to model
-  getGedung(res, querySql);
+ 
+export const getGedungById = async (req, res) => {
+    try {
+        const gedung = await Gedung.findAll({
+            where: {
+                id_gedung: req.params.id
+            }
+        });
+        res.json(gedung[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM gedung WHERE id_gedung = ?';
-
-  // import to model
-  getGedungId(res, querySql,  req.params.id,);
+ 
+export const createGedung = async (req, res) => {
+    try {
+        await Gedung.create(req.body);
+        res.json({
+            "message": "Gedung Created"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-
-// update Gedung
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM gedung WHERE id_gedung = ?';
-    const queryUpdate = 'UPDATE gedung SET ? WHERE id_gedung = ?';
-
-    // import to model
-    updateGedung(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-// delete Gedung
-exports.deleteData = (req, res) => {
-    // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM gedung WHERE id_gedung = ?';
-    const queryDelete = 'DELETE FROM gedung WHERE id_gedung = ?';
-
-    // import to model
-    deleteGedung(res, querySearch, queryDelete, req.params.id);
-};
+ 
+export const updateGedung = async (req, res) => {
+    try {
+        await Gedung.update(req.body, {
+            where: {
+                id_gedung: req.params.id
+            }
+        });
+        res.json({
+            "message": "Gedung Updated"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+ 
+export const deleteGedung = async (req, res) => {
+    try {
+        await Gedung.destroy({
+            where: {
+                id_gedung: req.params.id
+            }
+        });
+        res.json({
+            "message": "Gedung Deleted"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}

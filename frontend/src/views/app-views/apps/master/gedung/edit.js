@@ -63,14 +63,14 @@ const EditGedung = () => {
   const getGedung = async () => {
       const response = await axios.get(`http://localhost:5000/api/gedung/${id}`);
       const data = response.data
-      setKode(data.data.kd_gedung)
-      setNama(data.data.nm_gedung)
-      setLantai(data.data.jml_lantai)
-      setPanjang(data.data.panjang)
-      setTinggi(data.data.tinggi)
-      setLebar(data.data.lebar)
-      setKeterangan(data.data.keterangan)
-      setStatus(data.data.status)
+      setKode(data.kd_gedung)
+      setNama(data.nm_gedung)
+      setLantai(data.jml_lantai)
+      setPanjang(data.panjang)
+      setTinggi(data.tinggi)
+      setLebar(data.lebar)
+      setKeterangan(data.keterangan)
+      setStatus(data.status)
   }
 
  

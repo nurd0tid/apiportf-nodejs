@@ -1,20 +1,19 @@
-const {
-    createData,
-    readData,
-    readDataId,
-    updateData,
-    deleteData
-} = require('../../controllers/master/Gedung');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getAllGedung,
+    createGedung,
+    getGedungById,
+    updateGedung,
+    deleteGedung
+} from "../../controllers/master/Gedung.js";
+ 
 const router = express.Router();
-
-router.route('/')
-    .post(createData)
-    .get(readData);
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-    .delete(deleteData);
-
-module.exports = router;
+ 
+router.get('/', getAllGedung);
+router.get('/:id', getGedungById);
+router.post('/', createGedung);
+router.put('/:id', updateGedung);
+router.delete('/:id', deleteGedung);
+ 
+export default router;
