@@ -6,6 +6,7 @@ import akademikRoutes from "./utils/routes/master/akademikRoutes.js";
 import gedungRoutes from "./utils/routes/master/gedungRoutes.js";
 
 import golonganRoutes from "./utils/routes/master/golonganRoutes.js";
+import ptkRoutes from "./utils/routes/master/ptkRoutes.js";
 import cors from "cors";
 
 const app = express();
@@ -25,5 +26,6 @@ app.use('/api/akademik', akademikRoutes);
 app.use('/api/gedung', gedungRoutes);
 
 app.use('/api/golongan', golonganRoutes);
+app.use('/api/ptk', ptkRoutes);
  
 app.listen(5000, () => console.log('Server running at port 5000'));

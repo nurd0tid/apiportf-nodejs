@@ -45,8 +45,8 @@ const EditPtk = () => {
   const getPtk = async () => {
       const response = await axios.get(`http://localhost:5000/api/ptk/${id}`);
       const data = response.data
-      setNama(data.data.nm_ptk)
-      setKeterangan(data.data.keterangan)
+      setNama(data.nm_ptk)
+      setKeterangan(data.keterangan)
   }
 
  

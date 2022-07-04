@@ -1,20 +1,19 @@
-const {
-    createData,
-    readData,
-    readDataId,
-    updateData,
-    deleteData
-} = require('../../controllers/master/Ptk');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getAllPtk,
+    createPtk,
+    getPtkById,
+    updatePtk,
+    deletePtk
+} from "../../controllers/master/Ptk.js";
+ 
 const router = express.Router();
-
-router.route('/')
-    .post(createData)
-    .get(readData);
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-    .delete(deleteData);
-
-module.exports = router;
+ 
+router.get('/', getAllPtk);
+router.get('/:id', getPtkById);
+router.post('/', createPtk);
+router.put('/:id', updatePtk);
+router.delete('/:id', deletePtk);
+ 
+export default router;

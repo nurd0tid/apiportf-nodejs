@@ -1,55 +1,64 @@
-const {
-    insertPtk,
-    getPtk,
-    getPtkId,
-    updatePtk,
-    deletePtk
-} = require('../../models/master/M_ptk');
-
-
-// create Identity
-exports.createData = (req, res, next) => {
-    const data = { ...req.body };
-    const querySql = 'INSERT INTO jenis_ptk SET ?';
-
-    // masukkan ke dalam model
-    insertPtk(res, querySql, data);
+import Ptk from "../../models/master/M_ptk.js";
+ 
+export const getAllPtk = async (req, res) => {
+    try {
+        const ptk = await Ptk.findAll();
+        res.json(ptk);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readData = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM jenis_ptk';
-
-  // import to model
-  getPtk(res, querySql);
+ 
+export const getPtkById = async (req, res) => {
+    try {
+        const ptk = await Ptk.findAll({
+            where: {
+                id_ptk: req.params.id
+            }
+        });
+        res.json(ptk[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM jenis_ptk WHERE id_ptk = ?';
-
-  // import to model
-  getPtkId(res, querySql,  req.params.id,);
+ 
+export const createPtk = async (req, res) => {
+    try {
+        await Ptk.create(req.body);
+        res.json({
+            "message": "Ptk Created"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-
-// update Ptk
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM jenis_ptk WHERE id_ptk = ?';
-    const queryUpdate = 'UPDATE jenis_ptk SET ? WHERE id_ptk = ?';
-
-    // import to model
-    updatePtk(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-// delete Ptk
-exports.deleteData = (req, res) => {
-    // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM jenis_ptk WHERE id_ptk = ?';
-    const queryDelete = 'DELETE FROM jenis_ptk WHERE id_ptk = ?';
-
-    // import to model
-    deletePtk(res, querySearch, queryDelete, req.params.id);
-};
+ 
+export const updatePtk = async (req, res) => {
+    try {
+        await Ptk.update(req.body, {
+            where: {
+                id_ptk: req.params.id
+            }
+        });
+        res.json({
+            "message": "Ptk Updated"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+ 
+export const deletePtk = async (req, res) => {
+    try {
+        await Ptk.destroy({
+            where: {
+                id_ptk: req.params.id
+            }
+        });
+        res.json({
+            "message": "Ptk Deleted"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
