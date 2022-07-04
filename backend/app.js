@@ -8,6 +8,7 @@ import gedungRoutes from "./utils/routes/master/gedungRoutes.js";
 import golonganRoutes from "./utils/routes/master/golonganRoutes.js";
 import ptkRoutes from "./utils/routes/master/ptkRoutes.js";
 import jurusanRoutes from "./utils/routes/master/jurusanRoutes.js";
+
 import kepegawaianRoutes from "./utils/routes/master/kepegawaianRoutes.js";
 
 
