@@ -18,7 +18,7 @@ const Akademik = () => {
 
   const getPosts = async () => {
       const response = await axios.get('http://localhost:5000/api/akademik');
-      setPost(response.data.data);
+      setPost(response.data);
     }
 
   const deletePost = async (id) => {

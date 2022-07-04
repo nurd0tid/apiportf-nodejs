@@ -51,10 +51,10 @@ const EditAkademik = () => {
   const getAkademik = async () => {
       const response = await axios.get(`http://localhost:5000/api/akademik/${id}`);
       const data = response.data
-      setKode(data.data.kd_thn)
-      setNama(data.data.nm_thn)
-      setKeterangan(data.data.keterangan)
-      setStatus(data.data.status)
+      setKode(data.kd_thn)
+      setNama(data.nm_thn)
+      setKeterangan(data.keterangan)
+      setStatus(data.status)
   }
 
  

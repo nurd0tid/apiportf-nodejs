@@ -1,55 +1,64 @@
-const {
-    insertAkademik,
-    getAkademik,
-    getAkademikId,
-    updateAkademik,
-    deleteAkademik
-} = require('../../models/master/M_akademik');
-
-
-// create Identity
-exports.createData = (req, res, next) => {
-    const data = { ...req.body };
-    const querySql = 'INSERT INTO th_akademik SET ?';
-
-    // masukkan ke dalam model
-    insertAkademik(res, querySql, data);
+import Akademik from "../../models/master/M_akademik.js";
+ 
+export const getAllAkademik = async (req, res) => {
+    try {
+        const akademik = await Akademik.findAll();
+        res.json(akademik);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readData = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM th_akademik';
-
-  // import to model
-  getAkademik(res, querySql);
+ 
+export const getAkademikById = async (req, res) => {
+    try {
+        const akademik = await Akademik.findAll({
+            where: {
+                id_akademik: req.params.id
+            }
+        });
+        res.json(akademik[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM th_akademik WHERE id_akademik = ?';
-
-  // import to model
-  getAkademikId(res, querySql,  req.params.id,);
+ 
+export const createAkademik = async (req, res) => {
+    try {
+        await Akademik.create(req.body);
+        res.json({
+            "message": "Akademik Created"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-
-// update Akademik
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM th_akademik WHERE id_akademik = ?';
-    const queryUpdate = 'UPDATE th_akademik SET ? WHERE id_akademik = ?';
-
-    // import to model
-    updateAkademik(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-// delete Akademik
-exports.deleteData = (req, res) => {
-    // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM th_akademik WHERE id_akademik = ?';
-    const queryDelete = 'DELETE FROM th_akademik WHERE id_akademik = ?';
-
-    // import to model
-    deleteAkademik(res, querySearch, queryDelete, req.params.id);
-};
+ 
+export const updateAkademik = async (req, res) => {
+    try {
+        await Akademik.update(req.body, {
+            where: {
+                id_akademik: req.params.id
+            }
+        });
+        res.json({
+            "message": "Akademik Updated"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+ 
+export const deleteAkademik = async (req, res) => {
+    try {
+        await Akademik.destroy({
+            where: {
+                id_akademik: req.params.id
+            }
+        });
+        res.json({
+            "message": "Akademik Deleted"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}

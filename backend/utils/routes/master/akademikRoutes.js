@@ -1,20 +1,19 @@
-const {
-    createData,
-    readData,
-    readDataId,
-    updateData,
-    deleteData
-} = require('../../controllers/master/Akademik');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getAllAkademik,
+    createAkademik,
+    getAkademikById,
+    updateAkademik,
+    deleteAkademik
+} from "../../controllers/master/Akademik.js";
+ 
 const router = express.Router();
-
-router.route('/')
-    .post(createData)
-    .get(readData);
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-    .delete(deleteData);
-
-module.exports = router;
+ 
+router.get('/', getAllAkademik);
+router.get('/:id', getAkademikById);
+router.post('/', createAkademik);
+router.put('/:id', updateAkademik);
+router.delete('/:id', deleteAkademik);
+ 
+export default router;
