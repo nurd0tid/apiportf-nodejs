@@ -45,8 +45,8 @@ const EditGolongan = () => {
   const getGolongan = async () => {
       const response = await axios.get(`http://localhost:5000/api/golongan/${id}`);
       const data = response.data
-      setNama(data.data.nm_golongan)
-      setKeterangan(data.data.keterangan)
+      setNama(data.nm_golongan)
+      setKeterangan(data.keterangan)
   }
 
  

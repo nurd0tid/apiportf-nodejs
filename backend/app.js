@@ -4,6 +4,8 @@ import IdentitasRoutes from "./utils/routes/master/identitasRoutes.js";
 import kurikulumRoutes from "./utils/routes/master/kurikulumRoutes.js";
 import akademikRoutes from "./utils/routes/master/akademikRoutes.js";
 import gedungRoutes from "./utils/routes/master/gedungRoutes.js";
+
+import golonganRoutes from "./utils/routes/master/golonganRoutes.js";
 import cors from "cors";
 
 const app = express();
@@ -21,5 +23,7 @@ app.use('/api/identitas', IdentitasRoutes);
 app.use('/api/kurikulum', kurikulumRoutes);
 app.use('/api/akademik', akademikRoutes);
 app.use('/api/gedung', gedungRoutes);
+
+app.use('/api/golongan', golonganRoutes);
  
 app.listen(5000, () => console.log('Server running at port 5000'));

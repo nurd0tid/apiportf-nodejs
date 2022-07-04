@@ -1,55 +1,64 @@
-const {
-    insertGolongan,
-    getGolongan,
-    getGolonganId,
-    updateGolongan,
-    deleteGolongan
-} = require('../../models/master/M_golongan');
-
-
-// create Identity
-exports.createData = (req, res, next) => {
-    const data = { ...req.body };
-    const querySql = 'INSERT INTO golongan SET ?';
-
-    // masukkan ke dalam model
-    insertGolongan(res, querySql, data);
+import Golongan from "../../models/master/M_golongan.js";
+ 
+export const getAllGolongan = async (req, res) => {
+    try {
+        const golongan = await Golongan.findAll();
+        res.json(golongan);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readData = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM golongan';
-
-  // import to model
-  getGolongan(res, querySql);
+ 
+export const getGolonganById = async (req, res) => {
+    try {
+        const golongan = await Golongan.findAll({
+            where: {
+                id_golongan: req.params.id
+            }
+        });
+        res.json(golongan[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM golongan WHERE id_golongan = ?';
-
-  // import to model
-  getGolonganId(res, querySql,  req.params.id,);
+ 
+export const createGolongan = async (req, res) => {
+    try {
+        await Golongan.create(req.body);
+        res.json({
+            "message": "Golongan Created"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
-
-
-// update Golongan
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM golongan WHERE id_golongan = ?';
-    const queryUpdate = 'UPDATE golongan SET ? WHERE id_golongan = ?';
-
-    // import to model
-    updateGolongan(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-// delete Golongan
-exports.deleteData = (req, res) => {
-    // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM golongan WHERE id_golongan = ?';
-    const queryDelete = 'DELETE FROM golongan WHERE id_golongan = ?';
-
-    // import to model
-    deleteGolongan(res, querySearch, queryDelete, req.params.id);
-};
+ 
+export const updateGolongan = async (req, res) => {
+    try {
+        await Golongan.update(req.body, {
+            where: {
+                id_golongan: req.params.id
+            }
+        });
+        res.json({
+            "message": "Golongan Updated"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+ 
+export const deleteGolongan = async (req, res) => {
+    try {
+        await Golongan.destroy({
+            where: {
+                id_golongan: req.params.id
+            }
+        });
+        res.json({
+            "message": "Golongan Deleted"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
