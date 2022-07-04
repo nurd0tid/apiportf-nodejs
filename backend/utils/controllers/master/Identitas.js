@@ -1,24 +1,30 @@
-const {
-    getIdentitasId,
-    updateIdentitas,
-} = require('../../models/master/M_identitas');
-
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM identitas_sekolah WHERE id = ?';
-
-  // import to model
-  getIdentitasId(res, querySql,  req.params.id,);
+import Identitas from "../../models/master/M_identitas.js"; 
+ 
+export const getIdentitasById = async (req, res) => {
+    try {
+        const identitas = await Identitas.findAll({
+            where: {
+                id: req.params.id
+            }
+        });
+        res.json(identitas[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+ 
+export const updateIdentitas = async (req, res) => {
+    try {
+        await Identitas.update(req.body, {
+            where: {
+                id: req.params.id
+            }
+        });
+        res.json({
+            "message": "Identitas Sekolah Updated"
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
 }
 
-// update Identitas
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM identitas_sekolah WHERE id = ?';
-    const queryUpdate = 'UPDATE identitas_sekolah SET ? WHERE id = ?';
-
-    // import to model
-    updateIdentitas(res, querySearch, queryUpdate, req.params.id, data);
-};

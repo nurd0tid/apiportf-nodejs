@@ -1,18 +1,9 @@
-const mysql = require('mysql');
-
-// konfigurasi koneksi ke db
-const koneksi = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'siakad',
-  multipleStatements: true
+import {Sequelize} from "sequelize";
+ 
+const db = new Sequelize('siakad','root','',{
+    host: 'localhost',
+    dialect: 'mysql',
+    logging: false
 });
-
-// koneksi database
-koneksi.connect((err) => {
-  if(err) throw err;
-  console.log('MySQL Connected ...');
-});
-
-module.exports = koneksi;
+ 
+export default db;

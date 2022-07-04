@@ -74,19 +74,19 @@ const IdentitasSekolah = () => {
   const getIdentitas = async () => {
       const response = await axios.get(`http://localhost:5000/api/identitas/1`);
       const data = response.data
-      setId(data.data.id)
-      setSekolah(data.data.nm_sekolah)
-      setNpsn(data.data.npsn)
-      setNss(data.data.nss)
-      setAlamat(data.data.almt_sekolah)
-      setPos(data.data.kd_pos)
-      setTelp(data.data.no_tlp)
-      setKel(data.data.kelurahan)
-      setKec(data.data.kecamatan)
-      setKab(data.data.kab_kota)
-      setProv(data.data.provinsi)
-      setWeb(data.data.website)
-      setEmail(data.data.email)
+      setId(data.id)
+      setSekolah(data.nm_sekolah)
+      setNpsn(data.npsn)
+      setNss(data.nss)
+      setAlamat(data.almt_sekolah)
+      setPos(data.kd_pos)
+      setTelp(data.no_tlp)
+      setKel(data.kelurahan)
+      setKec(data.kecamatan)
+      setKab(data.kab_kota)
+      setProv(data.provinsi)
+      setWeb(data.website)
+      setEmail(data.email)
   }
  
   return (

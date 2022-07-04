@@ -1,12 +1,13 @@
-const {
-    readDataId,
-    updateData,
-} = require('../../controllers/master/Identitas');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getIdentitasById,
+    updateIdentitas,
+} from "../../controllers/master/Identitas.js";
+ 
 const router = express.Router();
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-
-module.exports = router;
+ 
+router.get('/:id', getIdentitasById);
+router.put('/:id', updateIdentitas);
+ 
+export default router;
