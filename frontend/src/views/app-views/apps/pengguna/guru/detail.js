@@ -5,7 +5,6 @@ import Flex from 'components/shared-components/Flex'
 import { useState, useEffect } from 'react'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
-import moment from 'moment';
 
 const DetailGuru = () => {
   const [nip,	setNip] = useState('')
@@ -65,53 +64,53 @@ const DetailGuru = () => {
   const getGuru = async () => {
       const response = await axios.get(`http://localhost:5000/api/guru/${id}`);
       const data = response.data
-      setNip(data.data.nip)
-      setNik(data.data.nik)
-      setNama(data.data.nm_guru)
-      setSkcpns(data.data.sk_cpns)
-      setTmptlahir(data.data.tmpt_lahir)
-      setTglcpns(data.data.tgl_cpns)
-      setTgllahir(data.data.tgl_lahir)
-      setSkpeng(data.data.sk_pengangkatan)
-      setJenkel(data.data.jenkel)
-      setTmtpeng(data.data.tmt_pengangkatan)
-      setAgama(data.data.agama)
-      setLempeng(data.data.lemb_pengangkatan)
-      setHp(data.data.no_hp)
-      setGolongan(data.data.id_golongan)
-      setTelp(data.data.no_telp)
-      setGaji(data.data.sumber_gaji)
-      setEmail(data.data.email)
-      setLab(data.data.keahlian_laboratorium)
-      setRum(data.data.almt_rumah)
-      setIbu(data.data.nm_ibu_kandung)
-      setRtrw(data.data.rt_rw)
-      setSitr(data.data.nm_suami_istri)
-      setPos(data.data.kode_pos)
-      setNipsitr(data.data.nip_suami_istri)
-      setKab(data.data.kab_kota)
-      setPeksitr(data.data.pekerjaan_suami_istri)
-      setKec(data.data.kecamatan)
-      setTmtpns(data.data.tmt_pns)
-      setKel(data.data.kelurahan)
-      setLiskep(data.data.lisensi_kepsek)
-      setProv(data.data.provinsi)
-      setJml(data.data.jml_sklh_binaan)
-      setNuptk(data.data.nuptk)
-      setDiklat(data.data.diklat_kepengawasan)
-      setStudi(data.data.bidang_studi)
-      setHandle(data.data.mampu_handle_kk)
-      setPtk(data.data.id_ptk)
-      setBreile(data.data.keahlian_breile)
-      setTgs(data.data.tgs_tambahan)
-      setIsyarat(data.data.keahlian_bhs_isyarat)
-      setKepegawaian(data.data.id_kepegawaian)
-      setKwrgn(data.data.kewarganegaraan)
-      setStatus(data.data.status)
-      setNgk(data.data.niy_nigk)
-      setNikah(data.data.stts_pernikahan)
-      setNpwp(data.data.npwp)
-      setPhoto(data.data.photo)
+      setNip(data.nip)
+      setNik(data.nik)
+      setNama(data.nm_guru)
+      setSkcpns(data.sk_cpns)
+      setTmptlahir(data.tmpt_lahir)
+      setTglcpns(data.tgl_cpns)
+      setTgllahir(data.tgl_lahir)
+      setSkpeng(data.sk_pengangkatan)
+      setJenkel(data.jenkel)
+      setTmtpeng(data.tmt_pengangkatan)
+      setAgama(data.agama)
+      setLempeng(data.lemb_pengangkatan)
+      setHp(data.no_hp)
+      setGolongan(data.id_golongan)
+      setTelp(data.no_telp)
+      setGaji(data.sumber_gaji)
+      setEmail(data.email)
+      setLab(data.keahlian_laboratorium)
+      setRum(data.almt_rumah)
+      setIbu(data.nm_ibu_kandung)
+      setRtrw(data.rt_rw)
+      setSitr(data.nm_suami_istri)
+      setPos(data.kode_pos)
+      setNipsitr(data.nip_suami_istri)
+      setKab(data.kab_kota)
+      setPeksitr(data.pekerjaan_suami_istri)
+      setKec(data.kecamatan)
+      setTmtpns(data.tmt_pns)
+      setKel(data.kelurahan)
+      setLiskep(data.lisensi_kepsek)
+      setProv(data.provinsi)
+      setJml(data.jml_sklh_binaan)
+      setNuptk(data.nuptk)
+      setDiklat(data.diklat_kepengawasan)
+      setStudi(data.bidang_studi)
+      setHandle(data.mampu_handle_kk)
+      setPtk(data.id_ptk)
+      setBreile(data.keahlian_breile)
+      setTgs(data.tgs_tambahan)
+      setIsyarat(data.keahlian_bhs_isyarat)
+      setKepegawaian(data.id_kepegawaian)
+      setKwrgn(data.kewarganegaraan)
+      setStatus(data.status)
+      setNgk(data.niy_nigk)
+      setNikah(data.stts_pernikahan)
+      setNpwp(data.npwp)
+      setPhoto(data.photo)
   }
 
 const ProfileInfo = props => (
@@ -154,7 +153,7 @@ const Detail = () => (
             <li><b>Kabputan/Kota :</b> { kab_kota }</li>
             <li><b>Provinsi :</b> { provinsi }</li>
             <li><b>Tempat Lahir :</b> { tmpt_lahir }</li>
-            <li><b>Tanggal Lahir :</b> { moment(tgl_lahir).format("DD-MM-YYYY") }</li>
+            <li><b>Tanggal Lahir :</b> { tgl_lahir }</li>
             <li><b>Jenis Kelamin :</b> { jenkel }</li>
             <li><b>Agama :</b> { agama }</li>
             <li><b>Kewarganegaraan :</b> { kewarganegaraan }</li>
@@ -185,11 +184,11 @@ const Detail = () => (
           </h4>
           <ul>
             <li><b>Nomor Identitas Pegawai :</b> { nip }</li>
-            <li><b>TMT CPNS :</b> { moment(tmt_pns).format("DD-MM-YYYY") }</li>
+            <li><b>TMT CPNS :</b> { tmt_pns }</li>
             <li><b>SK CPNS :</b> { sk_cpns }</li>
-            <li><b>Tanggal CPNS :</b> { moment(tgl_cpns).format("DD-MM-YYYY") }</li>
+            <li><b>Tanggal CPNS :</b> { tgl_cpns }</li>
             <li><b>SK Pengangkatan :</b> { sk_pengangkatan }</li>
-            <li><b>TMT Pengangkatan :</b> { moment(tmt_pengangkatan).format("DD-MM-YYYY") }</li>
+            <li><b>TMT Pengangkatan :</b> { tmt_pengangkatan }</li>
             <li><b>Lemb. Pengangkatan :</b> { lemb_pengangkatan }</li>
             <li><b>Golongan :</b> { id_golongan }</li>
             <li><b>Keahlian Laboratorium :</b> { keahlian_laboratorium }</li>

@@ -19,7 +19,7 @@ useEffect(() => {
 
 const getGuru = async () => {
     const response = await axios.get('http://localhost:5000/api/guru');
-    setPost(response.data.data);
+    setPost(response.data);
   }
 
 const deletePost = async (id) => {

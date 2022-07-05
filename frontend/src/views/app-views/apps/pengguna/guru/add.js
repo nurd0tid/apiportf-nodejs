@@ -29,15 +29,15 @@ const AddGuru = () => {
 
   const getGolongan = async () => {
       const response = await axios.get('http://localhost:5000/api/golongan');
-      setGolongan(response.data.data);
+      setGolongan(response.data);
   }
   const getPtk = async () => {
       const response = await axios.get('http://localhost:5000/api/ptk');
-      setPtk(response.data.data);
+      setPtk(response.data);
   }
   const getKepegawaian = async () => {
       const response = await axios.get('http://localhost:5000/api/kepegawaian');
-      setKepegawaian(response.data.data);
+      setKepegawaian(response.data);
   }
 
   const onFinish = async values => {

@@ -1,4 +1,6 @@
 import express from "express";
+import FileUpload from "express-fileupload";
+import cors from "cors";
 import db from "./config/database.js";
 // Import Module Master
 import IdentitasRoutes from "./utils/routes/master/identitasRoutes.js";
@@ -13,10 +15,12 @@ import jurusanRoutes from "./utils/routes/master/jurusanRoutes.js";
 import kepegawaianRoutes from "./utils/routes/master/kepegawaianRoutes.js";
 // Import Module Pengguna
 
+import guruRoutes from "./utils/routes/pengguna/guruRoutes.js";
+
 // Import Module Akademik
 import kmapelRoutes from "./utils/routes/akademik/kmapelRoutes.js";
 
-import cors from "cors";
+
 const app = express();
  
 try {
@@ -28,6 +32,8 @@ try {
  
 app.use(cors());
 app.use(express.json());
+app.use(FileUpload());
+app.use(express.static("public"));
 // API Master
 app.use('/api/identitas', IdentitasRoutes);
 app.use('/api/kurikulum', kurikulumRoutes);
@@ -40,6 +46,8 @@ app.use('/api/jurusan', jurusanRoutes);
 
 app.use('/api/kepegawaian', kepegawaianRoutes);
 // API Pengguna
+
+app.use('/api/guru', guruRoutes);
 
 // API Akademik
 app.use('/api/kmapel', kmapelRoutes);

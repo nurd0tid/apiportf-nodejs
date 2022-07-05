@@ -1,67 +1,111 @@
-const {
-    insertGuru,
-    getGuru,
-    getGuruId,
-    updateGuru,
-    deleteGuru
-} = require('../../models/pengguna/M_guru');
-const multer = require('multer');
-const uploadDir = '/photo_guru/';
-const storage = multer.diskStorage({
-    destination: "./public"+uploadDir,
-    filename: (req, file, cb) => {
-        cb(null, Date.now()+'-'+file.originalname);
+import Guru from "../../models/pengguna/M_guru.js";
+import path from "path";
+import fs from "fs";
+ 
+export const getAllGuru = async(req, res)=>{
+    try {
+        const response = await Guru.findAll();
+        res.json(response);
+    } catch (error) {
+        console.log(error.message);
     }
-});
-
-const upload =multer({storage: storage, dest: uploadDir });
-
-
-// create Identity
-exports.createData = (req, res, next) => {
-    upload.single('photo')(req, res, () => {
-    const data = { ...req.body,  photo: req.file === undefined ? "" : req.file.filename };
-    const querySql = 'INSERT INTO guru SET ?';
-
-    // masukkan ke dalam model
-    insertGuru(res, querySql, data);
+}
+ 
+export const getGuruById = async(req, res)=>{
+    try {
+        const response = await Guru.findOne({
+            where:{
+                nip : req.params.id
+            }
+        });
+        res.json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+ 
+export const createGuru = (req, res)=>{
+    if(req.files === null) return res.status(400).json({msg: "No File Uploaded"});
+    const photo = req.files.photo;
+    const fileSize = photo.data.length;
+    const ext = path.extname(photo.name);
+    const fileName = photo.md5 + ext;
+    const allowedType = ['.png','.jpg','.jpeg'];
+ 
+    if(!allowedType.includes(ext.toLowerCase())) return res.status(422).json({msg: "Invalid Images"});
+    if(fileSize > 5000000) return res.status(422).json({msg: "Image must be less than 5 MB"});
+ 
+    photo.mv(`./public/photo_guru/${fileName}`, async(err)=>{
+        if(err) return res.status(500).json({msg: err.message});
+        try {
+            await Guru.create({ ...req.body, photo: fileName});
+            res.status(201).json({msg: "Guru Created Successfuly"});
+        } catch (error) {
+            console.log(error.message);
+        }
+    })
+ 
+}
+ 
+export const updateGuru = async(req, res)=>{
+    const guru = await Guru.findOne({
+        where:{
+            nip : req.params.id
+        }
     });
+    if(!guru) return res.status(404).json({msg: "No Data Found"});
+     
+    let fileName = "";
+    if(req.files === null){
+        fileName = guru.image;
+    }else{
+        const photo = req.files.photo;
+        const fileSize = photo.data.length;
+        const ext = path.extname(photo.name);
+        fileName = photo.md5 + ext;
+        const allowedType = ['.png','.jpg','.jpeg'];
+ 
+        if(!allowedType.includes(ext.toLowerCase())) return res.status(422).json({msg: "Invalid Images"});
+        if(fileSize > 5000000) return res.status(422).json({msg: "Image must be less than 5 MB"});
+ 
+        const filepath = `./public/photo_guru/${guru.photo}`;
+        fs.unlinkSync(filepath);
+ 
+        photo.mv(`./public/photo_guru/${fileName}`, (err)=>{
+            if(err) return res.status(500).json({msg: err.message});
+        });
+    }
+     
+    try {
+        await Guru.update({ ...req.body, photo: fileName},{
+            where:{
+                nip: req.params.id
+            }
+        });
+        res.status(200).json({msg: "Guru Updated Successfuly"});
+    } catch (error) {
+        console.log(error.message);
+    }
 }
-
-exports.readData = (req, res) => {
-  // query sql
-    const querySql = 'SELECT nip, photo, nm_guru, no_hp, b.stts_kepegawaian, c.nm_ptk FROM guru a LEFT JOIN stts_kepegawaian b ON a.id_kepegawaian=b.id_kepegawaian LEFT JOIN jenis_ptk c ON a.id_ptk=c.id_ptk';
-
-  // import to model
-  getGuru(res, querySql);
+ 
+export const deleteGuru = async(req, res)=>{
+    const guru = await Guru.findOne({
+        where:{
+            nip : req.params.id
+        }
+    });
+    if(!guru) return res.status(404).json({msg: "No Data Found"});
+ 
+    try {
+        const filepath = `./public/photo_guru/${guru.photo}`;
+        fs.unlinkSync(filepath);
+        await Guru.destroy({
+            where:{
+                nip : req.params.id
+            }
+        });
+        res.status(200).json({msg: "Product Deleted Successfuly"});
+    } catch (error) {
+        console.log(error.message);
+    }
 }
-
-exports.readDataId = (req, res) => {
-  // query sql
-    const querySql = 'SELECT * FROM guru WHERE nip = ?';
-
-  // import to model
-  getGuruId(res, querySql,  req.params.id,);
-}
-
-
-// update Guru
-exports.updateData = (req, res) => {
-    // for variable and query
-    const data = { ...req.body };
-    const querySearch = 'SELECT * FROM guru WHERE nip = ?';
-    const queryUpdate = 'UPDATE guru SET ? WHERE nip = ?';
-
-    // import to model
-    updateGuru(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-// delete Guru
-exports.deleteData = (req, res) => {
-    // for query sql to search data and delete
-    const querySearch = 'SELECT * FROM guru WHERE nip = ?';
-    const queryDelete = 'DELETE FROM guru WHERE nip = ?';
-
-    // import to model
-    deleteGuru(res, querySearch, queryDelete, req.params.id);
-};

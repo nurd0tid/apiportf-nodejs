@@ -66,6 +66,7 @@ const DetailGuru = () => {
   const [stts_pernikahan, setNikah] = useState('');
   const [npwp, setNpwp] = useState('');
   const [photo, setPhoto] = useState('');
+  const history = useHistory();
   const { id } = useParams();
 
   form.setFieldsValue({
@@ -118,6 +119,18 @@ const DetailGuru = () => {
     photo:	photo,
   });
 
+  const onFinish = async values => {
+    const formData = new FormData();
+    for (const name in values) {
+      formData.append(name, values[name]); // there should be values.avatar which is a File object
+    }
+    await fetch(`http://localhost:5000/api/guru/${id}`, {
+      method: 'PUT',
+      body: formData // automagically sets Content-Type: multipart/form-data header
+    });
+    history.push("/app/apps/guru");
+  }
+
   useEffect(() => {
       getGolongan();
       getPtk();
@@ -128,66 +141,66 @@ const DetailGuru = () => {
 
   const getGolongan = async () => {
       const response = await axios.get('http://localhost:5000/api/golongan');
-      setGolongan(response.data.data);
+      setGolongan(response.data);
   }
   const getPtk = async () => {
       const response = await axios.get('http://localhost:5000/api/ptk');
-      setPtk(response.data.data);
+      setPtk(response.data);
   }
   const getKepegawaian = async () => {
       const response = await axios.get('http://localhost:5000/api/kepegawaian');
-      setKepegawaian(response.data.data);
+      setKepegawaian(response.data);
   }
   const getGuru = async () => {
       const response = await axios.get(`http://localhost:5000/api/guru/${id}`);
       const data = response.data
-      setNip(data.data.nip)
-      setNik(data.data.nik)
-      setNama(data.data.nm_guru)
-      setSkcpns(data.data.sk_cpns)
-      setTmptlahir(data.data.tmpt_lahir)
-      setTglcpns(data.data.tgl_cpns)
-      setTgllahir(data.data.tgl_lahir)
-      setSkpeng(data.data.sk_pengangkatan)
-      setJenkel(data.data.jenkel)
-      setTmtpeng(data.data.tmt_pengangkatan)
-      setAgama(data.data.agama)
-      setLempeng(data.data.lemb_pengangkatan)
-      setHp(data.data.no_hp)
-      setG(data.data.id_golongan)
-      setTelp(data.data.no_telp)
-      setGaji(data.data.sumber_gaji)
-      setEmail(data.data.email)
-      setLab(data.data.keahlian_laboratorium)
-      setRum(data.data.almt_rumah)
-      setIbu(data.data.nm_ibu_kandung)
-      setRtrw(data.data.rt_rw)
-      setSitr(data.data.nm_suami_istri)
-      setPos(data.data.kode_pos)
-      setNipsitr(data.data.nip_suami_istri)
-      setKab(data.data.kab_kota)
-      setPeksitr(data.data.pekerjaan_suami_istri)
-      setKec(data.data.kecamatan)
-      setTmtpns(data.data.tmt_pns)
-      setKel(data.data.kelurahan)
-      setLiskep(data.data.lisensi_kepsek)
-      setProv(data.data.provinsi)
-      setJml(data.data.jml_sklh_binaan)
-      setNuptk(data.data.nuptk)
-      setDiklat(data.data.diklat_kepengawasan)
-      setStudi(data.data.bidang_studi)
-      setHandle(data.data.mampu_handle_kk)
-      setPtks(data.data.id_ptk)
-      setBreile(data.data.keahlian_breile)
-      setTgs(data.data.tgs_tambahan)
-      setIsyarat(data.data.keahlian_bhs_isyarat)
-      setKpg(data.data.id_kepegawaian)
-      setKwrgn(data.data.kewarganegaraan)
-      setStatus(data.data.status)
-      setNgk(data.data.niy_nigk)
-      setNikah(data.data.stts_pernikahan)
-      setNpwp(data.data.npwp)
-      setPhoto(data.data.photo)
+      setNip(data.nip)
+      setNik(data.nik)
+      setNama(data.nm_guru)
+      setSkcpns(data.sk_cpns)
+      setTmptlahir(data.tmpt_lahir)
+      setTglcpns(data.tgl_cpns)
+      setTgllahir(data.tgl_lahir)
+      setSkpeng(data.sk_pengangkatan)
+      setJenkel(data.jenkel)
+      setTmtpeng(data.tmt_pengangkatan)
+      setAgama(data.agama)
+      setLempeng(data.lemb_pengangkatan)
+      setHp(data.no_hp)
+      setG(data.id_golongan)
+      setTelp(data.no_telp)
+      setGaji(data.sumber_gaji)
+      setEmail(data.email)
+      setLab(data.keahlian_laboratorium)
+      setRum(data.almt_rumah)
+      setIbu(data.nm_ibu_kandung)
+      setRtrw(data.rt_rw)
+      setSitr(data.nm_suami_istri)
+      setPos(data.kode_pos)
+      setNipsitr(data.nip_suami_istri)
+      setKab(data.kab_kota)
+      setPeksitr(data.pekerjaan_suami_istri)
+      setKec(data.kecamatan)
+      setTmtpns(data.tmt_pns)
+      setKel(data.kelurahan)
+      setLiskep(data.lisensi_kepsek)
+      setProv(data.provinsi)
+      setJml(data.jml_sklh_binaan)
+      setNuptk(data.nuptk)
+      setDiklat(data.diklat_kepengawasan)
+      setStudi(data.bidang_studi)
+      setHandle(data.mampu_handle_kk)
+      setPtks(data.id_ptk)
+      setBreile(data.keahlian_breile)
+      setTgs(data.tgs_tambahan)
+      setIsyarat(data.keahlian_bhs_isyarat)
+      setKpg(data.id_kepegawaian)
+      setKwrgn(data.kewarganegaraan)
+      setStatus(data.status)
+      setNgk(data.niy_nigk)
+      setNikah(data.stts_pernikahan)
+      setNpwp(data.npwp)
+      setPhoto(data.photo)
   }
 
   const ProfileInfo = props => (
@@ -217,7 +230,7 @@ const DetailGuru = () => {
 	<Card title="Edit Profile">
     <Form
       form={form}
-      // onFinish={onFinish}
+      onFinish={onFinish}
       layout={'vertical'}
     >
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
