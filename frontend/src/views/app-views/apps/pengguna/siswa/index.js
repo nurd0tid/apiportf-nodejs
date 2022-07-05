@@ -115,7 +115,7 @@ class App extends React.Component {
       pagination.total = data.totalCount;
       this.setState({
         loading: false,
-        results: data.data,
+        results: data,
         pagination,
       });
     });
@@ -160,12 +160,12 @@ class App extends React.Component {
       {
         title: 'Jurusan',
         align: "center",
-        dataIndex: 'nm_jurusan',
+        dataIndex: 'jurusan.nm_jurusan',
       },
       {
         title: 'Kelas',
         align: "center",
-        dataIndex: 'nm_kelas',
+        dataIndex: 'kela.nm_kelas',
         filters: [
           { text: 'Kelas X RPL 1', value: 'Kelas X RPL 1' },
           { text: 'Kelas X RPL 2', value: 'Kelas X RPL 2' },
@@ -176,7 +176,7 @@ class App extends React.Component {
           { text: 'Kelas XI MM 1', value: 'Kelas XI MM 1' },
           { text: 'Kelas XI MM 2', value: 'Kelas XI MM 2' },
         ],
-        onFilter: (value, record) => record.nm_kelas.includes(value),
+        onFilter: (value, record) => record.kela.nm_kelas.includes(value),
       },
       {
       title: "Action",

@@ -1,20 +1,19 @@
-const {
-    createData,
-    readData,
-    readDataId,
-    updateData,
-    deleteData
-} = require('../../controllers/master/Kelas');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getAllKelas,
+    createKelas,
+    getKelasById,
+    updateKelas,
+    deleteKelas
+} from "../../controllers/master/Kelas.js";
+ 
 const router = express.Router();
-
-router.route('/')
-    .post(createData)
-    .get(readData);
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-    .delete(deleteData);
-
-module.exports = router;
+ 
+router.get('/', getAllKelas);
+router.get('/:id', getKelasById);
+router.post('/', createKelas);
+router.put('/:id', updateKelas);
+router.delete('/:id', deleteKelas);
+ 
+export default router;

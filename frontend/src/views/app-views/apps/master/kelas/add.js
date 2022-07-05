@@ -28,15 +28,15 @@ const AddKelas = () => {
 
   const getGuru = async () => {
       const response = await axios.get('http://localhost:5000/api/guru');
-      setGuru(response.data.data);
+      setGuru(response.data);
   }
   const getJurusan = async () => {
       const response = await axios.get('http://localhost:5000/api/jurusan');
-      setJurusan(response.data.data);
+      setJurusan(response.data);
   }
   const getRuangan = async () => {
       const response = await axios.get('http://localhost:5000/api/ruangan');
-      setRuangan(response.data.data);
+      setRuangan(response.data);
   }
 
   const onReset = () => {

@@ -11,10 +11,10 @@ import ruanganRoutes from "./utils/routes/master/ruanganRoutes.js";
 import golonganRoutes from "./utils/routes/master/golonganRoutes.js";
 import ptkRoutes from "./utils/routes/master/ptkRoutes.js";
 import jurusanRoutes from "./utils/routes/master/jurusanRoutes.js";
-
+import kelasRoutes from "./utils/routes/master/kelasRoutes.js";
 import kepegawaianRoutes from "./utils/routes/master/kepegawaianRoutes.js";
 // Import Module Pengguna
-
+import siswaRoutes from "./utils/routes/pengguna/siswaRoutes.js";
 import guruRoutes from "./utils/routes/pengguna/guruRoutes.js";
 
 // Import Module Akademik
@@ -43,10 +43,10 @@ app.use('/api/ruangan', ruanganRoutes);
 app.use('/api/golongan', golonganRoutes);
 app.use('/api/ptk', ptkRoutes);
 app.use('/api/jurusan', jurusanRoutes);
-
+app.use('/api/kelas', kelasRoutes);
 app.use('/api/kepegawaian', kepegawaianRoutes);
 // API Pengguna
-
+app.use('/api/siswa', siswaRoutes);
 app.use('/api/guru', guruRoutes);
 
 // API Akademik

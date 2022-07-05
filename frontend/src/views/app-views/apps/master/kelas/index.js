@@ -18,7 +18,7 @@ const Kelas = () => {
 
   const getPosts = async () => {
       const response = await axios.get('http://localhost:5000/api/kelas');
-      setPost(response.data.data);
+      setPost(response.data);
     }
 
   const deletePost = async (id) => {
@@ -100,9 +100,9 @@ const Kelas = () => {
           key: index + 1,
           kd_kelas: post.kd_kelas,
           nm_kelas: post.nm_kelas,
-          nm_guru: post.nm_guru,
-          nm_jurusan: post.nm_jurusan,
-          nm_ruangan: post.nm_ruangan,
+          nm_guru: post.guru.nm_guru,
+          nm_jurusan: post.jurusan.nm_jurusan,
+          nm_ruangan: post.ruangan.nm_ruangan,
           nm_gedung: post.nm_gedung,
           jml_siswa: post.jml_siswa
         })

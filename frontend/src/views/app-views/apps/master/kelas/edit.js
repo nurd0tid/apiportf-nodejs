@@ -64,26 +64,26 @@ const EditKelas = () => {
 
   const getGuru = async () => {
       const response = await axios.get('http://localhost:5000/api/guru');
-      setGuru(response.data.data);
+      setGuru(response.data);
   }
   const getJurusan = async () => {
       const response = await axios.get('http://localhost:5000/api/jurusan');
-      setJurusan(response.data.data);
+      setJurusan(response.data);
   }
   const getRuangan = async () => {
       const response = await axios.get('http://localhost:5000/api/ruangan');
-      setRuangan(response.data.data);
+      setRuangan(response.data);
   }
 
   const getKelas = async () => {
       const response = await axios.get(`http://localhost:5000/api/kelas/${id}`);
       const data = response.data
-      setKds(data.data.kd_kelas)
-      setNama(data.data.nm_kelas)
-      setNip(data.data.nip)
-      setKdj(data.data.kd_jurusan)
-      setKdr(data.data.kd_ruangan)
-      setJml(data.data.jml_siswa)
+      setKds(data.kd_kelas)
+      setNama(data.nm_kelas)
+      setNip(data.nip)
+      setKdj(data.kd_jurusan)
+      setKdr(data.kd_ruangan)
+      setJml(data.jml_siswa)
   }
 
  

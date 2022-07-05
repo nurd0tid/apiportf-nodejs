@@ -1,117 +1,62 @@
-
-const koneksi = require('../../../config/database');
-const { responseData, responseMessage } = require('../../response-handler');
-
-exports.insertSiswa = (response, statement, data) => {
-  koneksi.query(statement, data, (err, rows, field) => {
-    if(err){
-      return response.status(500).json({
-        message: 'Failed Insert Data',
-        error: err
-      });
-     }
-      responseMessage(response, 201, 'Success Insert Data!');
-  });
-}
-
-exports.getSiswa = (response, statement) => {
-      // running querys
-    koneksi.query(statement, (err, rows, field) => {
-        // error handling
-        if (err) {
-            return response.status(500).json({ 
-              message: 'Somethin When Wrong', 
-              error: err 
-            });
-        }
-
-        // if request success
-        responseData(response, 200, rows);
-    });
-  
-}
-
-exports.getSiswaId = (res, statement, id) => {
-      // running querys
-    koneksi.query(statement, id, (err, rows, field) => {
-        // error handling
-        if (err) {
-            return res.status(500).json({ 
-              message: 'Somethin When Wrong', 
-              error: err 
-            });
-        }
-
-        // if request success
-        responseData(res, 200, rows[0]);
-    });
-  
-}
-
-exports.updateSiswa = (response, searchStatement, updateStatement, id, data) => {
-    // run query to search data
-    koneksi.query(searchStatement, id, (err, rows, field) => {
-        // error handling
-        if (err) {
-            return response.status(500).json({ 
-              message: 'Something When Wrong', 
-              error: err
-             });
-        }
-
-        // if id input same data in db
-        if (rows.length) {
-            // run query update
-            koneksi.query(updateStatement, [data, id], (err, rows, field) => {
-                // error handling
-                if (err) {
-                    return res.status(500).json({ 
-                      message: 'Oops!! Something When Wrong', 
-                      error: err 
-                    });
-                }
-
-                // if success
-                responseMessage(response, 200, 'Success update data!');
-            });
-        } else {
-            return response.status(404).json({
-               message: 'Cant Find Data!', 
-               success: false 
-              });
-        }
-    });
-}
-
-exports.deleteSiswa = (response, searchStatement, deleteStatement, id) => {
-      // run query for search data
-    koneksi.query(searchStatement, id, (err, rows, field) => {
-        // error handling
-        if (err) {
-            return res.status(500).json({ 
-              message: 'Woops, Something When Wrong', 
-              error: err });
-        }
-
-        // if id same data in db
-        if (rows.length) {
-            // run query delete
-            koneksi.query(deleteStatement, id, (err, rows, field) => {
-                // error handling
-                if (err) {
-                    return response.status(500).json({ 
-                      message: 'Something When Wrong',
-                       error: err 
-                      });
-                }
-
-                // if delete success
-                responseMessage(response, 200, 'Success delete data!');
-            });
-        } else {
-            return response.status(404).json({ 
-              message: 'Woops, cant find the data!', 
-              success: false });
-        }
-    });
-}
+import { Sequelize } from "sequelize";
+import db from "../../../config/database.js";
+ 
+const { DataTypes } = Sequelize;
+ 
+const Siswa = db.define('siswa',{
+    nipd: {
+        type: DataTypes.STRING,
+        primaryKey: true
+    },
+    nik: DataTypes.STRING,
+    nisn: DataTypes.STRING,
+    tmpt_lahir: DataTypes.TEXT,
+    nm_siswa: DataTypes.STRING,
+    tgl_lahir: DataTypes.DATEONLY,
+    kd_kelas: DataTypes.STRING,
+    jenkel: DataTypes.ENUM('Perempuan', 'Laki - Laki'),
+    angkatan: DataTypes.STRING,
+    agama: DataTypes.ENUM('Islam', 'Kristen', 'Hindu', 'Buddha', 'Katolik', 'Khonghucu'),
+    kd_jurusan: DataTypes.STRING,
+    keb_khusus: DataTypes.STRING,
+    almt_rumah: DataTypes.TEXT,
+    jns_tinggal: DataTypes.STRING,
+    rt_rw: DataTypes.STRING,
+    transportasi: DataTypes.STRING,
+    kab_kota: DataTypes.STRING,
+    no_telp: DataTypes.STRING,
+    kelurahan: DataTypes.STRING,
+    no_hp: DataTypes.STRING,
+    kecamatan: DataTypes.STRING,
+    email: DataTypes.STRING,
+    provinsi: DataTypes.STRING,
+    skhun: DataTypes.STRING,
+    kd_pos: DataTypes.STRING,
+    penerima_kjp: DataTypes.STRING,
+    photo: DataTypes.STRING,
+    status: DataTypes.ENUM('active', 'non active'),
+    nm_ayah: DataTypes.STRING,
+    tgl_lahir_ayah: DataTypes.DATEONLY,
+    pendidikan_ayah: DataTypes.STRING,
+    pekerjaan_ayah: DataTypes.STRING,
+    penghasilan_ayah: DataTypes.STRING,
+    no_telp_ayah	: DataTypes.STRING,
+    nm_ibu: DataTypes.STRING,
+    tgl_lahir_ibu: DataTypes.DATEONLY,
+    pendidikan_ibu: DataTypes.STRING,	
+    pekerjaan_ibu: DataTypes.STRING,
+    penghasilan_ibu: DataTypes.STRING,
+    no_telp_ibu: DataTypes.STRING,
+    nm_wali: DataTypes.STRING,
+    tgl_lahir_wali: DataTypes.DATEONLY,
+    pendidikan_wali: DataTypes.STRING,
+    pekerjaan_wali: DataTypes.STRING,
+    penghasilan_wali: DataTypes.STRING,
+    no_telp_wali: DataTypes.STRING,
+},{
+    createdAt: false,
+    updatedAt: false,
+    freezeTableName: true
+});
+ 
+export default Siswa;
