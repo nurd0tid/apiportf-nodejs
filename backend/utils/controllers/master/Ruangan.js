@@ -8,7 +8,8 @@ export const getAllRuangan = async (req, res) => {
         const ruangan = await Ruangan.findAll({
           include: [
             {
-             model: Gedung
+             model: Gedung,
+             attributes: ['nm_gedung'],
             }
           ]
         });
