@@ -15,6 +15,9 @@ export const getAllGuru = async(req, res)=>{
                 'nm_guru',
                 'no_hp',
             ],
+            order: [
+            ['nip', 'DESC'],
+            ],
             include: [
                 {
                     model: Kepegawaian,
