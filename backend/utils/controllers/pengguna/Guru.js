@@ -1,10 +1,31 @@
 import Guru from "../../models/pengguna/M_guru.js";
+import Kepegawaian from "../../models/master/M_kepegawaian.js";
+import Ptk from "../../models/master/M_ptk.js";
 import path from "path";
 import fs from "fs";
  
 export const getAllGuru = async(req, res)=>{
     try {
-        const response = await Guru.findAll();
+        Guru.belongsTo(Kepegawaian, {targetKey: 'id_kepegawaian', foreignKey : 'id_kepegawaian'});
+        Guru.belongsTo(Ptk, {targetKey: 'id_ptk', foreignKey : 'id_ptk'});
+        const response = await Guru.findAll({
+            attributes: [
+                'nip',
+                'photo',
+                'nm_guru',
+                'no_hp',
+            ],
+            include: [
+                {
+                    model: Kepegawaian,
+                    attributes: ['stts_kepegawaian']
+                },
+                {
+                    model: Ptk,
+                    attributes: ['nm_ptk']
+                }
+            ]
+        });
         res.json(response);
     } catch (error) {
         console.log(error.message);
