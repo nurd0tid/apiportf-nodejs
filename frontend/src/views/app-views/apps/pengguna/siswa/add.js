@@ -24,11 +24,11 @@ const AddSiswa = () => {
 
 	const getKelas = async () => {
 		const response = await axios.get('http://localhost:5000/api/kelas');
-		setKelas(response.data.data);
+		setKelas(response.data);
 	}
 	const getJurusan = async () => {
 				const response = await axios.get('http://localhost:5000/api/jurusan');
-				setJurusan(response.data.data);
+				setJurusan(response.data);
 	}
 
 	const onFinish = async values => {

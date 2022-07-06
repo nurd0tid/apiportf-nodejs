@@ -6,8 +6,6 @@ import reqwest from 'reqwest';
 import { 
   EditTwoTone,
   SearchOutlined,
-  // EditOutlined,
-  EyeOutlined,
   EyeTwoTone
 } from '@ant-design/icons';
 
@@ -160,12 +158,12 @@ class App extends React.Component {
       {
         title: 'Jurusan',
         align: "center",
-        dataIndex: 'jurusan.nm_jurusan',
+        dataIndex: 'nm_jurusan',
       },
       {
         title: 'Kelas',
         align: "center",
-        dataIndex: 'kela.nm_kelas',
+        dataIndex: 'nm_kelas',
         filters: [
           { text: 'Kelas X RPL 1', value: 'Kelas X RPL 1' },
           { text: 'Kelas X RPL 2', value: 'Kelas X RPL 2' },
@@ -176,7 +174,7 @@ class App extends React.Component {
           { text: 'Kelas XI MM 1', value: 'Kelas XI MM 1' },
           { text: 'Kelas XI MM 2', value: 'Kelas XI MM 2' },
         ],
-        onFilter: (value, record) => record.kela.nm_kelas.includes(value),
+        onFilter: (value, record) => record.nm_kelas.includes(value),
       },
       {
       title: "Action",
