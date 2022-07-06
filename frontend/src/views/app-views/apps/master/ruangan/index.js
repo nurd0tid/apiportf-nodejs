@@ -123,7 +123,7 @@ const Ruangan = () => {
         dataAPI.push({
           key: index + 1,
           kd_ruangan: post.kd_ruangan,
-          nm_gedung: post.gedung.nm_gedung,
+          nm_gedung: post.nm_gedung,
           nm_ruangan: post.nm_ruangan,
           kps_belajar: post.kps_belajar,
           kps_ujian: post.kps_ujian,

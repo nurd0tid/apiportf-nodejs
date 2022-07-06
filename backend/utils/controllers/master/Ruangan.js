@@ -6,12 +6,22 @@ export const getAllRuangan = async (req, res) => {
   try {
         Ruangan.belongsTo(Gedung, {targetKey: 'kd_gedung', foreignKey : 'kd_gedung'});
         const ruangan = await Ruangan.findAll({
-          include: [
-            {
-             model: Gedung,
-             attributes: ['nm_gedung'],
-            }
-          ]
+            attributes: [
+                'kd_ruangan',
+                'nm_ruangan',
+                'kps_belajar',
+                'kps_ujian',
+                'keterangan',
+                'status',
+                'gedung.nm_gedung'
+            ],
+            include: [
+                {
+                model: Gedung,
+                attributes: [],
+                }
+            ],
+            raw: true,
         });
         res.json(ruangan);
     } catch (error) {
