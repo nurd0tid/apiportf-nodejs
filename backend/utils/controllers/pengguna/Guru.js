@@ -14,6 +14,8 @@ export const getAllGuru = async(req, res)=>{
                 'photo',
                 'nm_guru',
                 'no_hp',
+                'stts_kepegawaian.stts_kepegawaian',
+                'jenis_ptk.nm_ptk'
             ],
             order: [
             ['nip', 'DESC'],
@@ -21,13 +23,14 @@ export const getAllGuru = async(req, res)=>{
             include: [
                 {
                     model: Kepegawaian,
-                    attributes: ['stts_kepegawaian']
+                    attributes: []
                 },
                 {
                     model: Ptk,
-                    attributes: ['nm_ptk']
+                    attributes: []
                 }
-            ]
+            ],
+            raw: true,
         });
         res.json(response);
     } catch (error) {

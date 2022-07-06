@@ -104,8 +104,8 @@ const deletePost = async (id) => {
           photo: post.photo,
           nm_guru: post.nm_guru,
           no_hp: post.no_hp,
-          stts_kepegawaian: post.stts_kepegawaian.stts_kepegawaian,
-          nm_ptk: post.jenis_ptk.nm_ptk,
+          stts_kepegawaian: post.stts_kepegawaian,
+          nm_ptk: post.nm_ptk,
         })
       ));
   }
