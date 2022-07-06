@@ -19,6 +19,7 @@ import guruRoutes from "./utils/routes/pengguna/guruRoutes.js";
 
 // Import Module Akademik
 import kmapelRoutes from "./utils/routes/akademik/kmapelRoutes.js";
+import mapelRoutes from "./utils/routes/akademik/mapelRoutes.js";
 
 
 const app = express();
@@ -51,5 +52,6 @@ app.use('/api/guru', guruRoutes);
 
 // API Akademik
 app.use('/api/kmapel', kmapelRoutes);
+app.use('/api/mapel', mapelRoutes);
  
 app.listen(5000, () => console.log('Server running at port 5000'));

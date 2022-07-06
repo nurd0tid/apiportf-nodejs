@@ -30,19 +30,19 @@ const AddMapel = () => {
 
   const getKurikulum = async () => {
       const response = await axios.get('http://localhost:5000/api/kurikulum');
-      setKurikulum(response.data.data);
+      setKurikulum(response.data);
   }
   const getGuru = async () => {
       const response = await axios.get('http://localhost:5000/api/guru');
-      setGuru(response.data.data);
+      setGuru(response.data);
   }
   const getJurusan = async () => {
       const response = await axios.get('http://localhost:5000/api/jurusan');
-      setJurusan(response.data.data);
+      setJurusan(response.data);
   }
   const getKmapel = async () => {
       const response = await axios.get('http://localhost:5000/api/kmapel');
-      setKmapel(response.data.data);
+      setKmapel(response.data);
   }
 
   const onReset = () => {

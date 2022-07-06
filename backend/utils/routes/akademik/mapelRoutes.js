@@ -1,20 +1,19 @@
-const {
-    createData,
-    readData,
-    readDataId,
-    updateData,
-    deleteData
-} = require('../../controllers/akademik/Mapel');
-const express = require('express');
+import express from "express";
+ 
+import { 
+    getAllMapel,
+    createMapel,
+    getMapelById,
+    updateMapel,
+    deleteMapel
+} from "../../controllers/akademik/Mapel.js";
+ 
 const router = express.Router();
-
-router.route('/')
-    .post(createData)
-    .get(readData);
-
-router.route('/:id')
-    .get(readDataId)
-    .put(updateData)
-    .delete(deleteData);
-
-module.exports = router;
+ 
+router.get('/', getAllMapel);
+router.get('/:id', getMapelById);
+router.post('/', createMapel);
+router.put('/:id', updateMapel);
+router.delete('/:id', deleteMapel);
+ 
+export default router;

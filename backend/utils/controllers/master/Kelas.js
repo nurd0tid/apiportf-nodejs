@@ -2,39 +2,37 @@ import Kelas from "../../models/master/M_kelas.js";
 import Guru from "../../models/pengguna/M_guru.js";
 import Jurusan from "../../models/master/M_jurusan.js";
 import Ruangan from "../../models/master/M_ruangan.js";
-import Gedung from "../../models/master/M_gedung.js";
  
 export const getAllKelas = async (req, res) => {
   try {
         Kelas.belongsTo(Guru, {targetKey: 'nip', foreignKey : 'nip'});
         Kelas.belongsTo(Jurusan, {targetKey: 'kd_jurusan', foreignKey : 'kd_jurusan'});
         Kelas.belongsTo(Ruangan, {targetKey: 'kd_ruangan', foreignKey : 'kd_ruangan'});
-        // Ruangan.belongsTo(Gedung, {targetKey: 'kd_gedung', foreignKey : 'kd_gedung'});
         const response = await Kelas.findAll({
           attributes: [
             'kd_kelas',
             'nm_kelas',
             'kd_ruangan',
-            'jml_siswa'
+            'jml_siswa',
+            'guru.nm_guru',
+            'jurusan.nm_jurusan',
+            'ruangan.nm_ruangan'
           ],
           include: [
             {
              model: Guru,
-             attributes: ['nm_guru'],
+             attributes: [],
             },
             {
              model: Jurusan,
-             attributes: ['nm_jurusan'],
+             attributes: [],
             },
             {
              model: Ruangan,
-             attributes: ['nm_ruangan'],
-            },
-            // {
-            //  model: Gedung,
-            //  attributes: ['nm_gedung'],
-            // },
-          ]
+             attributes: [],
+            }
+          ],
+          raw: true,
         });
         res.json(response);
     } catch (error) {

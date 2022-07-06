@@ -81,36 +81,36 @@ const EditMapel = () => {
 
   const getKurikulum = async () => {
       const response = await axios.get('http://localhost:5000/api/kurikulum');
-      setKurikulum(response.data.data);
+      setKurikulum(response.data);
   }
   const getJurusan = async () => {
       const response = await axios.get('http://localhost:5000/api/jurusan');
-      setJurusan(response.data.data);
+      setJurusan(response.data);
   }
   const getGuru = async () => {
       const response = await axios.get('http://localhost:5000/api/guru');
-      setGuru(response.data.data);
+      setGuru(response.data);
   }
 
   const getKmapel = async () => {
       const response = await axios.get('http://localhost:5000/api/kmapel');
-      setKmapel(response.data.data);
+      setKmapel(response.data);
   }
 
   const getMapel = async () => {
       const response = await axios.get(`http://localhost:5000/api/mapel/${id}`);
       const data = response.data
-      setId(data.data.id_kurikulum)
-      setKdm(data.data.kd_mapel)
-      setNama(data.data.nm_mapel)
-      setKds(data.data.kd_jurusan)
-      setNip(data.data.nip)
-      setTingkat(data.data.tingkat)
-      setKptsiu(data.data.kptsi_umum)
-      setKptsik(data.data.kptsi_khusus)
-      setJam(data.data.jml_jam)
-      setIdk(data.data.id_kmapel)
-      setStatus(data.data.status)
+      setId(data.id_kurikulum)
+      setKdm(data.kd_mapel)
+      setNama(data.nm_mapel)
+      setKds(data.kd_jurusan)
+      setNip(data.nip)
+      setTingkat(data.tingkat)
+      setKptsiu(data.kptsi_umum)
+      setKptsik(data.kptsi_khusus)
+      setJam(data.jml_jam)
+      setIdk(data.id_kmapel)
+      setStatus(data.status)
   }
 
  

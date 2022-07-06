@@ -26,17 +26,17 @@ const DetailMapel = () => {
   const getMapel = async () => {
       const response = await axios.get(`http://localhost:5000/api/mapel/${id}`);
       const data = response.data
-      setKurikulum(data.data.nm_kurikulum)
-      setKode(data.data.kd_mapel)
-      setMapel(data.data.nm_mapel)
-      setJurusan(data.data.nm_jurusan)
-      setGuru(data.data.nm_guru)
-      setTingkat(data.data.tingkat)
-      setKptsiu(data.data.kptsi_umum)
-      setKptsik(data.data.kptsi_khusus)
-      setJam(data.data.jml_jam)
-      setKmapel(data.data.nm_kmapel)
-      setStatus(data.data.status)
+      setKurikulum(data.nm_kurikulum)
+      setKode(data.kd_mapel)
+      setMapel(data.nm_mapel)
+      setJurusan(data.nm_jurusan)
+      setGuru(data.nm_guru)
+      setTingkat(data.tingkat)
+      setKptsiu(data.kptsi_umum)
+      setKptsik(data.kptsi_khusus)
+      setJam(data.jml_jam)
+      setKmapel(data.nm_kmapel)
+      setStatus(data.status)
   }
   
     return (
