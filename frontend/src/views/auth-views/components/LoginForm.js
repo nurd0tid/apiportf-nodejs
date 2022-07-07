@@ -168,7 +168,7 @@ LoginForm.propTypes = {
 };
 
 LoginForm.defaultProps = {
-	otherSignIn: true,
+	otherSignIn: false,
 	showForgetPassword: false
 };
 

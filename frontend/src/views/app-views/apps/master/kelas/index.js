@@ -66,12 +66,6 @@ const Kelas = () => {
       align: "center",
     },
     {
-      title: "Gedung",
-      dataIndex: "nm_gedung",
-      key: "nm_gedung",
-      align: "center",
-    },
-    {
       title: "Jumlah Siswa",
       dataIndex: "jml_siswa",
       key: "jml_siswa",
@@ -100,10 +94,9 @@ const Kelas = () => {
           key: index + 1,
           kd_kelas: post.kd_kelas,
           nm_kelas: post.nm_kelas,
-          nm_guru: post.guru.nm_guru,
-          nm_jurusan: post.jurusan.nm_jurusan,
-          nm_ruangan: post.ruangan.nm_ruangan,
-          nm_gedung: post.nm_gedung,
+          nm_guru: post.nm_guru,
+          nm_jurusan: post.nm_jurusan,
+          nm_ruangan: post.nm_ruangan,
           jml_siswa: post.jml_siswa
         })
       ));

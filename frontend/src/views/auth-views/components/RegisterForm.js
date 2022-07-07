@@ -99,8 +99,8 @@ export const RegisterForm = (props) => {
 					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
 				</Form.Item>
 				<Form.Item 
-					name="confirm" 
-					label="ConfirmPassword" 
+					name="confPassword" 
+					label="Confirm Password" 
 					rules={rules.confirm}
 					hasFeedback
 				>

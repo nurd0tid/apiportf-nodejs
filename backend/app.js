@@ -1,7 +1,14 @@
 import express from "express";
 import FileUpload from "express-fileupload";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import db from "./config/database.js";
+dotenv.config();
+
+// Import JWT
+import router from "./utils/routes/auth/authRoutes.js";
+
 // Import Module Master
 import IdentitasRoutes from "./utils/routes/master/identitasRoutes.js";
 import kurikulumRoutes from "./utils/routes/master/kurikulumRoutes.js";
@@ -31,10 +38,13 @@ try {
     console.error('Connection error:', error);
 }
  
-app.use(cors());
+app.use(cors({ credentials:true, origin:'http://localhost:3000' }));
+app.use(cookieParser());
 app.use(express.json());
 app.use(FileUpload());
 app.use(express.static("public"));
+app.use(router);
+
 // API Master
 app.use('/api/identitas', IdentitasRoutes);
 app.use('/api/kurikulum', kurikulumRoutes);
