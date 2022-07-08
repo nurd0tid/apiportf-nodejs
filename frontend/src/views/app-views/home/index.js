@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import { Row, Col, Button, Card, Table, Tag, Select, Badge } from 'antd';
 import Flex from 'components/shared-components/Flex'
 import AvatarStatus from 'components/shared-components/AvatarStatus';
@@ -310,7 +310,6 @@ const RecentOrder = () => (
 )
 
 const Home = () => {
-
 	return (
 		<>
 			<Row gutter={16}>

@@ -145,7 +145,7 @@ export const LoginForm = (props) => {
 					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
 				</Form.Item>
 				<Form.Item>
-					<Button type="primary" htmlType="submit" block loading={loading}>
+					<Button type="primary" htmlType="submit" block>
 						Sign In
 					</Button>
 				</Form.Item>

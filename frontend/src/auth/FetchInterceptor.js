@@ -10,7 +10,7 @@ const service = axios.create({
 })
 
 // Config
-const ENTRY_ROUTE = '/auth/login'
+const ENTRY_ROUTE = '/app/home'
 const TOKEN_PAYLOAD_KEY = 'authorization'
 const PUBLIC_REQUEST_KEY = 'public-request'
 
@@ -46,16 +46,18 @@ service.interceptors.response.use( (response) => {
 	}
 	
 	// Remove token and redirect 
+	if (error.response.status === 200) {
+		notificationParam.message = 'Successfuly Sign in.'
+	}
+
 	if (error.response.status === 400 || error.response.status === 403) {
 		notificationParam.message = 'Authentication Fail'
 		notificationParam.description = 'Please login again'
 		localStorage.removeItem(AUTH_TOKEN)
-		history.push(ENTRY_ROUTE)
-		window.location.reload();
 	}
 
 	if (error.response.status === 404) {
-		notificationParam.message = 'Not Found'
+		notificationParam.message = 'There is no user record corresponding to this identifier. The user may have been deleted.'
 	}
 
 	if (error.response.status === 500) {
