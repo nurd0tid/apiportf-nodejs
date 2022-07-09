@@ -6,8 +6,6 @@ import {
 	SIGNOUT_SUCCESS,
 	SIGNUP_SUCCESS,
 	SHOW_LOADING,
-	SIGNIN_WITH_GOOGLE_AUTHENTICATED,
-  SIGNIN_WITH_FACEBOOK_AUTHENTICATED
 } from '../constants/Auth';
 
 const initState = {
@@ -59,20 +57,6 @@ const auth = (state = initState, action) => {
 			return {
 				...state,
 				loading: true
-			}
-		}
-		case SIGNIN_WITH_GOOGLE_AUTHENTICATED: {
-			return {
-				...state,
-				loading: false,
-				token: action.token
-			}
-		}
-		case SIGNIN_WITH_FACEBOOK_AUTHENTICATED: {
-			return {
-				...state,
-				loading: false,
-				token: action.token
 			}
 		}
 		default:

@@ -7,7 +7,7 @@ import MenuContent from './MenuContent'
 
 const { Sider } = Layout;
 
-export const SideNav = ({navCollapsed, sideNavTheme, routeInfo, hideGroupTitle, localization = true }) => {
+export const SideNav = ({navCollapsed, sideNavTheme, routeInfo, hideGroupTitle, localization = false }) => {
   const props = { sideNavTheme, routeInfo , hideGroupTitle, localization}
   return (
     <Sider 

@@ -10,7 +10,7 @@ const service = axios.create({
 })
 
 // Config
-const ENTRY_ROUTE = '/app/home'
+const ENTRY_ROUTE = '/auth/login'
 const TOKEN_PAYLOAD_KEY = 'authorization'
 const PUBLIC_REQUEST_KEY = 'public-request'
 
@@ -46,10 +46,6 @@ service.interceptors.response.use( (response) => {
 	}
 	
 	// Remove token and redirect 
-	if (error.response.status === 200) {
-		notificationParam.message = 'Successfuly Sign in.'
-	}
-
 	if (error.response.status === 400 || error.response.status === 403) {
 		notificationParam.message = 'Authentication Fail'
 		notificationParam.description = 'Please login again'

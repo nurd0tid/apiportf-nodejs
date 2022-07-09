@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { LockOutlined, MailOutlined, SubnodeOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Alert } from "antd";
 import { showAuthMessage, showLoading, hideAuthMessage, authenticated } from 'redux/actions/Auth';
 import { useHistory } from "react-router-dom";
@@ -8,6 +8,12 @@ import { motion } from "framer-motion"
 import JwtAuthService from 'services/JwtAuthService'
 
 const rules = {
+	nip_nipd: [
+		{ 
+			required: true,
+			message: 'Please input your NIP/NIPD'
+		}
+	],
 	email: [
 		{ 
 			required: true,
@@ -82,6 +88,15 @@ export const RegisterForm = (props) => {
 				<Alert type="error" showIcon message={message}></Alert>
 			</motion.div>
 			<Form form={form} layout="vertical" name="register-form" onFinish={onSignUp}>
+				<Form.Item 
+					name="nip_nipd" 
+					label="NIP/NIPD" 
+					rules={rules.nip_nipd}
+					hasFeedback
+				>
+					<Input prefix={<SubnodeOutlined className="text-primary" />}/>
+				</Form.Item>
+
 				<Form.Item 
 					name="email" 
 					label="Email" 
