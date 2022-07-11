@@ -61,7 +61,3 @@ const Guru = db.define('guru',{
 });
  
 export default Guru;
-
-// (async()=>{
-//     await db.sync();
-// })();
