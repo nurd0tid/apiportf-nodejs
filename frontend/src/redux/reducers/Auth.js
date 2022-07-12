@@ -13,7 +13,7 @@ const initState = {
   message: '',
   showMessage: false,
   redirect: '',
-  token: localStorage.getItem(AUTH_TOKEN) !== null && localStorage.getItem(AUTH_TOKEN) !== "" ? localStorage.getItem(AUTH_TOKEN) : null,
+  accessToken: localStorage.getItem(AUTH_TOKEN),
 }
 
 const auth = (state = initState, action) => {

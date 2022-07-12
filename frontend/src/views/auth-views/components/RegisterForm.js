@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { LockOutlined, MailOutlined, SubnodeOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Alert } from "antd";
-import { showAuthMessage, showLoading, hideAuthMessage, authenticated } from 'redux/actions/Auth';
+import React from 'react'
+import axios from 'axios';
 import { useHistory } from "react-router-dom";
-import { motion } from "framer-motion"
-import JwtAuthService from 'services/JwtAuthService'
+import { LockOutlined, MailOutlined, SubnodeOutlined } from '@ant-design/icons';
+import { Button, Form, Input, notification  } from "antd";
 
 const rules = {
 	nip_nipd: [
@@ -46,47 +43,33 @@ const rules = {
 	]
 }
 
-export const RegisterForm = (props) => {
-
-	const { showLoading, token, loading, redirect, message, showMessage, hideAuthMessage, authenticated, allowRedirect } = props
+export const RegisterForm = () => {
 	const [form] = Form.useForm();
 	let history = useHistory();
 
-	const onSignUp = () => {
-    	form.validateFields().then(values => {
-			showLoading()
-			const fakeToken = 'fakeToken'
-			JwtAuthService.signUp(values).then(resp => {
-				authenticated(fakeToken)
-			}).then(e => {
-				showAuthMessage(e)
-			})
-		}).catch(info => {
-			console.log('Validate Failed:', info);
-		});
+	const onSignUp = async (values) => {
+		try {
+				await axios.post('http://localhost:5000/auth/register', {
+					nip_nipd: values.nip_nipd,
+					email: values.email,
+					password: values.password,
+					confPassword: values.confPassword
+				});
+				notification.success({
+					message: 'Congratulations',
+					description: "'Registration Successfully',",
+				})
+				history.push("/auth/login")
+		} catch (error) {
+				notification.error({
+					message: 'Registration Unsuccessfuly',
+					description: error.response.data.message,
+				})
+		}
 	}
-
-	useEffect(() => {
-    	if (token !== null && allowRedirect) {
-			history.push(redirect)
-		}
-		if(showMessage) {
-				setTimeout(() => {
-				hideAuthMessage();
-			}, 3000);
-		}
-  });
 	
 	return (
 		<>
-			<motion.div 
-				initial={{ opacity: 0, marginBottom: 0 }} 
-				animate={{ 
-					opacity: showMessage ? 1 : 0,
-					marginBottom: showMessage ? 20 : 0 
-				}}> 
-				<Alert type="error" showIcon message={message}></Alert>
-			</motion.div>
 			<Form form={form} layout="vertical" name="register-form" onFinish={onSignUp}>
 				<Form.Item 
 					name="nip_nipd" 
@@ -122,7 +105,7 @@ export const RegisterForm = (props) => {
 					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
 				</Form.Item>
 				<Form.Item>
-					<Button type="primary" htmlType="submit" block loading={loading}>
+					<Button type="primary" htmlType="submit" block>
 						Sign Up
 					</Button>
 				</Form.Item>
@@ -131,16 +114,4 @@ export const RegisterForm = (props) => {
 	)
 }
 
-const mapStateToProps = ({auth}) => {
-	const { loading, message, showMessage, token, redirect } = auth;
-  return { loading, message, showMessage, token, redirect }
-}
-
-const mapDispatchToProps = {
-	showAuthMessage,
-	hideAuthMessage,
-	showLoading,
-	authenticated
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
+export default RegisterForm
