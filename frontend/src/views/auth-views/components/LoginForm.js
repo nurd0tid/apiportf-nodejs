@@ -15,7 +15,7 @@ export const LoginForm = () => {
 				});
 				notification.success({
 					message: 'Congratulations',
-					description: "'Authentication Successfully',",
+					description: "Authentication Successfully",
 				})
 				history.push("/app/home")
 		} catch (error) {

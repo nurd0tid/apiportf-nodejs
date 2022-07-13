@@ -57,7 +57,7 @@ export const RegisterForm = () => {
 				});
 				notification.success({
 					message: 'Congratulations',
-					description: "'Registration Successfully',",
+					description: "Registration Successfully",
 				})
 				history.push("/auth/login")
 		} catch (error) {
