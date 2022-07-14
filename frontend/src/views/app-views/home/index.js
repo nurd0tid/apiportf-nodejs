@@ -26,6 +26,7 @@ import {
 	sessionColor,
 	recentOrderData
 } from './SalesDashboardData'
+import {withRouter} from 'react-router-dom';
 import moment from 'moment'; 
 import { DATE_FORMAT_DD_MM_YYYY } from 'constants/DateConstant'
 import utils from 'utils'
@@ -340,4 +341,4 @@ const Home = () => {
 	)
 }
 
-export default Home
+export default withRouter(Home);

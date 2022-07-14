@@ -1,47 +1,22 @@
 import {
-	// AUTH_TOKEN,
-	// AUTHENTICATED,
-	// SHOW_AUTH_MESSAGE,
-	// HIDE_AUTH_MESSAGE,
-	// SIGNOUT_SUCCESS,
-	// SIGNUP_SUCCESS,
-	// SHOW_LOADING,
-	AUTHENTICATED, 
-	NOT_AUTHENTICATED
+	AUTH_TOKEN,
+	AUTHENTICATED,
+	SHOW_AUTH_MESSAGE,
+	HIDE_AUTH_MESSAGE,
+	SIGNOUT_SUCCESS,
+	SIGNUP_SUCCESS,
+	SHOW_LOADING,
+	SIGNIN_WITH_GOOGLE_AUTHENTICATED,
+  SIGNIN_WITH_FACEBOOK_AUTHENTICATED
 } from '../constants/Auth';
 
-// const initState = {
-//   loading: false,
-//   message: '',
-//   showMessage: false,
-//   redirect: '',
-//   accessToken: localStorage.getItem(AUTH_TOKEN),
-// }
-
-const initialState = {
-  authChecked: false,
-  loggedIn: false,
-  currentUser: {}
-};
-
-// export default function authReducer(state = initialState, action) {
-//   switch (action.type) {
-//     case AUTHENTICATED:
-//       return {
-//         authChecked: true,
-//         loggedIn: true,
-//         currentUser: action.payload,
-//       };
-//     case NOT_AUTHENTICATED:
-//       return {
-//         authChecked: true,
-//         loggedIn: false,
-//         currentUser: {}
-//       };
-//     default:
-//       return state;
-//   }
-// }
+const initState = {
+  loading: false,
+  message: '',
+  showMessage: false,
+  redirect: '',
+  token: localStorage.getItem(AUTH_TOKEN),
+}
 
 const auth = (state = initState, action) => {
 	switch (action.type) {
@@ -84,6 +59,20 @@ const auth = (state = initState, action) => {
 			return {
 				...state,
 				loading: true
+			}
+		}
+		case SIGNIN_WITH_GOOGLE_AUTHENTICATED: {
+			return {
+				...state,
+				loading: false,
+				token: action.token
+			}
+		}
+		case SIGNIN_WITH_FACEBOOK_AUTHENTICATED: {
+			return {
+				...state,
+				loading: false,
+				token: action.token
 			}
 		}
 		default:

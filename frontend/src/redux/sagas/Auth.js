@@ -4,26 +4,30 @@ import {
 	SIGNIN,
 	SIGNOUT,
 	SIGNUP,
+	SIGNIN_WITH_GOOGLE,
+	SIGNIN_WITH_FACEBOOK
 } from '../constants/Auth';
 import {
 	showAuthMessage,
 	authenticated,
 	signOutSuccess,
 	signUpSuccess,
+	signInWithGoogleAuthenticated,
+	signInWithFacebookAuthenticated
 } from "../actions/Auth";
 
-import JwtAuthService from 'services/JwtAuthService';
+import FirebaseService from 'services/FirebaseService'
 
-export function* signIn() {
+export function* signInWithFBEmail() {
   yield takeEvery(SIGNIN, function* ({payload}) {
 		const {email, password} = payload;
 		try {
-			const data = yield call(JwtAuthService.signIn, email, password);
-			if (data.message) {
-				yield put(showAuthMessage(data.message));
+			const user = yield call(FirebaseService.signInEmailRequest, email, password);
+			if (user.message) {
+				yield put(showAuthMessage(user.message));
 			} else {
-				localStorage.setItem(AUTH_TOKEN, data.data.id);
-				yield put(authenticated(data.data.id));
+				localStorage.setItem(AUTH_TOKEN, user.user.uid);
+				yield put(authenticated(user.user.uid));
 			}
 		} catch (err) {
 			yield put(showAuthMessage(err));
@@ -34,7 +38,7 @@ export function* signIn() {
 export function* signOut() {
   yield takeEvery(SIGNOUT, function* () {
 		try {
-			const signOutUser = yield call(JwtAuthService.signIn);
+			const signOutUser = yield call(FirebaseService.signOutRequest);
 			if (signOutUser === undefined) {
 				localStorage.removeItem(AUTH_TOKEN);
 				yield put(signOutSuccess(signOutUser));
@@ -47,16 +51,16 @@ export function* signOut() {
 	});
 }
 
-export function* signUp() {
+export function* signUpWithFBEmail() {
   yield takeEvery(SIGNUP, function* ({payload}) {
 		const {email, password} = payload;
 		try {
-			const data = yield call(JwtAuthService.signUp, email, password);
-			if (data.message) {
-				yield put(showAuthMessage(data.message));
+			const user = yield call(FirebaseService.signUpEmailRequest, email, password);
+			if (user.message) {
+				yield put(showAuthMessage(user.message));
 			} else {
-				localStorage.setItem(AUTH_TOKEN, data.data.id);
-				yield put(signUpSuccess(data.data.id));
+				localStorage.setItem(AUTH_TOKEN, user.user.uid);
+				yield put(signUpSuccess(user.user.uid));
 			}
 		} catch (error) {
 			yield put(showAuthMessage(error));
@@ -65,10 +69,44 @@ export function* signUp() {
 	);
 }
 
+export function* signInWithFBGoogle() {
+  yield takeEvery(SIGNIN_WITH_GOOGLE, function* () {
+		try {
+			const user = yield call(FirebaseService.signInGoogleRequest);
+			if (user.message) {
+				yield put(showAuthMessage(user.message));
+			} else {
+				localStorage.setItem(AUTH_TOKEN, user.user.uid);
+				yield put(signInWithGoogleAuthenticated(user.user.uid));
+			}
+		} catch (error) {
+			yield put(showAuthMessage(error));
+		}
+	});
+}
+
+export function* signInWithFacebook() {
+  yield takeEvery(SIGNIN_WITH_FACEBOOK, function* () {
+		try {
+			const user = yield call(FirebaseService.signInFacebookRequest);
+			if (user.message) {
+				yield put(showAuthMessage(user.message));
+			} else {
+				localStorage.setItem(AUTH_TOKEN, user.user.uid);
+				yield put(signInWithFacebookAuthenticated(user.user.uid));
+			}
+		} catch (error) {
+			yield put(showAuthMessage(error));
+		}
+	});
+}
+
 export default function* rootSaga() {
   yield all([
-		fork(signIn),
+		fork(signInWithFBEmail),
 		fork(signOut),
-		fork(signUp),
+		fork(signUpWithFBEmail),
+		fork(signInWithFBGoogle),
+		fork(signInWithFacebook)
   ]);
 }
