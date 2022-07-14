@@ -31,7 +31,7 @@ const { useBreakpoint } = Grid;
 export const AppLayout = ({ navCollapsed, navType, location, direction }) => {
   const currentRouteInfo = utils.getRouteInfo(navigationConfig, location.pathname)
   const screens = utils.getBreakPoint(useBreakpoint());
-  const isMobile = !screens.includes('lg')
+  const isMobile = screens.length === 0 ? false : !screens.includes('lg')
   const isNavSide = navType === NAV_TYPE_SIDE
   const isNavTop = navType === NAV_TYPE_TOP
   const getLayoutGutter = () => {
