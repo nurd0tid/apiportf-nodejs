@@ -4,7 +4,6 @@ import { Layout } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined, SearchOutlined } from '@ant-design/icons';
 import Logo from './Logo';
 import NavProfile from './NavProfile';
-import NavPanel from './NavPanel';
 import NavSearch  from './NavSearch';
 import SearchInput from './NavSearch/SearchInput.js'
 import { toggleCollapsedNav, onMobileNavToggle } from 'redux/actions/Theme';
@@ -14,7 +13,7 @@ import utils from 'utils'
 const { Header } = Layout;
 
 export const HeaderNav = props => {
-  const { navCollapsed, mobileNav, navType, headerNavColor, toggleCollapsedNav, onMobileNavToggle, isMobile, currentTheme, direction } = props;
+  const { navCollapsed, mobileNav, navType, headerNavColor, toggleCollapsedNav, onMobileNavToggle, isMobile, currentTheme } = props;
   const [searchActive, setSearchActive] = useState(false)
 
   const onSearchActive = () => {
