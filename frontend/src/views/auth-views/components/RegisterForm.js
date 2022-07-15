@@ -1,12 +1,19 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { LockOutlined, MailOutlined, SubnodeOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Alert } from "antd";
-import { signUp, showAuthMessage, showLoading, hideAuthMessage } from 'redux/actions/Auth';
+import { showAuthMessage, showLoading, hideAuthMessage, authenticated } from 'redux/actions/Auth';
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion"
+import JwtAuthService from 'services/JwtAuthService'
 
 const rules = {
+	nip_nipd: [
+		{ 
+			required: true,
+			message: 'Please input your NIP/NIPD address'
+		}
+	],
 	email: [
 		{ 
 			required: true,
@@ -41,29 +48,34 @@ const rules = {
 
 export const RegisterForm = (props) => {
 
-	const { signUp, showLoading, token, loading, redirect, message, showMessage, hideAuthMessage, allowRedirect } = props
+	const { showLoading, token, loading, redirect, message, showMessage, hideAuthMessage, authenticated, allowRedirect } = props
 	const [form] = Form.useForm();
 	let history = useHistory();
 
 	const onSignUp = () => {
     	form.validateFields().then(values => {
 			showLoading()
-			signUp(values)
+			const fakeToken = 'fakeToken'
+			JwtAuthService.signUp(values).then(resp => {
+				authenticated(fakeToken)
+			}).then(e => {
+				showAuthMessage(e)
+			})
 		}).catch(info => {
 			console.log('Validate Failed:', info);
 		});
 	}
 
 	useEffect(() => {
-		if (token !== null && allowRedirect) {
+    	if (token !== null && allowRedirect) {
 			history.push(redirect)
 		}
 		if(showMessage) {
-			setTimeout(() => {
+				setTimeout(() => {
 				hideAuthMessage();
 			}, 3000);
 		}
-	});
+  });
 	
 	return (
 		<>
@@ -76,6 +88,14 @@ export const RegisterForm = (props) => {
 				<Alert type="error" showIcon message={message}></Alert>
 			</motion.div>
 			<Form form={form} layout="vertical" name="register-form" onFinish={onSignUp}>
+				<Form.Item 
+					name="nip_nipd" 
+					label="NIP/NIPD" 
+					rules={rules.nip_nipd}
+					hasFeedback
+				>
+					<Input prefix={<SubnodeOutlined className="text-primary" />}/>
+				</Form.Item>
 				<Form.Item 
 					name="email" 
 					label="Email" 
@@ -93,8 +113,8 @@ export const RegisterForm = (props) => {
 					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
 				</Form.Item>
 				<Form.Item 
-					name="confirm" 
-					label="ConfirmPassword" 
+					name="confPassword" 
+					label="Confirm Password" 
 					rules={rules.confirm}
 					hasFeedback
 				>
@@ -116,13 +136,14 @@ const mapStateToProps = ({auth}) => {
 }
 
 const mapDispatchToProps = {
-	signUp,
 	showAuthMessage,
 	hideAuthMessage,
-	showLoading
+	showLoading,
+	authenticated
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
+
 
 
 // import React from 'react'

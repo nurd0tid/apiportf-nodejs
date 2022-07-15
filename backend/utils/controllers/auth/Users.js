@@ -14,9 +14,6 @@ export const getUsers = async(req, res) => {
 }
  
 export const Register = async(req, res) => {
-    const checking = await Users.findAll();
-    if(req.body.email === checking[0].email) return res.status(400).json({message: "Failed! Email is already in use!"});
-    if(req.body.nip_nipd === checking[0].nip_nipd) return res.status(400).json({message: "Failed! NIP/NIPD is already in use!"});
     const { nip_nipd, email, password, confPassword } = req.body;
     if(password !== confPassword) return res.status(400).json({message: "Password dan Confirm Password tidak cocok"});
     const salt = await bcrypt.genSalt();

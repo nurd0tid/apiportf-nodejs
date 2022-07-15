@@ -5,18 +5,17 @@ import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import { GoogleSVG, FacebookSVG } from 'assets/svg/icon';
 import CustomIcon from 'components/util-components/CustomIcon'
-import { 
-	signIn, 
+import {  
 	showLoading, 
 	showAuthMessage, 
-	hideAuthMessage, 
-	signInWithGoogle, 
-	signInWithFacebook 
+	hideAuthMessage,
+	authenticated
 } from 'redux/actions/Auth';
+import JwtAuthService from 'services/JwtAuthService'
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion"
 
-export const LoginForm = props => {
+export const LoginForm = (props) => {
 	let history = useHistory();
 
 	const { 
@@ -25,31 +24,33 @@ export const LoginForm = props => {
 		hideAuthMessage,
 		onForgetPasswordClick,
 		showLoading,
-		signInWithGoogle,
-		signInWithFacebook,
-		extra, 
-		signIn, 
-		token, 
+		extra,
 		loading,
-		redirect,
 		showMessage,
 		message,
+		authenticated,
+		showAuthMessage,
+		token,
+		redirect,
 		allowRedirect
 	} = props
 
 	const onLogin = values => {
 		showLoading()
-		signIn(values);
+		const fakeToken = 'fakeToken'
+		JwtAuthService.login(values).then(resp => {
+			authenticated(fakeToken)
+		}).then(e => {
+			showAuthMessage(e)
+		})
 	};
 
 	const onGoogleLogin = () => {
 		showLoading()
-		signInWithGoogle()
 	}
 
 	const onFacebookLogin = () => {
 		showLoading()
-		signInWithFacebook()
 	}
 
 	useEffect(() => {
@@ -58,8 +59,8 @@ export const LoginForm = props => {
 		}
 		if(showMessage) {
 			setTimeout(() => {
-				hideAuthMessage();
-			}, 3000);
+			hideAuthMessage();
+		}, 3000);
 		}
 	});
 	
@@ -100,7 +101,7 @@ export const LoginForm = props => {
 			</motion.div>
 			<Form 
 				layout="vertical" 
-				name="login-form" 
+				name="login-form"
 				onFinish={onLogin}
 			>
 				<Form.Item 
@@ -173,19 +174,18 @@ LoginForm.defaultProps = {
 
 const mapStateToProps = ({auth}) => {
 	const {loading, message, showMessage, token, redirect} = auth;
-  return {loading, message, showMessage, token, redirect}
+  	return {loading, message, showMessage, token, redirect}
 }
 
 const mapDispatchToProps = {
-	signIn,
 	showAuthMessage,
 	showLoading,
 	hideAuthMessage,
-	signInWithGoogle,
-	signInWithFacebook
+	authenticated
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+
 
 
 // import React from 'react';
