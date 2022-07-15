@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { Button, Form, Input, Divider, Alert } from "antd";
+import { Button, Form, Input, Divider } from "antd";
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import { GoogleSVG, FacebookSVG } from 'assets/svg/icon';
@@ -13,7 +13,6 @@ import {
 } from 'redux/actions/Auth';
 import JwtAuthService from 'services/JwtAuthService'
 import { useHistory } from "react-router-dom";
-import { motion } from "framer-motion"
 
 export const LoginForm = (props) => {
 	let history = useHistory();
@@ -21,13 +20,10 @@ export const LoginForm = (props) => {
 	const { 
 		otherSignIn, 
 		showForgetPassword, 
-		hideAuthMessage,
 		onForgetPasswordClick,
 		showLoading,
 		extra,
 		loading,
-		showMessage,
-		message,
 		authenticated,
 		showAuthMessage,
 		token,
@@ -56,11 +52,6 @@ export const LoginForm = (props) => {
 	useEffect(() => {
 		if (token !== null && allowRedirect) {
 			history.push(redirect)
-		}
-		if(showMessage) {
-			setTimeout(() => {
-			hideAuthMessage();
-		}, 3000);
 		}
 	});
 	
@@ -91,14 +82,6 @@ export const LoginForm = (props) => {
 
 	return (
 		<>
-			<motion.div 
-				initial={{ opacity: 0, marginBottom: 0 }} 
-				animate={{ 
-					opacity: showMessage ? 1 : 0,
-					marginBottom: showMessage ? 20 : 0 
-				}}> 
-				<Alert type="error" showIcon message={message}></Alert>
-			</motion.div>
 			<Form 
 				layout="vertical" 
 				name="login-form"
@@ -145,7 +128,7 @@ export const LoginForm = (props) => {
 					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
 				</Form.Item>
 				<Form.Item>
-					<Button type="primary" htmlType="submit" block loading={loading}>
+					<Button type="primary" htmlType="submit" block disable={loading}>
 						Sign In
 					</Button>
 				</Form.Item>
@@ -168,7 +151,7 @@ LoginForm.propTypes = {
 };
 
 LoginForm.defaultProps = {
-	otherSignIn: true,
+	otherSignIn: false,
 	showForgetPassword: false
 };
 

@@ -47,13 +47,14 @@ service.interceptors.response.use( (response) => {
 	
 	// Remove token and redirect 
 	if (error.response.status === 400 || error.response.status === 403) {
-		notificationParam.message = 'Authentication Fail'
-		notificationParam.description = 'Please login again'
+		notificationParam.message = 'Whooopss...'
+		notificationParam.description = error.response.data.message
 		localStorage.removeItem(AUTH_TOKEN)
 	}
 
 	if (error.response.status === 404) {
-		notificationParam.message = 'There is no user record corresponding to this identifier. The user may have been deleted.'
+		notificationParam.message = 'Whooopss...'
+		notificationParam.description = error.response.data.message
 	}
 
 	if (error.response.status === 500) {
