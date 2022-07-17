@@ -33,9 +33,9 @@ export const LoginForm = (props) => {
 
 	const onLogin = values => {
 		showLoading()
-		const fakeToken = 'fakeToken'
+		const refreshToken = 'refreshToken'
 		JwtAuthService.login(values).then(resp => {
-			authenticated(fakeToken)
+			authenticated(refreshToken)
 		}).then(e => {
 			showAuthMessage(e)
 		})
