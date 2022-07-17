@@ -4,16 +4,12 @@ import {
 	SIGNIN,
 	SIGNOUT,
 	SIGNUP,
-	SIGNIN_WITH_GOOGLE,
-	SIGNIN_WITH_FACEBOOK
 } from '../constants/Auth';
 import {
 	showAuthMessage,
 	authenticated,
 	signOutSuccess,
 	signUpSuccess,
-	signInWithGoogleAuthenticated,
-	signInWithFacebookAuthenticated
 } from "../actions/Auth";
 
 import FirebaseService from 'services/FirebaseService'
@@ -69,44 +65,10 @@ export function* signUpWithFBEmail() {
 	);
 }
 
-export function* signInWithFBGoogle() {
-  yield takeEvery(SIGNIN_WITH_GOOGLE, function* () {
-		try {
-			const user = yield call(FirebaseService.signInGoogleRequest);
-			if (user.message) {
-				yield put(showAuthMessage(user.message));
-			} else {
-				localStorage.setItem(AUTH_TOKEN, user.user.uid);
-				yield put(signInWithGoogleAuthenticated(user.user.uid));
-			}
-		} catch (error) {
-			yield put(showAuthMessage(error));
-		}
-	});
-}
-
-export function* signInWithFacebook() {
-  yield takeEvery(SIGNIN_WITH_FACEBOOK, function* () {
-		try {
-			const user = yield call(FirebaseService.signInFacebookRequest);
-			if (user.message) {
-				yield put(showAuthMessage(user.message));
-			} else {
-				localStorage.setItem(AUTH_TOKEN, user.user.uid);
-				yield put(signInWithFacebookAuthenticated(user.user.uid));
-			}
-		} catch (error) {
-			yield put(showAuthMessage(error));
-		}
-	});
-}
-
 export default function* rootSaga() {
   yield all([
 		fork(signInWithFBEmail),
 		fork(signOut),
-		fork(signUpWithFBEmail),
-		fork(signInWithFBGoogle),
-		fork(signInWithFacebook)
+		fork(signUpWithFBEmail)
   ]);
 }
