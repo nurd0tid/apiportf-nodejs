@@ -6,9 +6,9 @@ JwtAuthService.login = function (data) {
 	return fetch({
 		url: '/auth/login',
 		method: 'post',
-		headers: {
-      'public-request': 'true'
-    },
+		headers: { 
+			'public-request': 'true'
+		},
 		data: data
 	})
 }
