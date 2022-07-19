@@ -15,7 +15,7 @@ export const getUsers = async(req, res) => {
  
 export const Register = async(req, res) => {
     const { nip_nipd, email, password, confPassword } = req.body;
-    if(password !== confPassword) return res.status(400).json({message: "Password dan Confirm Password tidak cocok"});
+    if(password !== confPassword) return res.status(400).json({message: "Password Not Match"});
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
     try {
@@ -24,7 +24,7 @@ export const Register = async(req, res) => {
             email: email,
             password: hashPassword
         });
-        res.json({message: "Registration Successfuly"});
+        res.json({message: "Registration Successfully"});
     } catch (error) {
         console.log(error);
     }
