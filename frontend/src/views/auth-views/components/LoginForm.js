@@ -34,7 +34,7 @@ export const LoginForm = (props) => {
 	const onLogin = values => {
 		showLoading()
 		const refreshToken = 'refreshToken'
-		JwtAuthService.login(values).then(resp => {
+		JwtAuthService.signIn(values).then(resp => {
 			authenticated(refreshToken)
 		}).then(e => {
 			showAuthMessage(e)

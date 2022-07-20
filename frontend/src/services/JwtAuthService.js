@@ -2,7 +2,7 @@ import fetch from 'auth/FetchInterceptor'
 
 const JwtAuthService = {}
 
-JwtAuthService.login = function (data) {
+JwtAuthService.signIn = function (data) {
 	return fetch({
 		url: '/auth/login',
 		method: 'post',
