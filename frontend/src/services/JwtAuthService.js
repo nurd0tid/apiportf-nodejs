@@ -17,9 +17,6 @@ JwtAuthService.signUp = function (data) {
 	return fetch({
 		url: '/auth/register',
 		method: 'post',
-		headers: {
-      'public-request': 'true'
-    },
 		data: data
 	})
 }
