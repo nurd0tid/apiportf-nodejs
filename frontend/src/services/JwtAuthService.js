@@ -6,9 +6,10 @@ JwtAuthService.signIn = function (data) {
 	return fetch({
 		url: '/auth/login',
 		method: 'post',
-		headers: { 
-			'public-request': 'true'
-		},
+		// Non Active Skip Headers
+		// headers: { 
+		// 	'public-request': 'true'
+		// },
 		data: data
 	})
 }
